@@ -37,15 +37,15 @@ const CopyDialog = ({ from, days, names, onCopy, onClose }) => {
 				from
 					? sprintf(
 							/* translators: %s: day name, e.g. "Monday". */
-							__('Copy %s’s hours to…', 'orderwindow'),
+							__('Copy %s’s hours to…', 'hourgate'),
 							names[from]
 						)
 					: ''
 			}
 		>
-			<div className="orderwindow-weekly-copy__shortcuts">
+			<div className="hourgate-weekly-copy__shortcuts">
 				<Button size="small" onClick={() => setTargets(others)}>
-					{__('All days', 'orderwindow')}
+					{__('All days', 'hourgate')}
 				</Button>
 				<Button
 					size="small"
@@ -53,21 +53,21 @@ const CopyDialog = ({ from, days, names, onCopy, onClose }) => {
 						setTargets(WEEKDAYS.filter((day) => day !== from))
 					}
 				>
-					{__('Weekdays', 'orderwindow')}
+					{__('Weekdays', 'hourgate')}
 				</Button>
 			</div>
-			<fieldset className="orderwindow-weekly-copy__days">
+			<fieldset className="hourgate-weekly-copy__days">
 				<legend className="screen-reader-text">
-					{__('Days to copy to', 'orderwindow')}
+					{__('Days to copy to', 'hourgate')}
 				</legend>
 				{others.map((day) => (
 					<label
 						key={day}
-						htmlFor={`orderwindow-weekly-copy-${day}`}
-						className="orderwindow-weekly-copy__day"
+						htmlFor={`hourgate-weekly-copy-${day}`}
+						className="hourgate-weekly-copy__day"
 					>
 						<input
-							id={`orderwindow-weekly-copy-${day}`}
+							id={`hourgate-weekly-copy-${day}`}
 							type="checkbox"
 							checked={targets.includes(day)}
 							onChange={() => toggle(day)}
@@ -76,22 +76,22 @@ const CopyDialog = ({ from, days, names, onCopy, onClose }) => {
 					</label>
 				))}
 			</fieldset>
-			<p className="orderwindow-weekly-copy__note">
+			<p className="hourgate-weekly-copy__note">
 				{__(
 					'The chosen days’ hours are replaced. Nothing is saved until you click Save.',
-					'orderwindow'
+					'hourgate'
 				)}
 			</p>
-			<div className="orderwindow-weekly-copy__actions">
+			<div className="hourgate-weekly-copy__actions">
 				<Button onClick={onClose}>
-					{__('Cancel', 'orderwindow')}
+					{__('Cancel', 'hourgate')}
 				</Button>
 				<Button
 					type="primary"
 					disabled={targets.length === 0}
 					onClick={() => onCopy(targets)}
 				>
-					{__('Copy', 'orderwindow')}
+					{__('Copy', 'hourgate')}
 				</Button>
 			</div>
 		</ModalPopup>

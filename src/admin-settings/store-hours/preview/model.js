@@ -43,20 +43,20 @@ export const when = (iso, today) => {
 	if (parts.date === today) {
 		return sprintf(
 			/* translators: %s: a time, e.g. "9:00 am". */
-			__('today at %s', 'orderwindow'),
+			__('today at %s', 'hourgate'),
 			time
 		);
 	}
 	if (parts.date === addDays(today, 1)) {
 		return sprintf(
 			/* translators: %s: a time, e.g. "9:00 am". */
-			__('tomorrow at %s', 'orderwindow'),
+			__('tomorrow at %s', 'hourgate'),
 			time
 		);
 	}
 	return sprintf(
 		/* translators: 1: a date; 2: a time. */
-		__('on %1$s at %2$s', 'orderwindow'),
+		__('on %1$s at %2$s', 'hourgate'),
 		formatSiteDate(parts.date),
 		time
 	);
@@ -78,14 +78,14 @@ export const statusText = (now, horizon = 400) => {
 			text: now.nextClose
 				? sprintf(
 						/* translators: %s: when, e.g. "today at 5:00 pm". */
-						__('Open now. Closes %s.', 'orderwindow'),
+						__('Open now. Closes %s.', 'hourgate'),
 						when(now.nextClose, today)
 					)
 				: sprintf(
 						/* translators: %d: number of days. */
 						__(
 							'Open now, with no closing time in the next %d days.',
-							'orderwindow'
+							'hourgate'
 						),
 						horizon
 					),
@@ -96,14 +96,14 @@ export const statusText = (now, horizon = 400) => {
 		text: now?.nextOpen
 			? sprintf(
 					/* translators: %s: when, e.g. "tomorrow at 9:00 am". */
-					__('Closed now. Opens %s.', 'orderwindow'),
+					__('Closed now. Opens %s.', 'hourgate'),
 					when(now.nextOpen, today)
 				)
 			: sprintf(
 					/* translators: %d: number of days. */
 					__(
 						'Closed now, with no opening in the next %d days.',
-						'orderwindow'
+						'hourgate'
 					),
 					horizon
 				),
@@ -121,19 +121,19 @@ export const windowText = (window) => {
 	const start = formatSiteTime(window.startTime);
 	if (window.endsNextDay && window.endTime === '00:00') {
 		/* translators: %s: opening time. */
-		return sprintf(__('%s – midnight', 'orderwindow'), start);
+		return sprintf(__('%s – midnight', 'hourgate'), start);
 	}
 	if (window.endsNextDay) {
 		return sprintf(
 			/* translators: 1: opening time; 2: closing time on the next day. */
-			__('%1$s – %2$s next day', 'orderwindow'),
+			__('%1$s – %2$s next day', 'hourgate'),
 			start,
 			formatSiteTime(window.endTime)
 		);
 	}
 	return sprintf(
 		/* translators: 1: opening time; 2: closing time. */
-		__('%1$s – %2$s', 'orderwindow'),
+		__('%1$s – %2$s', 'hourgate'),
 		start,
 		formatSiteTime(window.endTime)
 	);
@@ -149,7 +149,7 @@ export const windowText = (window) => {
 export const carriedText = (carried) =>
 	sprintf(
 		/* translators: 1: closing time, e.g. "2:00 am"; 2: the weekday it started, e.g. "Friday". */
-		__('until %1$s (from %2$s)', 'orderwindow'),
+		__('until %1$s (from %2$s)', 'hourgate'),
 		formatSiteTime(carried.endTime),
 		formatSiteDate(carried.fromDate, 'l')
 	);
@@ -166,20 +166,20 @@ export const dateText = (date, today) => {
 	if (date === today) {
 		return sprintf(
 			/* translators: %s: a date. */
-			__('Today, %s', 'orderwindow'),
+			__('Today, %s', 'hourgate'),
 			full
 		);
 	}
 	if (date === addDays(today, 1)) {
 		return sprintf(
 			/* translators: %s: a date. */
-			__('Tomorrow, %s', 'orderwindow'),
+			__('Tomorrow, %s', 'hourgate'),
 			full
 		);
 	}
 	return sprintf(
 		/* translators: 1: weekday name; 2: a date. */
-		__('%1$s, %2$s', 'orderwindow'),
+		__('%1$s, %2$s', 'hourgate'),
 		formatSiteDate(date, 'l'),
 		full
 	);
@@ -197,10 +197,10 @@ export const reason = (day) => {
 			text: day.label
 				? sprintf(
 						/* translators: %s: the entry's label. */
-						__('Special hours: %s', 'orderwindow'),
+						__('Special hours: %s', 'hourgate'),
 						day.label
 					)
-				: __('Special hours', 'orderwindow'),
+				: __('Special hours', 'hourgate'),
 			tab: 'special-hours',
 		};
 	}
@@ -209,12 +209,12 @@ export const reason = (day) => {
 			text: day.label
 				? sprintf(
 						/* translators: %s: the closure's label. */
-						__('Closure: %s', 'orderwindow'),
+						__('Closure: %s', 'hourgate'),
 						day.label
 					)
-				: __('Closure', 'orderwindow'),
+				: __('Closure', 'hourgate'),
 			tab: 'closures',
 		};
 	}
-	return { text: __('Weekly hours', 'orderwindow'), tab: 'weekly' };
+	return { text: __('Weekly hours', 'hourgate'), tab: 'weekly' };
 };

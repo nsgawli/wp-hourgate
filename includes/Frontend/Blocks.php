@@ -1,8 +1,8 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Frontend;
+namespace HourGate\Frontend;
 
-use OrderWindow\Core\Behaviour;
-use OrderWindow\Core\OpeningHours;
+use HourGate\Core\Behaviour;
+use HourGate\Core\OpeningHours;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Order Window's blocks (OW-040). Dynamic: nothing is saved in the post.
+ * HourGate's blocks (OW-040). Dynamic: nothing is saved in the post.
  *
  * The block type is registered from an array, not from `block.json`, so a
  * request pays no file read at boot; `src/blocks/<name>/block.json` is the
@@ -25,14 +25,14 @@ class Blocks {
 	 *
 	 * @var string
 	 */
-	const EDITOR_HANDLE = 'orderwindow-store-status-editor';
+	const EDITOR_HANDLE = 'hourgate-store-status-editor';
 
 	/**
 	 * Editor script handle of the "Opening hours" block.
 	 *
 	 * @var string
 	 */
-	const HOURS_EDITOR_HANDLE = 'orderwindow-opening-hours-editor';
+	const HOURS_EDITOR_HANDLE = 'hourgate-opening-hours-editor';
 
 	/**
 	 * Register the hooks. Called from the front-end and admin autoloaders; no I/O.
@@ -53,18 +53,18 @@ class Blocks {
 	public static function register_blocks() {
 
 		register_block_type(
-			'orderwindow/store-status',
+			'hourgate/store-status',
 			array(
 				'api_version'     => 3,
 				// The same strings and contexts as block.json, so translators see each once.
-				'title'           => _x( 'Store status', 'block title', 'orderwindow' ),
-				'description'     => _x( 'Shows whether the store is open now, and when it closes or opens again.', 'block description', 'orderwindow' ),
+				'title'           => _x( 'Store status', 'block title', 'hourgate' ),
+				'description'     => _x( 'Shows whether the store is open now, and when it closes or opens again.', 'block description', 'hourgate' ),
 				'category'        => 'woocommerce',
 				'keywords'        => array(
-					_x( 'open', 'block keyword', 'orderwindow' ),
-					_x( 'closed', 'block keyword', 'orderwindow' ),
-					_x( 'hours', 'block keyword', 'orderwindow' ),
-					_x( 'order window', 'block keyword', 'orderwindow' ),
+					_x( 'open', 'block keyword', 'hourgate' ),
+					_x( 'closed', 'block keyword', 'hourgate' ),
+					_x( 'hours', 'block keyword', 'hourgate' ),
+					_x( 'hourgate', 'block keyword', 'hourgate' ),
 				),
 				'attributes'      => array(
 					'openText'   => array(
@@ -92,17 +92,17 @@ class Blocks {
 	private static function register_hours_block() {
 
 		register_block_type(
-			'orderwindow/opening-hours',
+			'hourgate/opening-hours',
 			array(
 				'api_version'     => 3,
-				'title'           => _x( 'Opening hours', 'block title', 'orderwindow' ),
-				'description'     => _x( 'Shows the store’s weekly opening hours, with today highlighted.', 'block description', 'orderwindow' ),
+				'title'           => _x( 'Opening hours', 'block title', 'hourgate' ),
+				'description'     => _x( 'Shows the store’s weekly opening hours, with today highlighted.', 'block description', 'hourgate' ),
 				'category'        => 'woocommerce',
 				'keywords'        => array(
-					_x( 'hours', 'block keyword', 'orderwindow' ),
-					_x( 'open', 'block keyword', 'orderwindow' ),
-					_x( 'schedule', 'block keyword', 'orderwindow' ),
-					_x( 'order window', 'block keyword', 'orderwindow' ),
+					_x( 'hours', 'block keyword', 'hourgate' ),
+					_x( 'open', 'block keyword', 'hourgate' ),
+					_x( 'schedule', 'block keyword', 'hourgate' ),
+					_x( 'hourgate', 'block keyword', 'hourgate' ),
 				),
 				'attributes'      => array(
 					'title'        => array(
@@ -159,7 +159,7 @@ class Blocks {
 	 */
 	public static function enqueue_editor() {
 
-		$file = ORDERWINDOW_ABSPATH . 'build/blocks/store-status/index.asset.php';
+		$file = HOURGATE_ABSPATH . 'build/blocks/store-status/index.asset.php';
 
 		if ( ! is_readable( $file ) ) {
 			return;
@@ -169,17 +169,17 @@ class Blocks {
 
 		wp_enqueue_script(
 			self::EDITOR_HANDLE,
-			ORDERWINDOW_PLUGIN_URL . 'build/blocks/store-status/index.js',
+			HOURGATE_PLUGIN_URL . 'build/blocks/store-status/index.js',
 			isset( $asset['dependencies'] ) ? (array) $asset['dependencies'] : array(),
-			isset( $asset['version'] ) ? $asset['version'] : ORDERWINDOW_VERSION,
+			isset( $asset['version'] ) ? $asset['version'] : HOURGATE_VERSION,
 			array( 'in_footer' => false )
 		);
 
-		wp_set_script_translations( self::EDITOR_HANDLE, 'orderwindow' );
+		wp_set_script_translations( self::EDITOR_HANDLE, 'hourgate' );
 
 		wp_add_inline_script(
 			self::EDITOR_HANDLE,
-			'window.orderWindowBlocks = ' . wp_json_encode(
+			'window.hourGateBlocks = ' . wp_json_encode(
 				array(
 					'closedMessage'   => Behaviour::closed_message(),
 					'defaultOpenText' => StoreStatus::default_open_text(),
@@ -199,7 +199,7 @@ class Blocks {
 	 */
 	private static function enqueue_hours_editor() {
 
-		$file = ORDERWINDOW_ABSPATH . 'build/blocks/opening-hours/index.asset.php';
+		$file = HOURGATE_ABSPATH . 'build/blocks/opening-hours/index.asset.php';
 
 		if ( ! is_readable( $file ) ) {
 			return;
@@ -209,13 +209,13 @@ class Blocks {
 
 		wp_enqueue_script(
 			self::HOURS_EDITOR_HANDLE,
-			ORDERWINDOW_PLUGIN_URL . 'build/blocks/opening-hours/index.js',
+			HOURGATE_PLUGIN_URL . 'build/blocks/opening-hours/index.js',
 			isset( $asset['dependencies'] ) ? (array) $asset['dependencies'] : array(),
-			isset( $asset['version'] ) ? $asset['version'] : ORDERWINDOW_VERSION,
+			isset( $asset['version'] ) ? $asset['version'] : HOURGATE_VERSION,
 			array( 'in_footer' => false )
 		);
 
-		wp_set_script_translations( self::HOURS_EDITOR_HANDLE, 'orderwindow' );
+		wp_set_script_translations( self::HOURS_EDITOR_HANDLE, 'hourgate' );
 
 		try {
 			$hours = OpeningHours::build();
@@ -231,7 +231,7 @@ class Blocks {
 
 		wp_add_inline_script(
 			self::HOURS_EDITOR_HANDLE,
-			'window.orderWindowBlocks = Object.assign( window.orderWindowBlocks || {}, ' . wp_json_encode(
+			'window.hourGateBlocks = Object.assign( window.hourGateBlocks || {}, ' . wp_json_encode(
 				array(
 					'hours'    => $hours['days'],
 					'upcoming' => $upcoming,

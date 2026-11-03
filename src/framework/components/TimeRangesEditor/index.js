@@ -82,14 +82,14 @@ const TimeRangesEditor = ({
 	const atMax = rows.length >= max;
 
 	return (
-		<div className="orderwindow-time-ranges" ref={rootRef}>
+		<div className="hourgate-time-ranges" ref={rootRef}>
 			{rows.length > 0 && (
 				<div
-					className="orderwindow-time-ranges__head"
+					className="hourgate-time-ranges__head"
 					aria-hidden="true"
 				>
-					<span>{__('Opens', 'orderwindow')}</span>
-					<span>{__('Closes', 'orderwindow')}</span>
+					<span>{__('Opens', 'hourgate')}</span>
+					<span>{__('Closes', 'hourgate')}</span>
 				</div>
 			)}
 			{rows.map((row, index) => {
@@ -107,10 +107,10 @@ const TimeRangesEditor = ({
 					.join(' ');
 				return (
 					<div
-						className="orderwindow-time-ranges__row"
+						className="hourgate-time-ranges__row"
 						key={index}
 					>
-						<div className="orderwindow-time-ranges__fields">
+						<div className="hourgate-time-ranges__fields">
 							<TimeField
 								id={fieldId(idPrefix, index, 'start')}
 								hideLabel
@@ -118,7 +118,7 @@ const TimeRangesEditor = ({
 									/* translators: 1: what the hours belong to, e.g. "Monday"; 2: range number. */
 									__(
 										'%1$s, range %2$d, opens',
-										'orderwindow'
+										'hourgate'
 									),
 									context,
 									n
@@ -132,7 +132,7 @@ const TimeRangesEditor = ({
 								disabled={disabled}
 							/>
 							<span
-								className="orderwindow-time-ranges__dash"
+								className="hourgate-time-ranges__dash"
 								aria-hidden="true"
 							>
 								–
@@ -144,7 +144,7 @@ const TimeRangesEditor = ({
 									/* translators: 1: what the hours belong to, e.g. "Monday"; 2: range number. */
 									__(
 										'%1$s, range %2$d, closes',
-										'orderwindow'
+										'hourgate'
 									),
 									context,
 									n
@@ -157,14 +157,14 @@ const TimeRangesEditor = ({
 							/>
 							<button
 								type="button"
-								className="orderwindow-time-ranges__remove"
+								className="hourgate-time-ranges__remove"
 								onClick={() => remove(index)}
 								disabled={disabled}
 								aria-label={sprintf(
 									/* translators: 1: range number; 2: what the hours belong to, e.g. "Monday". */
 									__(
 										'Remove range %1$d (%2$s)',
-										'orderwindow'
+										'hourgate'
 									),
 									n,
 									context
@@ -179,7 +179,7 @@ const TimeRangesEditor = ({
 						{hint && (
 							<small
 								id={hintId}
-								className="orderwindow-time-ranges__hint"
+								className="hourgate-time-ranges__hint"
 							>
 								{hint}
 							</small>
@@ -187,7 +187,7 @@ const TimeRangesEditor = ({
 						{rowError && (
 							<small
 								id={rowErrorId}
-								className="orderwindow-form-field-error-msg"
+								className="hourgate-form-field-error-msg"
 							>
 								{rowError}
 							</small>
@@ -195,17 +195,17 @@ const TimeRangesEditor = ({
 					</div>
 				);
 			})}
-			<div className="orderwindow-time-ranges__add">
+			<div className="hourgate-time-ranges__add">
 				<button
 					type="button"
 					id={`${idPrefix}-add`}
-					className="orderwindow-button small"
+					className="hourgate-button small"
 					onClick={add}
 					disabled={disabled || atMax}
 					aria-describedby={atMax ? `${idPrefix}-max` : undefined}
 				>
 					<FiPlus aria-hidden="true" focusable="false" />
-					{__('Add time range', 'orderwindow')}
+					{__('Add time range', 'hourgate')}
 				</button>
 				{atMax && (
 					<small id={`${idPrefix}-max`}>
@@ -215,7 +215,7 @@ const TimeRangesEditor = ({
 								'Up to %d time range per day.',
 								'Up to %d time ranges per day.',
 								max,
-								'orderwindow'
+								'hourgate'
 							),
 							max
 						)}
@@ -254,12 +254,12 @@ export const rangeHint = ({ start, end }) => {
 		return '';
 	}
 	if (e === 0 || e === 1440) {
-		return s === 0 ? '' : __('until midnight', 'orderwindow');
+		return s === 0 ? '' : __('until midnight', 'hourgate');
 	}
 	if (e < s) {
 		return sprintf(
 			/* translators: %s: closing time, e.g. "2:00 am". */
-			__('ends %s the next day', 'orderwindow'),
+			__('ends %s the next day', 'hourgate'),
 			formatSiteTime(end)
 		);
 	}

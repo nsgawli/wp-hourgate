@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Admin;
+namespace HourGate\Admin;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -29,7 +29,7 @@ class Autoloader {
 		SettingsPage::init();
 
 		// blocks, for the block editor (OW-040).
-		\OrderWindow\Frontend\Blocks::register_hooks();
+		\HourGate\Frontend\Blocks::register_hooks();
 
 		// first-run activation redirect.
 		Onboarding::init();

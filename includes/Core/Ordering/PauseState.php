@@ -1,9 +1,9 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core\Ordering;
+namespace HourGate\Core\Ordering;
 
-use OrderWindow\Core\Schedule\Calendar;
-use OrderWindow\Core\Schedule\Engine;
-use OrderWindow\Core\Schedule\LocalClock;
+use HourGate\Core\Schedule\Calendar;
+use HourGate\Core\Schedule\Engine;
+use HourGate\Core\Schedule\LocalClock;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

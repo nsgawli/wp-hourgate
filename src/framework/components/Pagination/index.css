@@ -1,44 +1,44 @@
-.orderwindow-pagination {
+.hourgate-pagination {
 	width: 100%;
 	padding-top: 10px;
 	box-sizing: border-box;
 }
 
-.orderwindow-pagination-info {
+.hourgate-pagination-info {
 	font-size: 13px;
 	color: #50575e;
 	font-weight: 500;
 	white-space: nowrap;
 }
 
-.orderwindow-pagination-controls .orderwindow-button {
+.hourgate-pagination-controls .hourgate-button {
 	min-width: 28px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.orderwindow-pagination-controls .orderwindow-button.orderwindow-pagination-page {
+.hourgate-pagination-controls .hourgate-button.hourgate-pagination-page {
 	min-width: 28px;
 }
 
-.orderwindow-pagination-ellipsis {
+.hourgate-pagination-ellipsis {
 	padding: 0 4px;
 	color: #50575e;
 	font-size: 13px;
 }
 
-.orderwindow-pagination-jump {
+.hourgate-pagination-jump {
 	font-size: 13px;
 	color: #50575e;
 	white-space: nowrap;
 }
 
-.orderwindow-pagination-jump label {
+.hourgate-pagination-jump label {
 	white-space: nowrap;
 }
 
-.orderwindow-pagination-jump input {
+.hourgate-pagination-jump input {
 	width: 56px;
 	height: 28px;
 	padding: 0 6px;
@@ -48,20 +48,20 @@
 	font-size: 13px;
 }
 
-.orderwindow-pagination-jump input:focus {
+.hourgate-pagination-jump input:focus {
 	outline: none;
-	border-color: var(--orderwindow-primary-color);
+	border-color: var(--hourgate-primary-color);
 }
 
 @media (max-width: 768px) {
 
-	.orderwindow-pagination {
+	.hourgate-pagination {
 		justify-content: center !important;
 	}
 
-	.orderwindow-pagination-info,
-	.orderwindow-pagination-controls,
-	.orderwindow-pagination-jump {
+	.hourgate-pagination-info,
+	.hourgate-pagination-controls,
+	.hourgate-pagination-jump {
 		justify-content: center;
 		width: 100%;
 	}

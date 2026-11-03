@@ -17,12 +17,12 @@ const TimezoneNotice = () => {
 		return null;
 	}
 	return (
-		<div className="orderwindow-timezone-notice" role="note">
+		<div className="hourgate-timezone-notice" role="note">
 			{sprintf(
 				/* translators: %s: the fixed offset, e.g. "UTC+5:30". */
 				__(
 					'Your site uses a fixed UTC offset (%s), so opening hours won’t follow daylight saving changes.',
-					'orderwindow'
+					'hourgate'
 				),
 				storeZoneLabel()
 			)}{' '}
@@ -30,13 +30,13 @@ const TimezoneNotice = () => {
 				<a href="options-general.php#timezone_string">
 					{__(
 						'Choose a city in Settings → General.',
-						'orderwindow'
+						'hourgate'
 					)}
 				</a>
 			) : (
 				__(
 					'Ask an administrator to choose a city in Settings → General.',
-					'orderwindow'
+					'hourgate'
 				)
 			)}
 		</div>

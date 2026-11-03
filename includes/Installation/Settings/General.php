@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Installation\Settings;
+namespace HourGate\Installation\Settings;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +19,7 @@ class General {
 	 */
 	public static function install() {
 
-		update_option( 'orderwindow_general_settings', self::get_default_settings() );
+		update_option( 'hourgate_general_settings', self::get_default_settings() );
 	}
 
 	/**

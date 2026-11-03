@@ -15,7 +15,7 @@ const MenuItem = React.memo(
 	}) => {
 		const { screenSize } = useScreenSize();
 		const isMobile = ['xs', 'sm'].includes(screenSize);
-		const className = 'orderwindow-menu-item' + (current ? ' current' : '');
+		const className = 'hourgate-menu-item' + (current ? ' current' : '');
 		const showIconOnly = collapsed || isMobile;
 		const style = {};
 		if (parentType == 'side' && !showIconOnly) {

@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Installation;
+namespace HourGate\Installation;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,12 +39,12 @@ class Autoloader {
 		if ( self::$is_upgrade ) {
 
 			// Do not allow parallel process to run.
-			if ( 'yes' === get_transient( 'orderwindow_installing' ) ) {
+			if ( 'yes' === get_transient( 'hourgate_installing' ) ) {
 				return;
 			}
 
 			// Set transient.
-			set_transient( 'orderwindow_installing', 'yes', MINUTE_IN_SECONDS * 10 );
+			set_transient( 'hourgate_installing', 'yes', MINUTE_IN_SECONDS * 10 );
 
 			// Run installation.
 			if ( 0 === self::$current_version ) {
@@ -54,7 +54,7 @@ class Autoloader {
 			}
 
 			// Delete transient.
-			delete_transient( 'orderwindow_installing' );
+			delete_transient( 'hourgate_installing' );
 		}
 	}
 
@@ -93,14 +93,14 @@ class Autoloader {
 	 * Check version
 	 */
 	public static function get_current_version() {
-		self::$current_version = get_option( 'orderwindow_current_version', 0 );
+		self::$current_version = get_option( 'hourgate_current_version', 0 );
 	}
 
 	/**
 	 * Check for upgrade
 	 */
 	public static function check_upgrade() {
-		if ( ORDERWINDOW_VERSION !== (string) self::$current_version ) {
+		if ( HOURGATE_VERSION !== (string) self::$current_version ) {
 			self::$is_upgrade = true;
 		}
 	}
@@ -123,7 +123,7 @@ class Autoloader {
 		Settings\Behaviour::install();
 
 		// "Not paused", so the autoloaded pause option always exists.
-		\OrderWindow\Core\Pause::install();
+		\HourGate\Core\Pause::install();
 
 		self::set_installation_complete();
 	}
@@ -131,7 +131,7 @@ class Autoloader {
 	/**
 	 * Create or update database tables.
 	 *
-	 * Add each `CREATE TABLE {$wpdb->prefix}orderwindow_*` statement here
+	 * Add each `CREATE TABLE {$wpdb->prefix}hourgate_*` statement here
 	 * and run it through `dbDelta()`. No tables exist yet.
 	 *
 	 * @version 1.0.0
@@ -154,8 +154,8 @@ class Autoloader {
 	 */
 	public static function set_installation_complete() {
 
-		update_option( 'orderwindow_current_version', ORDERWINDOW_VERSION );
-		self::$current_version = ORDERWINDOW_VERSION;
+		update_option( 'hourgate_current_version', HOURGATE_VERSION );
+		self::$current_version = HOURGATE_VERSION;
 		self::$is_upgrade      = false;
 	}
 }

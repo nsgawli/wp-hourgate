@@ -56,7 +56,7 @@ export const describeDate = (entry) =>
 	entry.yearly === true
 		? sprintf(
 				/* translators: %s: a date or a date range without the year, e.g. "December 24" or "December 24 – January 2". */
-				__('Every year: %s', 'orderwindow'),
+				__('Every year: %s', 'hourgate'),
 				formatSiteDate(
 					entry.date,
 					withoutYear(getSiteSettings().dateFormat)
@@ -72,7 +72,7 @@ export const describeDate = (entry) =>
  */
 export const describeRanges = (ranges) => {
 	if (isFullDay(ranges)) {
-		return __('Open 24 hours', 'orderwindow');
+		return __('Open 24 hours', 'hourgate');
 	}
 	return ranges
 		.map((range) => {
@@ -80,20 +80,20 @@ export const describeRanges = (ranges) => {
 			const start = formatSiteTime(range?.start);
 			if (e === 0 || e === 1440) {
 				/* translators: %s: opening time. */
-				return sprintf(__('%s – midnight', 'orderwindow'), start);
+				return sprintf(__('%s – midnight', 'hourgate'), start);
 			}
 			const s = toMinutes(range?.start);
 			if (s !== null && e !== null && e < s) {
 				return sprintf(
 					/* translators: 1: opening time; 2: closing time on the next day. */
-					__('%1$s – %2$s the next day', 'orderwindow'),
+					__('%1$s – %2$s the next day', 'hourgate'),
 					start,
 					formatSiteTime(range.end)
 				);
 			}
 			return sprintf(
 				/* translators: 1: opening time; 2: closing time. */
-				__('%1$s – %2$s', 'orderwindow'),
+				__('%1$s – %2$s', 'hourgate'),
 				start,
 				formatSiteTime(range?.end)
 			);
@@ -119,7 +119,7 @@ export const toRows = (list, today, onConvert) => {
 					key: `i${index}`,
 					index,
 					unreadable: true,
-					dates: __('Unreadable special hours', 'orderwindow'),
+					dates: __('Unreadable special hours', 'hourgate'),
 					label:
 						isObject(entry) && typeof entry.label === 'string'
 							? entry.label
@@ -127,7 +127,7 @@ export const toRows = (list, today, onConvert) => {
 					notes: [
 						__(
 							'The saved date or hours can’t be read. Edit or delete it.',
-							'orderwindow'
+							'hourgate'
 						),
 					],
 					sort: '',
@@ -141,7 +141,7 @@ export const toRows = (list, today, onConvert) => {
 				closed
 					? __(
 							'Closed, but the night before isn’t cut at midnight.',
-							'orderwindow'
+							'hourgate'
 						)
 					: describeRanges(entry.ranges),
 			];
@@ -149,7 +149,7 @@ export const toRows = (list, today, onConvert) => {
 				notes.push(
 					__(
 						'29 February applies only in leap years.',
-						'orderwindow'
+						'hourgate'
 					)
 				);
 			}
@@ -170,13 +170,13 @@ export const toRows = (list, today, onConvert) => {
 					? {
 							label: __(
 								'Convert to a closure',
-								'orderwindow'
+								'hourgate'
 							),
 							ariaLabel: sprintf(
 								/* translators: %s: the entry's date. */
 								__(
 									'Convert the special hours on %s to a closure',
-									'orderwindow'
+									'hourgate'
 								),
 								dates
 							),
@@ -246,19 +246,19 @@ export const validateForm = (form) => {
 	if (labelLength(form.label) > MAX_LABEL) {
 		fields.label = sprintf(
 			/* translators: %d: the most characters allowed. */
-			__('Use at most %d characters.', 'orderwindow'),
+			__('Use at most %d characters.', 'hourgate'),
 			MAX_LABEL
 		);
 	}
 	if (!isYmd(form.date)) {
 		fields.date = form.date
-			? __('Enter a valid date.', 'orderwindow')
-			: __('Choose a date.', 'orderwindow');
+			? __('Enter a valid date.', 'hourgate')
+			: __('Choose a date.', 'hourgate');
 	}
 	if (!form.open24 && form.ranges.length === 0) {
 		fields.ranges = __(
 			'Add at least one time range, or choose Open 24 hours. To close for the whole day, add a closure instead.',
-			'orderwindow'
+			'hourgate'
 		);
 	}
 	return { fields, ranges: form.open24 ? {} : validateRanges(form.ranges) };
@@ -321,7 +321,7 @@ export const placeErrors = (errors, index, sent) => {
 						/* translators: 1: the other entry's date, e.g. "Every year: December 24"; 2: its label in parentheses, or nothing. */
 						__(
 							'Special hours already exist for this date: %1$s%2$s. Only one entry per date is allowed; edit that one instead.',
-							'orderwindow'
+							'hourgate'
 						),
 						describeDate(clash),
 						clash.label ? ` (${clash.label})` : ''

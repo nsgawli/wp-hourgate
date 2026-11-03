@@ -153,13 +153,13 @@ export function UnsavedChangesProvider({ guardedPath, children }) {
 			{children}
 			<ConfirmDialog
 				isOpen={pending !== null}
-				title={__('Leave without saving?', 'orderwindow')}
+				title={__('Leave without saving?', 'hourgate')}
 				message={__(
 					'You have unsaved changes on this screen. If you leave now, they are lost.',
-					'orderwindow'
+					'hourgate'
 				)}
-				confirmLabel={__('Discard changes', 'orderwindow')}
-				cancelLabel={__('Stay', 'orderwindow')}
+				confirmLabel={__('Discard changes', 'hourgate')}
+				cancelLabel={__('Stay', 'hourgate')}
 				destructive
 				onCancel={() => setPending(null)}
 				onConfirm={() => {

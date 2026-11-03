@@ -1,4 +1,4 @@
-.orderwindow-badge {
+.hourgate-badge {
 	display: inline-flex;
 	align-items: center;
 	padding: 4px 10px;
@@ -9,27 +9,27 @@
 	width: fit-content;
 }
 
-.orderwindow-badge-default {
+.hourgate-badge-default {
 	background: #f0f0f1;
 	color: #50575e;
 }
 
-.orderwindow-badge-success {
+.hourgate-badge-success {
 	background: #edfaef;
 	color: #137333;
 }
 
-.orderwindow-badge-warning {
+.hourgate-badge-warning {
 	background: #fff8e1;
 	color: #b26a00;
 }
 
-.orderwindow-badge-error {
+.hourgate-badge-error {
 	background: #fdecec;
 	color: #c62828;
 }
 
-.orderwindow-badge-info {
-	background: var(--orderwindow-info-soft-color, #eff6ff);
-	color: var(--orderwindow-info-color, #2563eb);
+.hourgate-badge-info {
+	background: var(--hourgate-info-soft-color, #eff6ff);
+	color: var(--hourgate-info-color, #2563eb);
 }

@@ -1,5 +1,5 @@
 {
-	"name": "orderwindow",
+	"name": "hourgate",
 	"version": "1.0.0",
 	"description": "Store hours and delivery slots for WooCommerce",
 	"scripts": {

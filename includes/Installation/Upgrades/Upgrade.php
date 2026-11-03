@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Installation\Upgrades;
+namespace HourGate\Installation\Upgrades;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

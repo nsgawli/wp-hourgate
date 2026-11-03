@@ -1,5 +1,5 @@
 /* AlertContainer */
-.orderwindow-alert-container {
+.hourgate-alert-container {
 	position: fixed;
 	bottom: 0;
 	right: 0;
@@ -8,16 +8,16 @@
 	width: 31.25rem;
 	max-height: 80vh;
 	overflow-y: auto;
-	z-index: var(--orderwindow-popup-z-index);
+	z-index: var(--hourgate-popup-z-index);
 	pointer-events: none;
 }
 @media (max-width: 48rem) {
-	.orderwindow-alert-container {
+	.hourgate-alert-container {
 		width: 100vw;
 		max-height: 100vh;
 	}
 }
-@keyframes orderWindowAlertSlide {
+@keyframes hourGateAlertSlide {
 	0% {
 		transform: translateY(-0.625rem) scale(0.98);
 		opacity: 0;
@@ -28,7 +28,7 @@
 	}
 }
 
-@keyframes orderWindowAlertFadeOut {
+@keyframes hourGateAlertFadeOut {
 	0% {
 		opacity: 1;
 		transform: translateY(0) scale(1);
@@ -39,27 +39,27 @@
 	}
 }
 
-.orderwindow-alert {
+.hourgate-alert {
 	padding: 0.625rem 1.25rem;
 	border-radius: 0.25rem;
 	border: 0.0625rem solid;
-	animation: orderWindowAlertSlide 0.28s ease-out;
+	animation: hourGateAlertSlide 0.28s ease-out;
 	position: relative;
 	box-shadow: 0 0.375rem 1.125rem rgba(15, 23, 42, 0.14);
 	pointer-events: auto;
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.orderwindow-alert:hover {
+.hourgate-alert:hover {
 	transform: translateY(-0.0625rem);
 	box-shadow: 0 0.5rem 1.25rem rgba(15, 23, 42, 0.2);
 }
 
-.orderwindow-alert.orderwindow-alert-leaving {
-	animation: orderWindowAlertFadeOut 0.22s ease-in forwards;
+.hourgate-alert.hourgate-alert-leaving {
+	animation: hourGateAlertFadeOut 0.22s ease-in forwards;
 	pointer-events: none;
 }
-.orderwindow-alert svg {
+.hourgate-alert svg {
 	position: absolute;
 	top: 0.3125rem;
 	right: 0.3125rem;
@@ -67,25 +67,25 @@
 	font-size: 1.125rem;
 	opacity: 0.6;
 }
-.orderwindow-alert svg:hover {
+.hourgate-alert svg:hover {
 	opacity: 1;
 }
-.orderwindow-alert-success {
+.hourgate-alert-success {
 	background-color: #f6ffed;
 	border-color: #b7eb8f;
 	color: #389e0d;
 }
-.orderwindow-alert-info {
+.hourgate-alert-info {
 	background-color: #e6f7ff;
 	border-color: #91d5ff;
 	color: #1966da;
 }
-.orderwindow-alert-warning {
+.hourgate-alert-warning {
 	background-color: #fffbe6;
 	border-color: #ffe58f;
 	color: #d48806;
 }
-.orderwindow-alert-error {
+.hourgate-alert-error {
 	background-color: #fff1f0;
 	border-color: #ffa39e;
 	color: #cf1322;

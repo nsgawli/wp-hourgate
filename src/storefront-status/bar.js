@@ -1,5 +1,5 @@
 /**
- * The notice bar (OW-038): fills the empty `.orderwindow-notice-bar`
+ * The notice bar (OW-038): fills the empty `.hourgate-notice-bar`
  * container PHP printed, from the status, while ordering is closed or paused.
  *
  * - Shown when the status has `bar: true`, `state` is not `open`, there is a
@@ -14,7 +14,7 @@
  *   false (the owner turned it off after this page was cached).
  */
 
-const KEY = 'orderwindow-bar-dismissed';
+const KEY = 'hourgate-bar-dismissed';
 
 function dismissedVersion() {
 	try {
@@ -36,7 +36,7 @@ function rememberDismissed(version) {
  * Keep the page's notice bar in step with the status.
  */
 export function watchBar() {
-	const bar = document.querySelector('.orderwindow-notice-bar');
+	const bar = document.querySelector('.hourgate-notice-bar');
 	if (!bar) {
 		return;
 	}
@@ -75,7 +75,7 @@ export function watchBar() {
 		bar.hidden = false;
 	}
 
-	document.addEventListener('orderwindow:status', (event) =>
+	document.addEventListener('hourgate:status', (event) =>
 		apply(event.detail)
 	);
 }

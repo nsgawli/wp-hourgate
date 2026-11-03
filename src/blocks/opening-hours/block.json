@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "orderwindow/opening-hours",
+	"name": "hourgate/opening-hours",
 	"title": "Opening hours",
 	"category": "woocommerce",
 	"description": "Shows the store’s weekly opening hours, with today highlighted.",
-	"keywords": ["hours", "open", "schedule", "order window"],
-	"textdomain": "orderwindow",
+	"keywords": ["hours", "open", "schedule", "hourgate"],
+	"textdomain": "hourgate",
 	"attributes": {
 		"title": { "type": "string", "default": "" },
 		"showClosures": { "type": "boolean", "default": false }

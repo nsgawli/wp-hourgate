@@ -1,7 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Admin;
+namespace HourGate\Admin;
 
-use OrderWindow\Core\Capabilities;
+use HourGate\Core\Capabilities;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Top-level Order Window admin menu and its submenus.
+ * Top-level HourGate admin menu and its submenus.
  */
 class AdminMenu {
 
@@ -19,7 +19,7 @@ class AdminMenu {
 	 *
 	 * @var string
 	 */
-	const PARENT_SLUG = 'orderwindow-settings';
+	const PARENT_SLUG = 'hourgate-settings';
 
 	/**
 	 * Initialize the class.
@@ -35,7 +35,7 @@ class AdminMenu {
 	/**
 	 * Register the top-level menu and every submenu.
 	 *
-	 * Each admin screen adds itself through the `orderwindow_admin_submenus`
+	 * Each admin screen adds itself through the `hourgate_admin_submenus`
 	 * filter (see `SettingsPage::add_submenu()`), sorted by `position`.
 	 *
 	 * @return void
@@ -43,8 +43,8 @@ class AdminMenu {
 	public static function register_menu() {
 
 		add_menu_page(
-			esc_attr__( 'Order Window', 'orderwindow' ),
-			esc_attr__( 'Order Window', 'orderwindow' ),
+			esc_attr__( 'HourGate', 'hourgate' ),
+			esc_attr__( 'HourGate', 'hourgate' ),
 			Capabilities::get_manage_capability(),
 			self::PARENT_SLUG,
 			array( SettingsPage::class, 'render_settings_page' ),
@@ -52,7 +52,7 @@ class AdminMenu {
 			56
 		);
 
-		$submenus = apply_filters( 'orderwindow_admin_submenus', array() );
+		$submenus = apply_filters( 'hourgate_admin_submenus', array() );
 
 		usort(
 			$submenus,

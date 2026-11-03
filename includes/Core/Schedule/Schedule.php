@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core\Schedule;
+namespace HourGate\Core\Schedule;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -88,7 +88,7 @@ final class Schedule {
 	}
 
 	/**
-	 * The `orderwindow_schedule_settings` group: `array( 'weekly' => … )`.
+	 * The `hourgate_schedule_settings` group: `array( 'weekly' => … )`.
 	 *
 	 * @return array
 	 */
@@ -99,7 +99,7 @@ final class Schedule {
 	}
 
 	/**
-	 * The `orderwindow_closures_settings` group: `array( 'closures' => …, 'specialHours' => … )`.
+	 * The `hourgate_closures_settings` group: `array( 'closures' => …, 'specialHours' => … )`.
 	 * Generated ids are included, so saving this keeps them stable.
 	 *
 	 * @return array

@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Installation\Settings;
+namespace HourGate\Installation\Settings;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * (on, and where it shows), and the note in the customer's emails for an
  * order accepted while closed (OW-062).
  *
- * Enforcement is off after install, so activating Order Window changes
+ * Enforcement is off after install, so activating HourGate changes
  * nothing for shoppers until the merchant turns it on (study 10, D4).
  */
 class Behaviour {
@@ -22,7 +22,7 @@ class Behaviour {
 	 *
 	 * @var string
 	 */
-	const OPTION = 'orderwindow_behaviour_settings';
+	const OPTION = 'hourgate_behaviour_settings';
 
 	/**
 	 * Closed mode: reject checkout; browsing and add-to-cart stay on.
@@ -127,7 +127,7 @@ class Behaviour {
 	public static function get_default_closed_message() {
 
 		/* translators: Keep {next_open} as is: it is replaced with the date and time the store next opens. */
-		return __( "We're closed right now. We open {next_open}.", 'orderwindow' );
+		return __( "We're closed right now. We open {next_open}.", 'hourgate' );
 	}
 
 	/**
@@ -138,6 +138,6 @@ class Behaviour {
 	public static function get_default_scheduled_order_note() {
 
 		/* translators: Keep {scheduled_for} as is: it is replaced with the date and time the order is scheduled for. */
-		return __( "Your order was placed while we were closed. We'll start on it from {scheduled_for}.", 'orderwindow' );
+		return __( "Your order was placed while we were closed. We'll start on it from {scheduled_for}.", 'hourgate' );
 	}
 }

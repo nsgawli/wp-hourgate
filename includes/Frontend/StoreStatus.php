@@ -1,7 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Frontend;
+namespace HourGate\Frontend;
 
-use OrderWindow\Core\OrderingPolicy;
+use HourGate\Core\OrderingPolicy;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * The "Store status" markup (OW-040), shared by the block and the
- * `[orderwindow_status]` shortcode.
+ * `[hourgate_status]` shortcode.
  *
  * PHP prints the current text for visitors without JavaScript, in a
  * `role="status"` container whose `data-` attributes carry the templates, so
@@ -34,7 +34,7 @@ class StoreStatus {
 	 */
 	public static function default_open_text() {
 		/* translators: Keep {closes_at} as is: it is replaced with the time the store next closes. */
-		return __( 'Open now · closes {closes_at}', 'orderwindow' );
+		return __( 'Open now · closes {closes_at}', 'hourgate' );
 	}
 
 	/**
@@ -89,7 +89,7 @@ class StoreStatus {
 	 * @return string
 	 */
 	private static function open_fallback() {
-		return __( 'Open now', 'orderwindow' );
+		return __( 'Open now', 'hourgate' );
 	}
 
 	/**
@@ -98,7 +98,7 @@ class StoreStatus {
 	 * @return string
 	 */
 	private static function later() {
-		return __( 'later', 'orderwindow' );
+		return __( 'later', 'hourgate' );
 	}
 
 	/**
@@ -121,12 +121,12 @@ class StoreStatus {
 		}
 
 		Assets::need();
-		Assets::add_style( '.orderwindow-store-status[hidden]{display:none}' );
+		Assets::add_style( '.hourgate-store-status[hidden]{display:none}' );
 
 		$is_open = 'open' === $status['state'];
 
 		return sprintf(
-			'<div class="orderwindow-store-status %1$s" role="status" data-state="%2$s" data-open="%3$s" data-closed="%4$s" data-open-fallback="%5$s" data-later="%6$s">%7$s</div>',
+			'<div class="hourgate-store-status %1$s" role="status" data-state="%2$s" data-open="%3$s" data-closed="%4$s" data-open-fallback="%5$s" data-later="%6$s">%7$s</div>',
 			$is_open ? 'is-open' : 'is-closed',
 			esc_attr( $status['state'] ),
 			esc_attr( '' === $open ? self::default_open_text() : $open ),

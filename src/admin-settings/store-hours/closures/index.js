@@ -35,7 +35,7 @@ const Closures = () => {
 			)
 			.catch((error) =>
 				setLoadError(
-					error?.message || __('Unknown error.', 'orderwindow')
+					error?.message || __('Unknown error.', 'hourgate')
 				)
 			);
 	}, []);
@@ -57,7 +57,7 @@ const Closures = () => {
 			addAlert({
 				id: Date.now(),
 				type: 'success',
-				title: __('Saved', 'orderwindow'),
+				title: __('Saved', 'hourgate'),
 				description: successText,
 			});
 		} catch (error) {
@@ -70,10 +70,10 @@ const Closures = () => {
 		addAlert({
 			id: Date.now(),
 			type: 'error',
-			title: __('Not saved', 'orderwindow'),
+			title: __('Not saved', 'hourgate'),
 			description: error?.byPath
 				? Object.values(error.byPath).join(' ')
-				: error?.message || __('Unknown error.', 'orderwindow'),
+				: error?.message || __('Unknown error.', 'hourgate'),
 		});
 
 	if (loadError) {
@@ -84,13 +84,13 @@ const Closures = () => {
 						/* translators: %s: error message. */
 						__(
 							'The closures couldn’t be loaded: %s',
-							'orderwindow'
+							'hourgate'
 						),
 						loadError
 					)}
 				</p>
 				<Button onClick={load}>
-					{__('Try again', 'orderwindow')}
+					{__('Try again', 'hourgate')}
 				</Button>
 			</div>
 		);
@@ -106,7 +106,7 @@ const Closures = () => {
 	const onSaveEntry = (entry, index) => {
 		const next = [...list];
 		next[index] = entry;
-		return persist(next, __('Closure saved.', 'orderwindow')).then(() =>
+		return persist(next, __('Closure saved.', 'hourgate')).then(() =>
 			setDialog(null)
 		);
 	};
@@ -114,11 +114,11 @@ const Closures = () => {
 	const askDelete = (key) => {
 		const row = byKey[key];
 		setConfirm({
-			title: __('Delete this closure?', 'orderwindow'),
+			title: __('Delete this closure?', 'hourgate'),
 			message: row.label ? `${row.dates} — ${row.label}` : row.dates,
-			label: __('Delete', 'orderwindow'),
+			label: __('Delete', 'hourgate'),
 			next: list.filter((_, i) => i !== row.index),
-			success: __('Closure deleted.', 'orderwindow'),
+			success: __('Closure deleted.', 'hourgate'),
 		});
 	};
 
@@ -127,41 +127,41 @@ const Closures = () => {
 			rows.filter((row) => row.past).map((row) => row.index)
 		);
 		setConfirm({
-			title: __('Delete past closures?', 'orderwindow'),
+			title: __('Delete past closures?', 'hourgate'),
 			message: sprintf(
 				/* translators: %d: number of closures. */
 				_n(
 					'%d one-off closure that has ended will be deleted. Yearly closures are kept.',
 					'%d one-off closures that have ended will be deleted. Yearly closures are kept.',
 					pastIndexes.size,
-					'orderwindow'
+					'hourgate'
 				),
 				pastIndexes.size
 			),
-			label: __('Delete past closures', 'orderwindow'),
+			label: __('Delete past closures', 'hourgate'),
 			next: list.filter((_, i) => !pastIndexes.has(i)),
-			success: __('Past closures deleted.', 'orderwindow'),
+			success: __('Past closures deleted.', 'hourgate'),
 		});
 	};
 
 	return (
-		<div className="orderwindow-closures">
-			<p className="orderwindow-closures__intro">
+		<div className="hourgate-closures">
+			<p className="hourgate-closures__intro">
 				{__(
 					'To close for a whole day, add a closure. A closure also ends the night before at midnight (for example, a Friday 22:00–02:00 range stops at 00:00 when Saturday is closed). Changes are saved as soon as you confirm them.',
-					'orderwindow'
+					'hourgate'
 				)}
 			</p>
 			<FallbackNotice refreshKey={savedVersion} />
 			{unreadableCount > 0 && (
-				<div className="orderwindow-store-hours-notice is-warning">
+				<div className="hourgate-store-hours-notice is-warning">
 					{sprintf(
 						/* translators: %d: number of closures. */
 						_n(
 							'%d saved closure can’t be read. Edit or delete it; other changes can’t be saved until it’s fixed.',
 							'%d saved closures can’t be read. Edit or delete them; other changes can’t be saved until they’re fixed.',
 							unreadableCount,
-							'orderwindow'
+							'hourgate'
 						),
 						unreadableCount
 					)}
@@ -169,14 +169,14 @@ const Closures = () => {
 			)}
 			<ExceptionList
 				items={rows}
-				noun={__('closure', 'orderwindow')}
-				addLabel={__('Add closure', 'orderwindow')}
-				emptyText={__('No upcoming closures.', 'orderwindow')}
+				noun={__('closure', 'hourgate')}
+				addLabel={__('Add closure', 'hourgate')}
+				emptyText={__('No upcoming closures.', 'hourgate')}
 				limitText={sprintf(
 					/* translators: %d: the most closures allowed. */
 					__(
 						'Up to %d closures. Delete past or unused ones to add more.',
-						'orderwindow'
+						'hourgate'
 					),
 					MAX_CLOSURES
 				)}
@@ -184,9 +184,9 @@ const Closures = () => {
 				max={MAX_CLOSURES}
 				pastTitle={
 					/* translators: %d: number of past closures. */
-					__('Past closures (%d)', 'orderwindow')
+					__('Past closures (%d)', 'hourgate')
 				}
-				deletePastLabel={__('Delete past closures', 'orderwindow')}
+				deletePastLabel={__('Delete past closures', 'hourgate')}
 				busy={busy}
 				onAdd={() => setDialog({ index: list.length, entry: null })}
 				onEdit={(key) =>

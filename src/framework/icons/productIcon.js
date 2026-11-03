@@ -2,7 +2,7 @@ import React from 'react';
 
 // A cart with a clock in it (OW-063), white on the indigo circle. The same
 // 20-unit drawing as the sidebar icon in AdminMenu::get_menu_icon(), scaled
-// and centred. Decorative: the "Order Window" title next to it names it.
+// and centred. Decorative: the "HourGate" title next to it names it.
 const ProductIcon = ({ className = '', style = {} }) => {
 	return (
 		<svg
@@ -15,7 +15,7 @@ const ProductIcon = ({ className = '', style = {} }) => {
 		>
 			<defs>
 				<linearGradient
-					id="orderwindow-product-icon-bg"
+					id="hourgate-product-icon-bg"
 					x1="0"
 					y1="0"
 					x2="1"
@@ -25,7 +25,7 @@ const ProductIcon = ({ className = '', style = {} }) => {
 					<stop offset="100%" stopColor="#4F46E5" />
 				</linearGradient>
 				<filter
-					id="orderwindow-product-icon-shadow"
+					id="hourgate-product-icon-shadow"
 					x="-20%"
 					y="-20%"
 					width="140%"
@@ -44,8 +44,8 @@ const ProductIcon = ({ className = '', style = {} }) => {
 				cx="256"
 				cy="256"
 				r="248"
-				fill="url(#orderwindow-product-icon-bg)"
-				filter="url(#orderwindow-product-icon-shadow)"
+				fill="url(#hourgate-product-icon-bg)"
+				filter="url(#hourgate-product-icon-shadow)"
 			/>
 
 			<g transform="translate(110 111) scale(15)" fill="#fff">

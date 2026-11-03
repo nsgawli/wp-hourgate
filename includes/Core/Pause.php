@@ -1,8 +1,8 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core;
+namespace HourGate\Core;
 
-use OrderWindow\Core\Ordering\PauseState;
-use OrderWindow\Core\Schedule\LocalClock;
+use HourGate\Core\Ordering\PauseState;
+use HourGate\Core\Schedule\LocalClock;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * The pause of ordering in WordPress: option `orderwindow_pause_state`
+ * The pause of ordering in WordPress: option `hourgate_pause_state`
  * over the pure `Ordering\PauseState`.
  *
  * The option is its own, outside the Behaviour group, because the admin bar
@@ -30,7 +30,7 @@ class Pause {
 	 *
 	 * @var string
 	 */
-	const OPTION = 'orderwindow_pause_state';
+	const OPTION = 'hourgate_pause_state';
 
 	/**
 	 * The memoized state.
@@ -94,7 +94,7 @@ class Pause {
 	}
 
 	/**
-	 * Start a pause now, replacing any current one. Fires `orderwindow_paused`.
+	 * Start a pause now, replacing any current one. Fires `hourgate_paused`.
 	 *
 	 * @param string   $mode    A `PauseState::MODE_*`.
 	 * @param array    $input   `minutes` (int) for `duration`; `until` (store-local `Y-m-d H:i`) for `until_time`.
@@ -123,13 +123,13 @@ class Pause {
 		 *
 		 * @param array $state The stored state: `{ active, until, mode, startedAt, startedBy }`.
 		 */
-		do_action( 'orderwindow_paused', $state->to_array() );
+		do_action( 'hourgate_paused', $state->to_array() );
 
 		return $state;
 	}
 
 	/**
-	 * Resume ordering. Fires `orderwindow_resumed` only when a pause was
+	 * Resume ordering. Fires `hourgate_resumed` only when a pause was
 	 * in force; resuming when not paused (or after a pause expired) is a no-op
 	 * apart from clearing the expired row.
 	 *
@@ -151,7 +151,7 @@ class Pause {
 			/**
 			 * Fires after a pause in force is ended by hand.
 			 */
-			do_action( 'orderwindow_resumed' );
+			do_action( 'hourgate_resumed' );
 		}
 
 		return $was_active;

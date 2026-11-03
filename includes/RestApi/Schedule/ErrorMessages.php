@@ -1,8 +1,8 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi\Schedule;
+namespace HourGate\RestApi\Schedule;
 
-use OrderWindow\Core\Schedule\ValidationError;
-use OrderWindow\Core\Schedule\WeeklyHours;
+use HourGate\Core\Schedule\ValidationError;
+use HourGate\Core\Schedule\WeeklyHours;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -59,7 +59,7 @@ class ErrorMessages {
 		}
 
 		/* translators: 1: what the problem is about, e.g. "Monday, range 2, start time". 2: the problem. */
-		return sprintf( __( '%1$s: %2$s', 'orderwindow' ), $subject, $problem );
+		return sprintf( __( '%1$s: %2$s', 'hourgate' ), $subject, $problem );
 	}
 
 	/**
@@ -76,28 +76,28 @@ class ErrorMessages {
 			$group = $error->get_params()['group'] ?? '';
 
 			if ( 'schedule' === $group ) {
-				return __( 'Weekly hours settings', 'orderwindow' );
+				return __( 'Weekly hours settings', 'hourgate' );
 			}
 
-			return 'closures' === $group ? __( 'Closures settings', 'orderwindow' ) : '';
+			return 'closures' === $group ? __( 'Closures settings', 'hourgate' ) : '';
 		}
 
 		$names = array();
 
 		switch ( $parts[0] ) {
 			case 'weekly':
-				$names[] = isset( $parts[1] ) ? self::day_name( $parts[1] ) : __( 'Weekly hours', 'orderwindow' );
+				$names[] = isset( $parts[1] ) ? self::day_name( $parts[1] ) : __( 'Weekly hours', 'hourgate' );
 				$names   = array_merge( $names, self::range_names( array_slice( $parts, 2 ) ) );
 				break;
 
 			case 'closures':
 				if ( ! isset( $parts[1] ) ) {
-					$names[] = __( 'Closures', 'orderwindow' );
+					$names[] = __( 'Closures', 'hourgate' );
 					break;
 				}
 
 				/* translators: %d: position of the closure in the list, from 1. */
-				$names[] = sprintf( __( 'Closure %d', 'orderwindow' ), (int) $parts[1] + 1 );
+				$names[] = sprintf( __( 'Closure %d', 'hourgate' ), (int) $parts[1] + 1 );
 
 				if ( isset( $parts[2] ) ) {
 					$names[] = self::field_name( $parts[2] );
@@ -106,15 +106,15 @@ class ErrorMessages {
 
 			case 'specialHours':
 				if ( ! isset( $parts[1] ) ) {
-					$names[] = __( 'Special hours', 'orderwindow' );
+					$names[] = __( 'Special hours', 'hourgate' );
 					break;
 				}
 
 				/* translators: %d: position of the special-hours entry in the list, from 1. */
-				$names[] = sprintf( __( 'Special hours %d', 'orderwindow' ), (int) $parts[1] + 1 );
+				$names[] = sprintf( __( 'Special hours %d', 'hourgate' ), (int) $parts[1] + 1 );
 
 				if ( isset( $parts[2] ) && 'ranges' === $parts[2] ) {
-					$names = array_merge( $names, isset( $parts[3] ) ? self::range_names( array_slice( $parts, 3 ) ) : array( __( 'ranges', 'orderwindow' ) ) );
+					$names = array_merge( $names, isset( $parts[3] ) ? self::range_names( array_slice( $parts, 3 ) ) : array( __( 'ranges', 'hourgate' ) ) );
 				} elseif ( isset( $parts[2] ) ) {
 					$names[] = self::field_name( $parts[2] );
 				}
@@ -139,7 +139,7 @@ class ErrorMessages {
 
 		if ( isset( $parts[0] ) ) {
 			/* translators: %d: position of the time range in the day, from 1. */
-			$names[] = sprintf( __( 'range %d', 'orderwindow' ), (int) $parts[0] + 1 );
+			$names[] = sprintf( __( 'range %d', 'hourgate' ), (int) $parts[0] + 1 );
 		}
 
 		if ( isset( $parts[1] ) ) {
@@ -158,14 +158,14 @@ class ErrorMessages {
 	private static function field_name( $field ) {
 
 		$fields = array(
-			'start'  => __( 'start time', 'orderwindow' ),
-			'end'    => __( 'end time', 'orderwindow' ),
-			'from'   => __( 'first date', 'orderwindow' ),
-			'to'     => __( 'last date', 'orderwindow' ),
-			'date'   => __( 'date', 'orderwindow' ),
-			'label'  => __( 'label', 'orderwindow' ),
-			'id'     => __( 'id', 'orderwindow' ),
-			'yearly' => __( 'repeats yearly', 'orderwindow' ),
+			'start'  => __( 'start time', 'hourgate' ),
+			'end'    => __( 'end time', 'hourgate' ),
+			'from'   => __( 'first date', 'hourgate' ),
+			'to'     => __( 'last date', 'hourgate' ),
+			'date'   => __( 'date', 'hourgate' ),
+			'label'  => __( 'label', 'hourgate' ),
+			'id'     => __( 'id', 'hourgate' ),
+			'yearly' => __( 'repeats yearly', 'hourgate' ),
 		);
 
 		return $fields[ $field ] ?? self::echo_key( $field );
@@ -180,13 +180,13 @@ class ErrorMessages {
 	public static function day_name( $day ) {
 
 		$days = array(
-			'mon' => __( 'Monday', 'orderwindow' ),
-			'tue' => __( 'Tuesday', 'orderwindow' ),
-			'wed' => __( 'Wednesday', 'orderwindow' ),
-			'thu' => __( 'Thursday', 'orderwindow' ),
-			'fri' => __( 'Friday', 'orderwindow' ),
-			'sat' => __( 'Saturday', 'orderwindow' ),
-			'sun' => __( 'Sunday', 'orderwindow' ),
+			'mon' => __( 'Monday', 'hourgate' ),
+			'tue' => __( 'Tuesday', 'hourgate' ),
+			'wed' => __( 'Wednesday', 'hourgate' ),
+			'thu' => __( 'Thursday', 'hourgate' ),
+			'fri' => __( 'Friday', 'hourgate' ),
+			'sat' => __( 'Saturday', 'hourgate' ),
+			'sun' => __( 'Sunday', 'hourgate' ),
 		);
 
 		return $days[ $day ] ?? self::echo_key( $day );
@@ -207,7 +207,7 @@ class ErrorMessages {
 		}
 
 		/* translators: Quotation marks around a key sent in the request; use your language's. %s: the key. */
-		return sprintf( __( '“%s”', 'orderwindow' ), wp_check_invalid_utf8( $key, true ) );
+		return sprintf( __( '“%s”', 'hourgate' ), wp_check_invalid_utf8( $key, true ) );
 	}
 
 	/**
@@ -225,75 +225,75 @@ class ErrorMessages {
 
 		switch ( $error->get_code() ) {
 			case ValidationError::INVALID_TYPE:
-				return __( 'has the wrong format.', 'orderwindow' );
+				return __( 'has the wrong format.', 'hourgate' );
 
 			case ValidationError::REQUIRED:
-				return __( 'is missing.', 'orderwindow' );
+				return __( 'is missing.', 'hourgate' );
 
 			case ValidationError::UNKNOWN_KEY:
 				/* translators: %s: the seven weekday keys. */
-				return sprintf( __( 'is not a weekday. Use %s.', 'orderwindow' ), implode( ', ', WeeklyHours::DAYS ) );
+				return sprintf( __( 'is not a weekday. Use %s.', 'hourgate' ), implode( ', ', WeeklyHours::DAYS ) );
 
 			case ValidationError::INVALID_TIME:
-				return __( 'must be a time from 00:00 to 23:59 (or 24:00 as an end).', 'orderwindow' );
+				return __( 'must be a time from 00:00 to 23:59 (or 24:00 as an end).', 'hourgate' );
 
 			case ValidationError::INVALID_START:
-				return __( 'can\'t be 24:00. Use 00:00 of the next day.', 'orderwindow' );
+				return __( 'can\'t be 24:00. Use 00:00 of the next day.', 'hourgate' );
 
 			case ValidationError::EMPTY_RANGE:
-				return __( 'starts and ends at the same time.', 'orderwindow' );
+				return __( 'starts and ends at the same time.', 'hourgate' );
 
 			case ValidationError::OVERLAP:
 				/* translators: %d: position of the other range, from 1. */
-				return sprintf( __( 'overlaps range %d.', 'orderwindow' ), $other );
+				return sprintf( __( 'overlaps range %d.', 'hourgate' ), $other );
 
 			case ValidationError::OVERLAP_PREVIOUS_DAY:
 				return sprintf(
 					/* translators: 1: position of the other range, from 1. 2: weekday name. */
-					__( 'overlaps range %1$d of %2$s, which runs past midnight.', 'orderwindow' ),
+					__( 'overlaps range %1$d of %2$s, which runs past midnight.', 'hourgate' ),
 					$other,
 					self::day_name( $params['day'] ?? '' )
 				);
 
 			case ValidationError::INVALID_DATE:
-				return __( 'must be a real date written as YYYY-MM-DD.', 'orderwindow' );
+				return __( 'must be a real date written as YYYY-MM-DD.', 'hourgate' );
 
 			case ValidationError::DATE_ORDER:
-				return __( 'is before the first date.', 'orderwindow' );
+				return __( 'is before the first date.', 'hourgate' );
 
 			case ValidationError::YEARLY_TOO_LONG:
-				return __( 'makes a yearly closure last a year or more.', 'orderwindow' );
+				return __( 'makes a yearly closure last a year or more.', 'hourgate' );
 
 			case ValidationError::DUPLICATE_DATE:
 				/* translators: %d: position of the other special-hours entry, from 1. */
-				return sprintf( __( 'falls on the same date as special hours %d.', 'orderwindow' ), $other );
+				return sprintf( __( 'falls on the same date as special hours %d.', 'hourgate' ), $other );
 
 			case ValidationError::INVALID_ID:
-				return __( 'may use only letters, digits, "-" and "_", up to 64 characters.', 'orderwindow' );
+				return __( 'may use only letters, digits, "-" and "_", up to 64 characters.', 'hourgate' );
 
 			case ValidationError::DUPLICATE_ID:
 				return 'specialHours' === $parts[0]
 					/* translators: %d: position of the other special-hours entry, from 1. */
-					? sprintf( __( 'is already used by special hours %d.', 'orderwindow' ), $other )
+					? sprintf( __( 'is already used by special hours %d.', 'hourgate' ), $other )
 					/* translators: %d: position of the other closure, from 1. */
-					: sprintf( __( 'is already used by closure %d.', 'orderwindow' ), $other );
+					: sprintf( __( 'is already used by closure %d.', 'hourgate' ), $other );
 
 			case ValidationError::TOO_LONG:
 				/* translators: %d: maximum number of characters. */
-				return sprintf( __( 'is longer than %d characters.', 'orderwindow' ), $max );
+				return sprintf( __( 'is longer than %d characters.', 'hourgate' ), $max );
 
 			case ValidationError::INVALID_ENCODING:
-				return __( 'isn\'t valid text.', 'orderwindow' );
+				return __( 'isn\'t valid text.', 'hourgate' );
 
 			case ValidationError::TOO_MANY:
 				/* translators: %d: maximum number of entries. */
-				return sprintf( __( 'has more than %d entries.', 'orderwindow' ), $max );
+				return sprintf( __( 'has more than %d entries.', 'hourgate' ), $max );
 
 			case ValidationError::TOO_MANY_ERRORS:
 				/* translators: %d: number of problems shown. */
-				return sprintf( __( 'There are more than %d problems. Fix these first.', 'orderwindow' ), $max );
+				return sprintf( __( 'There are more than %d problems. Fix these first.', 'hourgate' ), $max );
 		}
 
-		return __( 'is not valid.', 'orderwindow' );
+		return __( 'is not valid.', 'hourgate' );
 	}
 }

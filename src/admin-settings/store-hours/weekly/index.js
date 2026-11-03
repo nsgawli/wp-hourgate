@@ -87,7 +87,7 @@ const WeeklyHours = () => {
 			})
 			.catch((error) =>
 				setLoadError(
-					error?.message || __('Unknown error.', 'orderwindow')
+					error?.message || __('Unknown error.', 'hourgate')
 				)
 			);
 	}, []);
@@ -96,19 +96,19 @@ const WeeklyHours = () => {
 
 	if (loadError) {
 		return (
-			<div className="orderwindow-weekly__load-error" role="alert">
+			<div className="hourgate-weekly__load-error" role="alert">
 				<p>
 					{sprintf(
 						/* translators: %s: error message. */
 						__(
 							'The weekly hours couldn’t be loaded: %s',
-							'orderwindow'
+							'hourgate'
 						),
 						loadError
 					)}
 				</p>
 				<Button onClick={load}>
-					{__('Try again', 'orderwindow')}
+					{__('Try again', 'hourgate')}
 				</Button>
 			</div>
 		);
@@ -158,8 +158,8 @@ const WeeklyHours = () => {
 			addAlert({
 				id: Date.now(),
 				type: 'success',
-				title: __('Saved', 'orderwindow'),
-				description: __('Weekly hours saved.', 'orderwindow'),
+				title: __('Saved', 'hourgate'),
+				description: __('Weekly hours saved.', 'hourgate'),
 			});
 		} catch (error) {
 			const byPath = validationErrors(error);
@@ -167,7 +167,7 @@ const WeeklyHours = () => {
 				setServerErrors(placeServerErrors(byPath, model));
 			} else {
 				setSaveError(
-					error?.message || __('Unknown error.', 'orderwindow')
+					error?.message || __('Unknown error.', 'hourgate')
 				);
 			}
 			focusSummary();
@@ -191,15 +191,15 @@ const WeeklyHours = () => {
 			addAlert({
 				id: Date.now(),
 				type: 'success',
-				title: __('Saved', 'orderwindow'),
+				title: __('Saved', 'hourgate'),
 				description: __(
 					'Weekly hours reset: open 24 hours every day.',
-					'orderwindow'
+					'hourgate'
 				),
 			});
 		} catch (error) {
 			setSaveError(
-				error?.message || __('Unknown error.', 'orderwindow')
+				error?.message || __('Unknown error.', 'hourgate')
 			);
 			focusSummary();
 		} finally {
@@ -223,7 +223,7 @@ const WeeklyHours = () => {
 				/* translators: %s: error message. */
 				__(
 					'The weekly hours weren’t saved: %s Your changes are kept; try again.',
-					'orderwindow'
+					'hourgate'
 				),
 				saveError
 			)
@@ -233,7 +233,7 @@ const WeeklyHours = () => {
 		summary.push(
 			sprintf(
 				/* translators: %s: list of day names. */
-				__('Choose the hours for: %s.', 'orderwindow'),
+				__('Choose the hours for: %s.', 'hourgate'),
 				undecided.map((day) => names[day]).join(', ')
 			)
 		);
@@ -242,29 +242,29 @@ const WeeklyHours = () => {
 		summary.push(
 			__(
 				'The weekly hours weren’t saved. Fix the highlighted times.',
-				'orderwindow'
+				'hourgate'
 			)
 		);
 	}
 	summary.push(...serverErrors.unplaced);
 
 	return (
-		<div className="orderwindow-weekly">
-			<p className="orderwindow-weekly__intro">
+		<div className="hourgate-weekly">
+			<p className="hourgate-weekly__intro">
 				{__(
 					'Set when the store is open on each day of the week. A closing time before the opening time runs past midnight, and a closing time of 00:00 means midnight.',
-					'orderwindow'
+					'hourgate'
 				)}
 			</p>
 
 			<FallbackNotice refreshKey={savedVersion} />
 			{dropped.length > 0 && (
-				<div className="orderwindow-weekly__banner">
+				<div className="hourgate-weekly__banner">
 					{sprintf(
 						/* translators: %s: list of unknown keys found in the saved hours. */
 						__(
-							'The saved hours contain entries Order Window doesn’t recognise (%s). They are removed when you save.',
-							'orderwindow'
+							'The saved hours contain entries HourGate doesn’t recognise (%s). They are removed when you save.',
+							'hourgate'
 						),
 						dropped
 							.map((key) => String(key).slice(0, 40))
@@ -277,7 +277,7 @@ const WeeklyHours = () => {
 				ref={summaryRef}
 				tabIndex={-1}
 				aria-live="polite"
-				className={`orderwindow-weekly__summary${summary.length ? ' has-errors' : ''}`}
+				className={`hourgate-weekly__summary${summary.length ? ' has-errors' : ''}`}
 			>
 				{summary.length > 0 && (
 					<ul>
@@ -288,39 +288,39 @@ const WeeklyHours = () => {
 				)}
 			</div>
 
-			<div className="orderwindow-weekly__days">
+			<div className="hourgate-weekly__days">
 				{days.map((day) => {
 					const dayModel = model[day];
 					const name = names[day];
-					const modeName = `orderwindow-weekly-mode-${day}`;
-					const unreadableId = `orderwindow-weekly-${day}-unreadable`;
+					const modeName = `hourgate-weekly-mode-${day}`;
+					const unreadableId = `hourgate-weekly-${day}-unreadable`;
 					return (
 						<fieldset
 							key={day}
-							className={`orderwindow-weekly__day${dayModel.mode === null ? ' is-undecided' : ''}`}
+							className={`hourgate-weekly__day${dayModel.mode === null ? ' is-undecided' : ''}`}
 						>
 							<legend>{name}</legend>
 							{dayModel.mode === null && (
 								<p
 									id={unreadableId}
-									className="orderwindow-form-field-error-msg"
+									className="hourgate-form-field-error-msg"
 								>
 									{sprintf(
 										/* translators: %s: day name. */
 										__(
 											'Couldn’t read the saved hours for %s. Choose its hours.',
-											'orderwindow'
+											'hourgate'
 										),
 										name
 									)}
 								</p>
 							)}
 							<div
-								className="orderwindow-weekly__modes"
+								className="hourgate-weekly__modes"
 								role="radiogroup"
 								aria-label={sprintf(
 									/* translators: %s: day name. */
-									__('%s hours', 'orderwindow'),
+									__('%s hours', 'hourgate'),
 									name
 								)}
 								aria-describedby={
@@ -330,20 +330,20 @@ const WeeklyHours = () => {
 								}
 							>
 								{[
-									['closed', __('Closed', 'orderwindow')],
+									['closed', __('Closed', 'hourgate')],
 									[
 										'open24',
-										__('Open 24 hours', 'orderwindow'),
+										__('Open 24 hours', 'hourgate'),
 									],
 									[
 										'custom',
-										__('Set hours', 'orderwindow'),
+										__('Set hours', 'hourgate'),
 									],
 								].map(([mode, label]) => (
 									<label
 										key={mode}
 										htmlFor={`${modeName}-${mode}`}
-										className="orderwindow-weekly__mode"
+										className="hourgate-weekly__mode"
 									>
 										<input
 											id={`${modeName}-${mode}`}
@@ -365,7 +365,7 @@ const WeeklyHours = () => {
 							</div>
 							{dayModel.mode === 'custom' && (
 								<TimeRangesEditor
-									idPrefix={`orderwindow-weekly-${day}`}
+									idPrefix={`hourgate-weekly-${day}`}
 									context={name}
 									value={dayModel.ranges}
 									onChange={(ranges) =>
@@ -376,21 +376,21 @@ const WeeklyHours = () => {
 									disabled={busy}
 								/>
 							)}
-							<div className="orderwindow-weekly__copy">
+							<div className="hourgate-weekly__copy">
 								<Button
 									size="small"
 									disabled={busy || dayModel.mode === null}
 									onClick={() => setCopyFrom(day)}
 								>
 									<span aria-hidden="true">
-										{__('Copy to…', 'orderwindow')}
+										{__('Copy to…', 'hourgate')}
 									</span>
 									<span className="screen-reader-text">
 										{sprintf(
 											/* translators: %s: day name. */
 											__(
 												'Copy %s’s hours to other days',
-												'orderwindow'
+												'hourgate'
 											),
 											name
 										)}
@@ -402,17 +402,17 @@ const WeeklyHours = () => {
 				})}
 			</div>
 
-			<div className="orderwindow-weekly__actions">
+			<div className="hourgate-weekly__actions">
 				<Button
 					type="primary"
 					onClick={onSave}
 					loading={saving}
 					disabled={!draft || busy || undecided.length > 0}
 				>
-					{__('Save', 'orderwindow')}
+					{__('Save', 'hourgate')}
 				</Button>
 				<Button onClick={() => setConfirmReset(true)} disabled={busy}>
-					{__('Reset to defaults', 'orderwindow')}
+					{__('Reset to defaults', 'hourgate')}
 				</Button>
 				{undecided.length > 0 && (
 					<small>
@@ -420,7 +420,7 @@ const WeeklyHours = () => {
 							/* translators: %s: list of day names. */
 							__(
 								'Choose the hours for %s to save.',
-								'orderwindow'
+								'hourgate'
 							),
 							undecided.map((day) => names[day]).join(', ')
 						)}
@@ -442,12 +442,12 @@ const WeeklyHours = () => {
 			)}
 			<ConfirmDialog
 				isOpen={confirmReset}
-				title={__('Reset weekly hours?', 'orderwindow')}
+				title={__('Reset weekly hours?', 'hourgate')}
 				message={__(
 					'Every day becomes Open 24 hours, and this is saved now. Closures and special hours are not changed.',
-					'orderwindow'
+					'hourgate'
 				)}
-				confirmLabel={__('Reset and save', 'orderwindow')}
+				confirmLabel={__('Reset and save', 'hourgate')}
 				destructive
 				busy={resetting}
 				onCancel={() => setConfirmReset(false)}

@@ -10,23 +10,23 @@ const EmptyState = ({
 }) => {
 	return (
 		<Flex
-			className="orderwindow-empty-state"
+			className="hourgate-empty-state"
 			vertical
 			align="center"
 			gap={15}
 		>
 			{icon && (
-				<div className="orderwindow-empty-state-icon">
+				<div className="hourgate-empty-state-icon">
 					{icon}
 				</div>
 			)}
 
-			<div className="orderwindow-empty-state-title">
+			<div className="hourgate-empty-state-title">
 				{title}
 			</div>
 
 			{description && (
-				<div className="orderwindow-empty-state-description">
+				<div className="hourgate-empty-state-description">
 					{description}
 				</div>
 			)}

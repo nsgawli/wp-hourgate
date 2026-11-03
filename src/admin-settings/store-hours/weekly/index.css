@@ -1,52 +1,52 @@
 /* Weekly hours */
-.orderwindow-weekly {
+.hourgate-weekly {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 }
 
-.orderwindow-weekly__intro {
+.hourgate-weekly__intro {
 	margin: 0;
-	color: var(--orderwindow-text-secondary-color);
+	color: var(--hourgate-text-secondary-color);
 }
 
-.orderwindow-weekly__banner {
+.hourgate-weekly__banner {
 	padding: 0.75rem 1rem;
-	border-left: 0.25rem solid var(--orderwindow-info-color);
-	background: var(--orderwindow-info-soft-color);
+	border-left: 0.25rem solid var(--hourgate-info-color);
+	background: var(--hourgate-info-soft-color);
 }
 
-.orderwindow-weekly__banner.is-warning {
-	border-left-color: var(--orderwindow-warning-color);
+.hourgate-weekly__banner.is-warning {
+	border-left-color: var(--hourgate-warning-color);
 	background: #fffbeb;
 }
 
-.orderwindow-weekly__summary:focus {
+.hourgate-weekly__summary:focus {
 	outline: none;
 }
 
-.orderwindow-weekly__summary.has-errors {
+.hourgate-weekly__summary.has-errors {
 	padding: 0.75rem 1rem;
-	border-left: 0.25rem solid var(--orderwindow-danger-color);
+	border-left: 0.25rem solid var(--hourgate-danger-color);
 	background: #fef2f2;
 }
 
-.orderwindow-weekly__summary.has-errors:focus-visible {
-	outline: 0.125rem solid var(--orderwindow-danger-color);
+.hourgate-weekly__summary.has-errors:focus-visible {
+	outline: 0.125rem solid var(--hourgate-danger-color);
 }
 
-.orderwindow-weekly__summary ul {
+.hourgate-weekly__summary ul {
 	margin: 0;
 	padding-left: 1.25rem;
 	list-style: disc;
 }
 
-.orderwindow-weekly__days {
+.hourgate-weekly__days {
 	display: flex;
 	flex-direction: column;
 }
 
-.orderwindow-weekly__day {
+.hourgate-weekly__day {
 	display: grid;
 	grid-template-columns: 8rem minmax(0, 1fr) auto;
 	grid-template-areas:
@@ -56,66 +56,66 @@
 	margin: 0;
 	padding: 0.875rem 0;
 	border: 0;
-	border-bottom: 0.0625rem solid var(--orderwindow-border-color);
+	border-bottom: 0.0625rem solid var(--hourgate-border-color);
 	min-width: 0;
 }
 
-.orderwindow-weekly__day > legend {
+.hourgate-weekly__day > legend {
 	float: left;
 	grid-area: name;
 	padding: 0;
 	font-weight: 600;
 }
 
-.orderwindow-weekly__day > .orderwindow-form-field-error-msg {
+.hourgate-weekly__day > .hourgate-form-field-error-msg {
 	grid-column: 2 / 4;
 	margin: 0;
 }
 
-.orderwindow-weekly__day.is-undecided {
+.hourgate-weekly__day.is-undecided {
 	background: #fef2f2;
 }
 
-.orderwindow-weekly__modes {
+.hourgate-weekly__modes {
 	grid-area: modes;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.25rem 1rem;
 }
 
-.orderwindow-weekly__mode {
+.hourgate-weekly__mode {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.375rem;
 }
 
-.orderwindow-weekly__day > .orderwindow-time-ranges {
+.hourgate-weekly__day > .hourgate-time-ranges {
 	grid-area: ranges;
 }
 
-.orderwindow-weekly__copy {
+.hourgate-weekly__copy {
 	grid-area: copy;
 }
 
-.orderwindow-weekly__actions {
+.hourgate-weekly__actions {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	gap: 0.5rem;
 }
 
-.orderwindow-weekly-copy__shortcuts,
-.orderwindow-weekly-copy__actions {
+.hourgate-weekly-copy__shortcuts,
+.hourgate-weekly-copy__actions {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
 }
 
-.orderwindow-weekly-copy__actions {
+.hourgate-weekly-copy__actions {
 	justify-content: flex-end;
 }
 
-.orderwindow-weekly-copy__days {
+.hourgate-weekly-copy__days {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
 	gap: 0.5rem;
@@ -124,19 +124,19 @@
 	border: 0;
 }
 
-.orderwindow-weekly-copy__day {
+.hourgate-weekly-copy__day {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.375rem;
 }
 
-.orderwindow-weekly-copy__note {
-	color: var(--orderwindow-text-secondary-color);
+.hourgate-weekly-copy__note {
+	color: var(--hourgate-text-secondary-color);
 	font-size: 0.8125rem;
 }
 
 @media (max-width: 782px) {
-	.orderwindow-weekly__day {
+	.hourgate-weekly__day {
 		grid-template-columns: minmax(0, 1fr) auto;
 		grid-template-areas:
 			"name copy"
@@ -144,7 +144,7 @@
 			"ranges ranges";
 	}
 
-	.orderwindow-weekly__day > .orderwindow-form-field-error-msg {
+	.hourgate-weekly__day > .hourgate-form-field-error-msg {
 		grid-column: 1 / -1;
 	}
 }

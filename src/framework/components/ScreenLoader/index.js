@@ -4,7 +4,7 @@ import './index.css';
 
 const ScreenLoader = () => {
 	return (
-		<Flex className="orderwindow-screen-loader" justify="center">
+		<Flex className="hourgate-screen-loader" justify="center">
 			<Spinner />
 		</Flex>
 	);

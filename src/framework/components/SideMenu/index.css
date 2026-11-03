@@ -1,17 +1,17 @@
 /* SideMenu */
-.orderwindow-side-menu {
+.hourgate-side-menu {
 	padding: 1.25rem;
 	border-radius: 0.625rem;
 	background-color: #fff;
 	height: fit-content;
 }
-.orderwindow-side-menu .orderwindow-menu-item {
+.hourgate-side-menu .hourgate-menu-item {
 	border-radius: 0.3125rem;
 }
-.orderwindow-side-menu .orderwindow-menu-item:hover {
+.hourgate-side-menu .hourgate-menu-item:hover {
 	background-color: #e5e5e5;
 }
-.orderwindow-side-menu .orderwindow-menu-item.current {
+.hourgate-side-menu .hourgate-menu-item.current {
 	color: #fff;
-	background-color: var(--orderwindow-primary-color);
+	background-color: var(--hourgate-primary-color);
 }

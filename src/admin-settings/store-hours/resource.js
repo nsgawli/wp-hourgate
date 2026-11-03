@@ -8,7 +8,7 @@ import { apiCache } from '@framework/middlewares';
  * `error.data.errors` (`[ { path, code, message } ]`) reaches the editor.
  */
 
-const NS = '/orderwindow/v1';
+const NS = '/hourgate/v1';
 export const ROUTES = {
 	schedule: `${NS}/settings/schedule`,
 	closures: `${NS}/settings/closures`,
@@ -70,7 +70,7 @@ export const getPreview = (days = 14) =>
  */
 export const validationErrors = (error) => {
 	if (
-		error?.code !== 'orderwindow_invalid_schedule' ||
+		error?.code !== 'hourgate_invalid_schedule' ||
 		!Array.isArray(error?.data?.errors)
 	) {
 		return null;
@@ -93,7 +93,7 @@ export const validationErrors = (error) => {
  * @return {Array|null} The errors, or null.
  */
 export const validationErrorList = (error) =>
-	error?.code === 'orderwindow_invalid_schedule' &&
+	error?.code === 'hourgate_invalid_schedule' &&
 	Array.isArray(error?.data?.errors)
 		? error.data.errors.filter((e) => e && typeof e.path === 'string')
 		: null;

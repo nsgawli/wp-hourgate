@@ -24,7 +24,7 @@ const LOAD_DAYS = 60;
 // Content width (px) from which seven day columns stay readable (OW-060).
 export const CALENDAR_MIN_WIDTH = 720;
 
-const VIEW_KEY = 'orderWindowPreviewView';
+const VIEW_KEY = 'hourGatePreviewView';
 
 /**
  * The view chosen on a wide screen, remembered per browser. A convenience
@@ -74,7 +74,7 @@ const Preview = () => {
 		getPreview(LOAD_DAYS)
 			.then((preview) => setData(preview))
 			.catch((e) =>
-				setError(e?.message || __('Unknown error.', 'orderwindow'))
+				setError(e?.message || __('Unknown error.', 'hourgate'))
 			)
 			.finally(() => setLoading(false));
 	}, []);
@@ -83,16 +83,16 @@ const Preview = () => {
 
 	if (error) {
 		return (
-			<div className="orderwindow-preview__error" role="alert">
+			<div className="hourgate-preview__error" role="alert">
 				<p>
 					{sprintf(
 						/* translators: %s: error message. */
-						__('The preview couldn’t be loaded: %s', 'orderwindow'),
+						__('The preview couldn’t be loaded: %s', 'hourgate'),
 						error
 					)}
 				</p>
 				<Button onClick={() => load()}>
-					{__('Try again', 'orderwindow')}
+					{__('Try again', 'hourgate')}
 				</Button>
 			</div>
 		);
@@ -110,59 +110,59 @@ const Preview = () => {
 
 	return (
 		<div
-			className="orderwindow-preview"
+			className="hourgate-preview"
 			aria-busy={loading}
 			ref={measureRef}
 		>
-			<p className="orderwindow-preview__intro">
+			<p className="hourgate-preview__intro">
 				{__(
 					'How your saved weekly hours, closures and special hours combine over the coming days, and which rule decides each date.',
-					'orderwindow'
+					'hourgate'
 				)}
 			</p>
 
 			{data.fallback && (
-				<div className="orderwindow-store-hours-notice is-warning">
+				<div className="hourgate-store-hours-notice is-warning">
 					{__(
-						'The saved store hours or closures are invalid, so Order Window treats the store as always open until they are fixed and saved.',
-						'orderwindow'
+						'The saved store hours or closures are invalid, so HourGate treats the store as always open until they are fixed and saved.',
+						'hourgate'
 					)}{' '}
 					<Link to="/store-hours/weekly">
-						{__('Review the weekly hours', 'orderwindow')}
+						{__('Review the weekly hours', 'hourgate')}
 					</Link>
 				</div>
 			)}
 
 			<div
-				className={`orderwindow-preview__status ${status.open ? 'is-open' : 'is-closed'}`}
+				className={`hourgate-preview__status ${status.open ? 'is-open' : 'is-closed'}`}
 				role="status"
 			>
-				<span className="orderwindow-preview__status-label">
-					{__('Schedule', 'orderwindow')}
+				<span className="hourgate-preview__status-label">
+					{__('Schedule', 'hourgate')}
 				</span>
 				<strong>{status.text}</strong>
 			</div>
 
-			<div className="orderwindow-preview__toolbar">
+			<div className="hourgate-preview__toolbar">
 				{wide && (
 					<div
-						className="orderwindow-preview__views"
+						className="hourgate-preview__views"
 						role="radiogroup"
-						aria-label={__('View', 'orderwindow')}
+						aria-label={__('View', 'hourgate')}
 					>
 						{[
-							['calendar', __('Calendar', 'orderwindow')],
-							['list', __('List', 'orderwindow')],
+							['calendar', __('Calendar', 'hourgate')],
+							['list', __('List', 'hourgate')],
 						].map(([key, label]) => (
 							<label
 								key={key}
-								htmlFor={`orderwindow-preview-view-${key}`}
-								className="orderwindow-preview__view"
+								htmlFor={`hourgate-preview-view-${key}`}
+								className="hourgate-preview__view"
 							>
 								<input
-									id={`orderwindow-preview-view-${key}`}
+									id={`hourgate-preview-view-${key}`}
 									type="radio"
-									name="orderwindow-preview-view"
+									name="hourgate-preview-view"
 									value={key}
 									checked={shown === key}
 									onChange={() => {
@@ -177,11 +177,11 @@ const Preview = () => {
 				)}
 				{shown === 'list' && (
 					<>
-						<label htmlFor="orderwindow-preview-days">
-							{__('Show', 'orderwindow')}
+						<label htmlFor="hourgate-preview-days">
+							{__('Show', 'hourgate')}
 						</label>
 						<select
-							id="orderwindow-preview-days"
+							id="hourgate-preview-days"
 							value={days}
 							onChange={(event) =>
 								setDays(Number(event.target.value))
@@ -191,7 +191,7 @@ const Preview = () => {
 								<option key={count} value={count}>
 									{sprintf(
 										/* translators: %d: number of days. */
-										__('%d days', 'orderwindow'),
+										__('%d days', 'hourgate'),
 										count
 									)}
 								</option>
@@ -200,7 +200,7 @@ const Preview = () => {
 					</>
 				)}
 				<Button size="small" onClick={() => load()} loading={loading}>
-					{__('Refresh', 'orderwindow')}
+					{__('Refresh', 'hourgate')}
 				</Button>
 			</div>
 
@@ -208,22 +208,22 @@ const Preview = () => {
 				<Calendar days={allDays} today={today} />
 			)}
 			{width > 0 && shown === 'list' && (
-				<table className="orderwindow-preview__table">
+				<table className="hourgate-preview__table">
 					<caption className="screen-reader-text">
 						{sprintf(
 							/* translators: %d: number of days. */
 							__(
 								'Opening hours for the next %d days',
-								'orderwindow'
+								'hourgate'
 							),
 							listDays.length
 						)}
 					</caption>
 					<thead>
 						<tr>
-							<th scope="col">{__('Date', 'orderwindow')}</th>
-							<th scope="col">{__('Hours', 'orderwindow')}</th>
-							<th scope="col">{__('Why', 'orderwindow')}</th>
+							<th scope="col">{__('Date', 'hourgate')}</th>
+							<th scope="col">{__('Hours', 'hourgate')}</th>
+							<th scope="col">{__('Why', 'hourgate')}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -250,7 +250,7 @@ const Preview = () => {
 									<td>
 										{parts.length
 											? parts.join(', ')
-											: __('Closed', 'orderwindow')}
+											: __('Closed', 'hourgate')}
 									</td>
 									<td>
 										<Link to={`/store-hours/${why.tab}`}>

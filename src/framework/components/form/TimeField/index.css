@@ -1,14 +1,14 @@
 /* TimeField */
-.orderwindow-time-field {
+.hourgate-time-field {
 	display: flex;
 	flex-direction: column;
 	gap: 0.1875rem;
 }
 
-.orderwindow-time-field input[type="time"] {
+.hourgate-time-field input[type="time"] {
 	min-width: 8rem;
 }
 
-.orderwindow-time-field input[aria-invalid="true"] {
-	border-color: var(--orderwindow-danger-color);
+.hourgate-time-field input[aria-invalid="true"] {
+	border-color: var(--hourgate-danger-color);
 }

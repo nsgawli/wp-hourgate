@@ -4,7 +4,7 @@ import './index.css';
 
 const Spinner = React.memo(({ className = '' }) => (
 	<FaSpinner
-		className={`orderwindow-spinner-icon${className ? ' ' + className : ''}`}
+		className={`hourgate-spinner-icon${className ? ' ' + className : ''}`}
 	/>
 ));
 

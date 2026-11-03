@@ -1,4 +1,4 @@
 /* Datepicker */
 .react-datepicker-popper {
-	z-index: var(--orderwindow-popup-z-index) !important;
+	z-index: var(--hourgate-popup-z-index) !important;
 }

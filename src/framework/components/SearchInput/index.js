@@ -8,7 +8,7 @@ const SearchInput = ({
 	placeholder = 'Search...',
 }) => {
 	return (
-		<div className="orderwindow-search-input">
+		<div className="hourgate-search-input">
 			<IoSearchOutline />
 
 			<input

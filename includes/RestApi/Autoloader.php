@@ -1,19 +1,19 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi;
+namespace HourGate\RestApi;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use OrderWindow\RestApi\OrderingStatus;
-use OrderWindow\RestApi\Pause;
-use OrderWindow\RestApi\Schedule\Preview;
-use OrderWindow\RestApi\Settings\Behaviour;
-use OrderWindow\RestApi\Settings\Closures;
-use OrderWindow\RestApi\Settings\General;
-use OrderWindow\RestApi\Settings\Schedule;
-use OrderWindow\RestApi\Status;
+use HourGate\RestApi\OrderingStatus;
+use HourGate\RestApi\Pause;
+use HourGate\RestApi\Schedule\Preview;
+use HourGate\RestApi\Settings\Behaviour;
+use HourGate\RestApi\Settings\Closures;
+use HourGate\RestApi\Settings\General;
+use HourGate\RestApi\Settings\Schedule;
+use HourGate\RestApi\Status;
 
 /**
  * REST API Loader.

@@ -20,7 +20,7 @@ const rangeText = (week) => {
 	const { dateFormat } = getSiteSettings();
 	return sprintf(
 		/* translators: 1: first date of the week, without the year; 2: last date of the week. */
-		_x('%1$s – %2$s', 'week date range', 'orderwindow'),
+		_x('%1$s – %2$s', 'week date range', 'hourgate'),
 		formatSiteDate(week[0].date, withoutYear(dateFormat)),
 		formatSiteDate(week[6].date)
 	);
@@ -46,7 +46,7 @@ const RuleLine = ({ day, closed }) => {
 		return (
 			<Link
 				to={`/store-hours/${why.tab}`}
-				className={`orderwindow-calendar__rule is-${day.rule}`}
+				className={`hourgate-calendar__rule is-${day.rule}`}
 				title={why.text}
 			>
 				{why.text}
@@ -55,8 +55,8 @@ const RuleLine = ({ day, closed }) => {
 	}
 	if (closed) {
 		return (
-			<span className="orderwindow-calendar__rule">
-				{__('Closed', 'orderwindow')}
+			<span className="hourgate-calendar__rule">
+				{__('Closed', 'hourgate')}
 			</span>
 		);
 	}
@@ -75,7 +75,7 @@ const RuleLine = ({ day, closed }) => {
 const DayColumn = ({ cell, today }) => {
 	const { date, day, previous, past, beyond } = cell;
 	const blocks = day ? daySegments(day, previous) : [];
-	const classes = ['orderwindow-calendar__day'];
+	const classes = ['hourgate-calendar__day'];
 	if (date === today) {
 		classes.push('is-today');
 	}
@@ -94,12 +94,12 @@ const DayColumn = ({ cell, today }) => {
 			data-date={date}
 			aria-hidden={!day || undefined}
 		>
-			<div className="orderwindow-calendar__head">
-				<span className="orderwindow-calendar__date" aria-hidden="true">
-					<span className="orderwindow-calendar__weekday">
+			<div className="hourgate-calendar__head">
+				<span className="hourgate-calendar__date" aria-hidden="true">
+					<span className="hourgate-calendar__weekday">
 						{formatSiteDate(date, 'D')}
 					</span>
-					<span className="orderwindow-calendar__number">
+					<span className="hourgate-calendar__number">
 						{formatSiteDate(date, 'j')}
 					</span>
 				</span>
@@ -110,18 +110,18 @@ const DayColumn = ({ cell, today }) => {
 				)}
 				<RuleLine day={day} closed={!blocks.length} />
 			</div>
-			<div className="orderwindow-calendar__column">
+			<div className="hourgate-calendar__column">
 				{day && !blocks.length && (
 					<span className="screen-reader-text">
-						{__('Closed', 'orderwindow')}
+						{__('Closed', 'hourgate')}
 					</span>
 				)}
 				{blocks.length > 0 && (
-					<ul className="orderwindow-calendar__blocks">
+					<ul className="hourgate-calendar__blocks">
 						{blocks.map((block) => (
 							<li
 								key={block.key}
-								className={`orderwindow-calendar__block is-${block.rule}${block.continues ? ' continues' : ''}${block.key === 'carried' ? ' carried' : ''}`}
+								className={`hourgate-calendar__block is-${block.rule}${block.continues ? ' continues' : ''}${block.key === 'carried' ? ' carried' : ''}`}
 								style={{
 									top: `${block.top}%`,
 									height: `${block.height}%`,
@@ -135,7 +135,7 @@ const DayColumn = ({ cell, today }) => {
 								>
 									<span aria-hidden="true">
 										<strong>{block.times}</strong>
-										<span className="orderwindow-calendar__why">
+										<span className="hourgate-calendar__why">
 											{block.why}
 										</span>
 									</span>
@@ -185,8 +185,8 @@ const Calendar = ({ days, today }) => {
 
 	if (!weeks.length) {
 		return (
-			<p className="orderwindow-calendar__empty">
-				{__('No dates to show.', 'orderwindow')}
+			<p className="hourgate-calendar__empty">
+				{__('No dates to show.', 'hourgate')}
 			</p>
 		);
 	}
@@ -195,7 +195,7 @@ const Calendar = ({ days, today }) => {
 	const current = Math.min(index, weeks.length - 1);
 	const week = weeks[current];
 	const range = rangeText(week);
-	const rangeId = 'orderwindow-calendar-range';
+	const rangeId = 'hourgate-calendar-range';
 	const last = weeks.length - 1;
 
 	/**
@@ -214,23 +214,23 @@ const Calendar = ({ days, today }) => {
 	};
 
 	return (
-		<div className="orderwindow-calendar">
-			<div className="orderwindow-calendar__nav">
-				<div className="orderwindow-calendar__buttons">
+		<div className="hourgate-calendar">
+			<div className="hourgate-calendar__nav">
+				<div className="hourgate-calendar__buttons">
 					<Button
 						ref={previousRef}
 						size="small"
 						disabled={current === 0}
 						onClick={() => go(current - 1)}
 					>
-						{__('Previous week', 'orderwindow')}
+						{__('Previous week', 'hourgate')}
 					</Button>
 					<Button
 						size="small"
 						disabled={current === 0}
 						onClick={() => go(0)}
 					>
-						{__('Today', 'orderwindow')}
+						{__('Today', 'hourgate')}
 					</Button>
 					<Button
 						ref={nextRef}
@@ -238,22 +238,22 @@ const Calendar = ({ days, today }) => {
 						disabled={current === last}
 						onClick={() => go(current + 1)}
 					>
-						{__('Next week', 'orderwindow')}
+						{__('Next week', 'hourgate')}
 					</Button>
 				</div>
 				<h3
 					id={rangeId}
-					className="orderwindow-calendar__range"
+					className="hourgate-calendar__range"
 					aria-live="polite"
 				>
 					{range}
 				</h3>
 			</div>
 
-			<div className="orderwindow-calendar__grid">
-				<div className="orderwindow-calendar__axis" aria-hidden="true">
-					<div className="orderwindow-calendar__corner" />
-					<div className="orderwindow-calendar__hours">
+			<div className="hourgate-calendar__grid">
+				<div className="hourgate-calendar__axis" aria-hidden="true">
+					<div className="hourgate-calendar__corner" />
+					<div className="hourgate-calendar__hours">
 						{hours.map(({ hour, text }) => (
 							<span
 								key={hour}
@@ -265,7 +265,7 @@ const Calendar = ({ days, today }) => {
 					</div>
 				</div>
 				<ol
-					className="orderwindow-calendar__days"
+					className="hourgate-calendar__days"
 					aria-labelledby={rangeId}
 				>
 					{week.map((cell) => (

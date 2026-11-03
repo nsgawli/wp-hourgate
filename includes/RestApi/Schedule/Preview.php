@@ -1,11 +1,11 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi\Schedule;
+namespace HourGate\RestApi\Schedule;
 
-use OrderWindow\Core\Schedule\Calendar;
-use OrderWindow\Core\Schedule\DayPlan;
-use OrderWindow\Core\Schedule\Window;
-use OrderWindow\Core\StoreSchedule;
-use OrderWindow\RestApi\BaseController;
+use HourGate\Core\Schedule\Calendar;
+use HourGate\Core\Schedule\DayPlan;
+use HourGate\Core\Schedule\Window;
+use HourGate\Core\StoreSchedule;
+use HourGate\RestApi\BaseController;
 use WP_REST_Request;
 
 // Exit if accessed directly.

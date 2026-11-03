@@ -1,5 +1,5 @@
 /* Switch - Bootstrap 5 style form-switch */
-.orderwindow-switch {
+.hourgate-switch {
 	position: relative;
 	display: inline-block;
 	width: 2.25rem;
@@ -7,27 +7,27 @@
 	flex-shrink: 0;
 }
 
-.orderwindow-switch input,
-.orderwindow-switch input:disabled {
+.hourgate-switch input,
+.hourgate-switch input:disabled {
 	opacity: 0;
 	width: 0;
 	height: 0;
 }
 
-.orderwindow-switch-slider {
+.hourgate-switch-slider {
 	position: absolute;
 	cursor: pointer;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: var(--orderwindow-border-color-strong, #ccc);
+	background-color: var(--hourgate-border-color-strong, #ccc);
 	transition: background-color 0.2s ease;
-	border-radius: var(--orderwindow-radius-pill, 34px);
+	border-radius: var(--hourgate-radius-pill, 34px);
 	box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
 }
 
-.orderwindow-switch-slider:before {
+.hourgate-switch-slider:before {
 	position: absolute;
 	content: "";
 	height: 0.875rem;
@@ -40,19 +40,19 @@
 	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.25);
 }
 
-input:checked + .orderwindow-switch-slider {
-	background-color: var(--orderwindow-primary-color);
+input:checked + .hourgate-switch-slider {
+	background-color: var(--hourgate-primary-color);
 }
 
-input:focus-visible + .orderwindow-switch-slider {
-	box-shadow: var(--orderwindow-focus-ring, 0 0 0 3px rgba(79, 70, 229, 0.15));
+input:focus-visible + .hourgate-switch-slider {
+	box-shadow: var(--hourgate-focus-ring, 0 0 0 3px rgba(79, 70, 229, 0.15));
 }
 
-input:checked + .orderwindow-switch-slider:before {
+input:checked + .hourgate-switch-slider:before {
 	transform: translateX(1rem);
 }
 
-.orderwindow-switch-slider.disabled {
+.hourgate-switch-slider.disabled {
 	cursor: not-allowed;
 	opacity: 0.5;
 }

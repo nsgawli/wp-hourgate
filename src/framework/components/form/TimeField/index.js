@@ -52,7 +52,7 @@ const TimeField = ({
 					/* translators: %s: the stored value that isn't a time, e.g. "9:00". */
 					__(
 						'Couldn’t read the saved time “%s”. Enter it again.',
-						'orderwindow'
+						'hourgate'
 					),
 					String(value).slice(0, 20)
 				));
@@ -63,14 +63,14 @@ const TimeField = ({
 
 	return (
 		<div
-			className={`orderwindow-form-field orderwindow-time-field ${className}`.trim()}
+			className={`hourgate-form-field hourgate-time-field ${className}`.trim()}
 		>
 			<label
 				htmlFor={id}
 				className={
 					hideLabel
 						? 'screen-reader-text'
-						: 'orderwindow-form-field-label'
+						: 'hourgate-form-field-label'
 				}
 			>
 				{label}
@@ -92,7 +92,7 @@ const TimeField = ({
 			{message && (
 				<small
 					id={errorId}
-					className="orderwindow-form-field-error-msg"
+					className="hourgate-form-field-error-msg"
 				>
 					{message}
 				</small>

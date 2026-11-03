@@ -55,16 +55,16 @@ const Avatar = ({ src = '', name = '', size = 28, className = '' }) => {
 	}
 
 	return (
-		<span className={`orderwindow-avatar ${className}`} style={style}>
+		<span className={`hourgate-avatar ${className}`} style={style}>
 			{showImage ? (
 				<img
-					className="orderwindow-avatar-image"
+					className="hourgate-avatar-image"
 					src={src}
 					alt=""
 					onError={() => setImageFailed(true)}
 				/>
 			) : (
-				<span className="orderwindow-avatar-initials">
+				<span className="hourgate-avatar-initials">
 					{getInitials(name)}
 				</span>
 			)}

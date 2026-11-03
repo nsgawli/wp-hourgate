@@ -3,29 +3,29 @@
 #wpbody-content > .error {
 	display: none !important;
 }
-.orderwindow-admin-page-header {
+.hourgate-admin-page-header {
 	padding: 0.75rem 1.5rem;
 	background-color: #fff;
 	box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1), 0 1px 3px rgba(15, 23, 42, 0.08);
 	position: relative;
 	z-index: 2;
 }
-.orderwindow-admin-page-header svg.product-icon {
+.hourgate-admin-page-header svg.product-icon {
 	height: 2.25rem;
 	display: block;
 	filter: drop-shadow(0 2px 4px rgba(79, 70, 229, 0.25));
 }
-.orderwindow-admin-page-header h1 {
+.hourgate-admin-page-header h1 {
 	font-size: 0.9375rem;
 	font-weight: 600;
 	letter-spacing: -0.01em;
 	color: #0f172a;
 }
-.orderwindow-setting-title {
+.hourgate-setting-title {
 	font-size: 1rem;
 	font-weight: 600;
 }
-.toplevel-orderwindow-page #wpcontent {
+.toplevel-hourgate-page #wpcontent {
 	font-size: 0.875rem;
 	padding-left: 0;
 	font-family: Inter, sans-serif;

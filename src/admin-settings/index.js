@@ -11,7 +11,7 @@ import { apiCache } from '@framework/middlewares';
 apiCache.register();
 
 document.addEventListener('DOMContentLoaded', () => {
-	const element = document.getElementById('orderwindow-admin-settings');
+	const element = document.getElementById('hourgate-admin-settings');
 	ReactDOM.createRoot(element).render(
 		<Router>
 			<ScreenSizeProvider element={element}>

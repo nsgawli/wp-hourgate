@@ -66,10 +66,10 @@ const DataManagement = () => {
 				addAlert({
 					id: Date.now(),
 					type: 'success',
-					title: __('Success', 'orderwindow'),
+					title: __('Success', 'hourgate'),
 					description: __(
 						'Data management settings saved successfully.',
-						'orderwindow'
+						'hourgate'
 					),
 				});
 			})
@@ -78,10 +78,10 @@ const DataManagement = () => {
 				addAlert({
 					id: Date.now(),
 					type: 'error',
-					title: __('Error', 'orderwindow'),
+					title: __('Error', 'hourgate'),
 					description: __(
 						'Unable to save data management settings.',
-						'orderwindow'
+						'hourgate'
 					),
 				});
 			});
@@ -99,10 +99,10 @@ const DataManagement = () => {
 			addAlert({
 				id: Date.now(),
 				type: 'success',
-				title: __('Success', 'orderwindow'),
+				title: __('Success', 'hourgate'),
 				description: __(
 					'Data management settings reset successfully.',
-					'orderwindow'
+					'hourgate'
 				),
 			});
 		})
@@ -111,10 +111,10 @@ const DataManagement = () => {
 			addAlert({
 				id: Date.now(),
 				type: 'error',
-				title: __('Error', 'orderwindow'),
+				title: __('Error', 'hourgate'),
 				description: __(
 					'Unable to reset data management settings.',
-					'orderwindow'
+					'hourgate'
 				),
 			});
 		})
@@ -135,12 +135,12 @@ const DataManagement = () => {
 					<Flex vertical gap={10}>
 						<Flex vertical gap={5}>
 							<Title level={2} size={3}>
-								{__('Data Management', 'orderwindow')}
+								{__('Data Management', 'hourgate')}
 							</Title>
-							<span className="orderwindow-setting-info">
+							<span className="hourgate-setting-info">
 								{__(
-									'Manage what happens to Order Window’s settings and data when the plugin is deleted.',
-									'orderwindow'
+									'Manage what happens to HourGate’s settings and data when the plugin is deleted.',
+									'hourgate'
 								)}
 							</span>
 						</Flex>
@@ -151,7 +151,7 @@ const DataManagement = () => {
 									name="removeDataOnUninstall"
 									label={__(
 										'Remove Data on Uninstall',
-										'orderwindow'
+										'hourgate'
 									)}
 									control={control}
 									onBeforeChange={(checked) => {
@@ -165,12 +165,12 @@ const DataManagement = () => {
 									extaInfo={
 										canManageSite()
 											? __(
-													'Delete all Order Window settings and data when the plugin is deleted.',
-													'orderwindow'
+													'Delete all HourGate settings and data when the plugin is deleted.',
+													'hourgate'
 											  )
 											: __(
-													'Delete all Order Window settings and data when the plugin is deleted. Only administrators can change this.',
-													'orderwindow'
+													'Delete all HourGate settings and data when the plugin is deleted. Only administrators can change this.',
+													'hourgate'
 											  )
 									}
 								/>
@@ -182,7 +182,7 @@ const DataManagement = () => {
 										loading={formState.isSubmitting}
 										disabled={isResetting}
 									>
-										{__('Submit', 'orderwindow')}
+										{__('Submit', 'hourgate')}
 									</Button>
 									<Button
 										loading={isResetting}
@@ -192,7 +192,7 @@ const DataManagement = () => {
 										}
 										onClick={onReset}
 									>
-										{__('Reset', 'orderwindow')}
+										{__('Reset', 'hourgate')}
 									</Button>
 								</Flex>
 							</Flex>
@@ -201,12 +201,12 @@ const DataManagement = () => {
 				)}
 				<ConfirmDialog
 					isOpen={confirmRemove}
-					title={__('Remove all data on uninstall?', 'orderwindow')}
+					title={__('Remove all data on uninstall?', 'hourgate')}
 					message={__(
-						'When you delete Order Window from the Plugins screen, its settings are permanently deleted: opening hours, closures, special hours and the ordering settings. This can’t be undone. Orders keep their scheduled time. You can turn this off again before deleting the plugin. Click Submit afterwards to save it.',
-						'orderwindow'
+						'When you delete HourGate from the Plugins screen, its settings are permanently deleted: opening hours, closures, special hours and the ordering settings. This can’t be undone. Orders keep their scheduled time. You can turn this off again before deleting the plugin. Click Submit afterwards to save it.',
+						'hourgate'
 					)}
-					confirmLabel={__('Turn on', 'orderwindow')}
+					confirmLabel={__('Turn on', 'hourgate')}
 					destructive
 					onCancel={() => setConfirmRemove(false)}
 					onConfirm={() => {

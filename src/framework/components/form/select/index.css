@@ -1,28 +1,28 @@
 /* Select */
-.orderwindow-select__control {
+.hourgate-select__control {
 	border: 1px solid #ccc !important;
 	border-radius: 4px !important;
 }
-.orderwindow-select__control--is-focused {
-	border-color: var(--orderwindow-primary-color) !important;
-	box-shadow: 0 0 0 1px var(--orderwindow-primary-color) !important;
+.hourgate-select__control--is-focused {
+	border-color: var(--hourgate-primary-color) !important;
+	box-shadow: 0 0 0 1px var(--hourgate-primary-color) !important;
 }
-.orderwindow-form-field .orderwindow-select__input {
+.hourgate-form-field .hourgate-select__input {
 	min-height: 26px !important;
 }
-.orderwindow-form-field input[type="text"].orderwindow-select__input:focus {
+.hourgate-form-field input[type="text"].hourgate-select__input:focus {
 	box-shadow: none !important;
 }
-.orderwindow-select__menu {
+.hourgate-select__menu {
 	border: 0.0625rem solid #ccc !important;
 	box-shadow: none !important;
 	border-radius: 0 !important;
 	margin: 0.3125rem 0 0 !important;
 }
-.orderwindow-select__option--is-focused {
+.hourgate-select__option--is-focused {
 	background-color: #eee !important;
 }
-.orderwindow-select__option--is-selected {
-	background-color: var(--orderwindow-primary-color) !important;
+.hourgate-select__option--is-selected {
+	background-color: var(--hourgate-primary-color) !important;
 	color: #fff !important;
 }

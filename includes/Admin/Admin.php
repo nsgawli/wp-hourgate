@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Admin;
+namespace HourGate\Admin;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Shared admin assets for every Order Window screen.
+ * Shared admin assets for every HourGate screen.
  */
 class Admin {
 
@@ -24,19 +24,19 @@ class Admin {
 	}
 
 	/**
-	 * Whether the given admin page hook belongs to an Order Window screen.
+	 * Whether the given admin page hook belongs to an HourGate screen.
 	 *
 	 * Matches on the menu slug rather than the full hook name, because
 	 * WordPress builds submenu hooks from the *translated* parent menu
-	 * title (e.g. `order-window_page_orderwindow-settings` in English). The
-	 * top-level page's own hook, `toplevel_page_orderwindow-settings`,
+	 * title (e.g. `hourgate_page_hourgate-settings` in English). The
+	 * top-level page's own hook, `toplevel_page_hourgate-settings`,
 	 * matches the same pattern.
 	 *
 	 * @param string $hook The current admin page hook.
 	 * @return bool
 	 */
-	public static function is_orderwindow_screen( $hook ) {
-		return (bool) preg_match( '/_page_orderwindow-[a-z-]+$/', $hook );
+	public static function is_hourgate_screen( $hook ) {
+		return (bool) preg_match( '/_page_hourgate-[a-z-]+$/', $hook );
 	}
 
 	/**
@@ -50,9 +50,9 @@ class Admin {
 	 */
 	public static function enqueue_scripts( $hook ) {
 
-		// Order Window's own screens only - the common bundle defines the
-		// `--orderwindow-*` design tokens, which no other admin screen needs.
-		if ( ! self::is_orderwindow_screen( $hook ) ) {
+		// HourGate's own screens only - the common bundle defines the
+		// `--hourgate-*` design tokens, which no other admin screen needs.
+		if ( ! self::is_hourgate_screen( $hook ) ) {
 			return;
 		}
 
@@ -60,32 +60,32 @@ class Admin {
 		add_filter(
 			'admin_body_class',
 			function ( $classes ) {
-				$classes .= ' toplevel-orderwindow-page';
+				$classes .= ' toplevel-hourgate-page';
 				return $classes;
 			}
 		);
 
 		// Load asset file.
-		$assets = require ORDERWINDOW_ABSPATH . 'build/common/index.asset.php';
+		$assets = require HOURGATE_ABSPATH . 'build/common/index.asset.php';
 
 		// Enqueue page styles.
 		wp_enqueue_style(
-			'orderwindow-common-scripts',
-			ORDERWINDOW_PLUGIN_URL . 'build/common/index' . ( is_rtl() ? '-rtl.css' : '.css' ),
+			'hourgate-common-scripts',
+			HOURGATE_PLUGIN_URL . 'build/common/index' . ( is_rtl() ? '-rtl.css' : '.css' ),
 			array(),
 			$assets['version']
 		);
 
 		// Enqueue page script.
 		wp_enqueue_script(
-			'orderwindow-common-scripts',
-			ORDERWINDOW_PLUGIN_URL . 'build/common/index.js',
+			'hourgate-common-scripts',
+			HOURGATE_PLUGIN_URL . 'build/common/index.js',
 			$assets['dependencies'],
 			$assets['version'],
 			true
 		);
 
 		// script translations.
-		wp_set_script_translations( 'orderwindow-common-scripts', 'orderwindow' );
+		wp_set_script_translations( 'hourgate-common-scripts', 'hourgate' );
 	}
 }

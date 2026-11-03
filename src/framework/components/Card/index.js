@@ -12,9 +12,9 @@ const Card = ({
 	return (
 		<div
 			className={`
-				orderwindow-card
-				${padding ? 'orderwindow-card-padding' : ''}
-				${clickable ? 'orderwindow-card-clickable' : ''}
+				hourgate-card
+				${padding ? 'hourgate-card-padding' : ''}
+				${clickable ? 'hourgate-card-clickable' : ''}
 				${className}
 			`}
 			style={style}

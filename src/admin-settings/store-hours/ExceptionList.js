@@ -54,25 +54,25 @@ const ExceptionList = ({
 	const row = (item) => (
 		<li
 			key={item.key}
-			className={`orderwindow-exceptions__item${item.unreadable ? ' is-unreadable' : ''}`}
+			className={`hourgate-exceptions__item${item.unreadable ? ' is-unreadable' : ''}`}
 		>
-			<div className="orderwindow-exceptions__text">
-				<span className="orderwindow-exceptions__dates">
+			<div className="hourgate-exceptions__text">
+				<span className="hourgate-exceptions__dates">
 					{item.dates}
 				</span>
-				<span className="orderwindow-exceptions__label">
-					{item.label || __('No label', 'orderwindow')}
+				<span className="hourgate-exceptions__label">
+					{item.label || __('No label', 'hourgate')}
 				</span>
 				{(item.notes || []).map((note) => (
 					<small
 						key={note}
-						className="orderwindow-exceptions__note"
+						className="hourgate-exceptions__note"
 					>
 						{note}
 					</small>
 				))}
 			</div>
-			<div className="orderwindow-exceptions__actions">
+			<div className="hourgate-exceptions__actions">
 				{item.action && (
 					<Button
 						size="small"
@@ -87,12 +87,12 @@ const ExceptionList = ({
 				)}
 				<button
 					type="button"
-					className="orderwindow-exceptions__action"
+					className="hourgate-exceptions__action"
 					onClick={() => onEdit(item.key)}
 					disabled={busy}
 					aria-label={sprintf(
 						/* translators: 1: "closure" or "special hours"; 2: the entry's dates. */
-						__('Edit %1$s: %2$s', 'orderwindow'),
+						__('Edit %1$s: %2$s', 'hourgate'),
 						noun,
 						item.dates
 					)}
@@ -101,12 +101,12 @@ const ExceptionList = ({
 				</button>
 				<button
 					type="button"
-					className="orderwindow-exceptions__action is-danger"
+					className="hourgate-exceptions__action is-danger"
 					onClick={() => onDelete(item.key)}
 					disabled={busy}
 					aria-label={sprintf(
 						/* translators: 1: "closure" or "special hours"; 2: the entry's dates. */
-						__('Delete %1$s: %2$s', 'orderwindow'),
+						__('Delete %1$s: %2$s', 'hourgate'),
 						noun,
 						item.dates
 					)}
@@ -118,8 +118,8 @@ const ExceptionList = ({
 	);
 
 	return (
-		<div className="orderwindow-exceptions">
-			<div className="orderwindow-exceptions__toolbar">
+		<div className="hourgate-exceptions">
+			<div className="hourgate-exceptions__toolbar">
 				<Button
 					type="primary"
 					onClick={onAdd}
@@ -133,10 +133,10 @@ const ExceptionList = ({
 
 			{unreadable.length > 0 && (
 				<ul
-					className="orderwindow-exceptions__list"
+					className="hourgate-exceptions__list"
 					aria-label={__(
 						'Entries that can’t be read',
-						'orderwindow'
+						'hourgate'
 					)}
 				>
 					{unreadable.map(row)}
@@ -144,17 +144,17 @@ const ExceptionList = ({
 			)}
 
 			{upcoming.length > 0 ? (
-				<ul className="orderwindow-exceptions__list">
+				<ul className="hourgate-exceptions__list">
 					{upcoming.map(row)}
 				</ul>
 			) : (
-				<p className="orderwindow-exceptions__empty">{emptyText}</p>
+				<p className="hourgate-exceptions__empty">{emptyText}</p>
 			)}
 
 			{past.length > 0 && (
-				<details className="orderwindow-exceptions__past">
+				<details className="hourgate-exceptions__past">
 					<summary>{sprintf(pastTitle, past.length)}</summary>
-					<ul className="orderwindow-exceptions__list">
+					<ul className="hourgate-exceptions__list">
 						{past.map(row)}
 					</ul>
 					{deletePastLabel && (

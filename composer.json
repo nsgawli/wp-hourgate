@@ -1,15 +1,15 @@
 {
-	"name": "prefixwp/orderwindow",
+	"name": "prefixwp/hourgate",
 	"description": "Store hours and delivery slots for WooCommerce.",
 	"type": "wordpress-plugin",
 	"license": "GPL-3.0-or-later",
 	"autoload": {
 		"psr-4": {
-			"OrderWindow\\": "includes/"
+			"HourGate\\": "includes/"
 		}
 	},
 	"config": {
-		"autoloader-suffix": "OrderWindow"
+		"autoloader-suffix": "HourGate"
 	},
 	"minimum-stability": "stable",
 	"require": {}

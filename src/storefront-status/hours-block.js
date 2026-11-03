@@ -68,7 +68,7 @@ function fill(root, hours) {
 		body.replaceChildren(...rows);
 	}
 
-	const box = root.querySelector('.orderwindow-hours__closures');
+	const box = root.querySelector('.hourgate-hours__closures');
 	if (!box || root.getAttribute('data-closures') !== '1') {
 		return;
 	}
@@ -97,12 +97,12 @@ function fill(root, hours) {
  * Keep every hours table on the page in step with the status.
  */
 export function watchHoursBlocks() {
-	const elements = document.querySelectorAll('.orderwindow-hours');
+	const elements = document.querySelectorAll('.hourgate-hours');
 	if (!elements.length) {
 		return;
 	}
 
-	document.addEventListener('orderwindow:status', (event) => {
+	document.addEventListener('hourgate:status', (event) => {
 		const hours = event.detail && event.detail.hours;
 		if (!hours) {
 			return;

@@ -1,10 +1,10 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core;
+namespace HourGate\Core;
 
-use OrderWindow\Core\Ordering\Decision;
-use OrderWindow\Core\Ordering\PauseState;
-use OrderWindow\Core\Ordering\Situation;
-use OrderWindow\RestApi\Pause as PauseRoute;
+use HourGate\Core\Ordering\Decision;
+use HourGate\Core\Ordering\PauseState;
+use HourGate\Core\Ordering\Situation;
+use HourGate\RestApi\Pause as PauseRoute;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * The "Order Window" admin-bar node (OW-032): the ordering state, and one-click
+ * The "HourGate" admin-bar node (OW-032): the ordering state, and one-click
  * pause and resume, on the front end and in admin. No JS and no asset.
  *
  * Each item is a link to `admin-post.php` with a nonce tied to that exact
@@ -32,21 +32,21 @@ class AdminBar {
 	 *
 	 * @var string
 	 */
-	const NODE = 'orderwindow';
+	const NODE = 'hourgate';
 
 	/**
 	 * `admin-post.php` action that pauses.
 	 *
 	 * @var string
 	 */
-	const ACTION_PAUSE = 'orderwindow_pause';
+	const ACTION_PAUSE = 'hourgate_pause';
 
 	/**
 	 * `admin-post.php` action that resumes.
 	 *
 	 * @var string
 	 */
-	const ACTION_RESUME = 'orderwindow_resume';
+	const ACTION_RESUME = 'hourgate_resume';
 
 	/**
 	 * Register the hooks. No queries.
@@ -67,12 +67,12 @@ class AdminBar {
 	 */
 	private static function presets() {
 		return array(
-			array( '30m', __( 'Pause 30 minutes', 'orderwindow' ), PauseState::MODE_DURATION, 30 ),
-			array( '1h', __( 'Pause 1 hour', 'orderwindow' ), PauseState::MODE_DURATION, 60 ),
-			array( '2h', __( 'Pause 2 hours', 'orderwindow' ), PauseState::MODE_DURATION, 120 ),
-			array( 'today', __( 'Pause for the rest of today', 'orderwindow' ), PauseState::MODE_END_OF_DAY, 0 ),
-			array( 'next', __( 'Pause until the next opening', 'orderwindow' ), PauseState::MODE_NEXT_OPENING, 0 ),
-			array( 'resumed', __( 'Pause until resumed', 'orderwindow' ), PauseState::MODE_UNTIL_RESUMED, 0 ),
+			array( '30m', __( 'Pause 30 minutes', 'hourgate' ), PauseState::MODE_DURATION, 30 ),
+			array( '1h', __( 'Pause 1 hour', 'hourgate' ), PauseState::MODE_DURATION, 60 ),
+			array( '2h', __( 'Pause 2 hours', 'hourgate' ), PauseState::MODE_DURATION, 120 ),
+			array( 'today', __( 'Pause for the rest of today', 'hourgate' ), PauseState::MODE_END_OF_DAY, 0 ),
+			array( 'next', __( 'Pause until the next opening', 'hourgate' ), PauseState::MODE_NEXT_OPENING, 0 ),
+			array( 'resumed', __( 'Pause until resumed', 'hourgate' ), PauseState::MODE_UNTIL_RESUMED, 0 ),
 		);
 	}
 
@@ -109,7 +109,7 @@ class AdminBar {
 				array(
 					'id'    => self::NODE,
 					'title' => esc_html( self::title( $decision, $pause, $paused ) ),
-					'href'  => admin_url( 'admin.php?page=orderwindow-settings#/ordering' ),
+					'href'  => admin_url( 'admin.php?page=hourgate-settings#/ordering' ),
 				)
 			);
 
@@ -123,7 +123,7 @@ class AdminBar {
 					array(
 						'parent' => self::NODE,
 						'id'     => self::NODE . '-resume',
-						'title'  => esc_html__( 'Resume ordering', 'orderwindow' ),
+						'title'  => esc_html__( 'Resume ordering', 'hourgate' ),
 						'href'   => wp_nonce_url( admin_url( 'admin-post.php?action=' . self::ACTION_RESUME ), self::ACTION_RESUME ),
 						'meta'   => $link_meta,
 					)
@@ -177,20 +177,20 @@ class AdminBar {
 			$until = $pause->get_until();
 
 			if ( null === $until ) {
-				return __( 'Order Window: Paused', 'orderwindow' );
+				return __( 'HourGate: Paused', 'hourgate' );
 			}
 
 			/* translators: %s: when ordering resumes, e.g. "2:30 pm" today or "Tue 9:00 am". */
-			return sprintf( __( 'Order Window: Paused until %s', 'orderwindow' ), OrderingPolicy::format_when( $until ) );
+			return sprintf( __( 'HourGate: Paused until %s', 'hourgate' ), OrderingPolicy::format_when( $until ) );
 		}
 
 		return $decision->is_closed()
-			? __( 'Order Window: Closed', 'orderwindow' )
-			: __( 'Order Window: Open', 'orderwindow' );
+			? __( 'HourGate: Closed', 'hourgate' )
+			: __( 'HourGate: Open', 'hourgate' );
 	}
 
 	/**
-	 * `admin-post.php?action=orderwindow_pause`: capability, nonce, validation, then back.
+	 * `admin-post.php?action=hourgate_pause`: capability, nonce, validation, then back.
 	 *
 	 * @return void
 	 */
@@ -213,7 +213,7 @@ class AdminBar {
 		if ( ! $state instanceof PauseState ) {
 			wp_die(
 				esc_html( PauseRoute::error_message( (string) $state ) ),
-				esc_html__( 'Ordering not paused', 'orderwindow' ),
+				esc_html__( 'Ordering not paused', 'hourgate' ),
 				array(
 					'response'  => 400,
 					'back_link' => true,
@@ -225,7 +225,7 @@ class AdminBar {
 	}
 
 	/**
-	 * `admin-post.php?action=orderwindow_resume`: capability, nonce, then back.
+	 * `admin-post.php?action=hourgate_resume`: capability, nonce, then back.
 	 *
 	 * @return void
 	 */
@@ -248,8 +248,8 @@ class AdminBar {
 
 		if ( ! Capabilities::current_user_can_manage() ) {
 			wp_die(
-				esc_html__( 'Sorry, you are not allowed to pause ordering.', 'orderwindow' ),
-				esc_html__( 'Not allowed', 'orderwindow' ),
+				esc_html__( 'Sorry, you are not allowed to pause ordering.', 'hourgate' ),
+				esc_html__( 'Not allowed', 'hourgate' ),
 				array( 'response' => 403 )
 			);
 		}
@@ -264,7 +264,7 @@ class AdminBar {
 
 		$referer = wp_get_referer();
 
-		wp_safe_redirect( $referer ? $referer : admin_url( 'admin.php?page=orderwindow-settings#/ordering' ) );
+		wp_safe_redirect( $referer ? $referer : admin_url( 'admin.php?page=hourgate-settings#/ordering' ) );
 		exit;
 	}
 }

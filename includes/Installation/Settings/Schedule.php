@@ -1,7 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Installation\Settings;
+namespace HourGate\Installation\Settings;
 
-use OrderWindow\Core\Schedule\WeeklyHours;
+use HourGate\Core\Schedule\WeeklyHours;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Schedule settings defaults: the weekly hours.
  *
- * Open 24 hours every day, so activating Order Window changes nothing for
+ * Open 24 hours every day, so activating HourGate changes nothing for
  * shoppers until the merchant sets hours (study 10, D4).
  */
 class Schedule {
@@ -21,7 +21,7 @@ class Schedule {
 	 *
 	 * @var string
 	 */
-	const OPTION = 'orderwindow_schedule_settings';
+	const OPTION = 'hourgate_schedule_settings';
 
 	/**
 	 * Install the defaults. `add_option()` never overwrites hours already saved,

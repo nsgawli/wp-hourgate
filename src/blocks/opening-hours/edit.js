@@ -4,19 +4,19 @@ import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 
 // The editor shows the saved weekly hours as PHP read them at page load.
 export default function Edit({ attributes, setAttributes }) {
-	const settings = window.orderWindowBlocks || {};
+	const settings = window.hourGateBlocks || {};
 	const days = Array.isArray(settings.hours) ? settings.hours : [];
 	const closures = Array.isArray(settings.upcoming) ? settings.upcoming : [];
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__('Opening hours', 'orderwindow')}>
+				<PanelBody title={__('Opening hours', 'hourgate')}>
 					<TextControl
-						label={__('Title', 'orderwindow')}
+						label={__('Title', 'hourgate')}
 						help={__(
 							'Optional. Leave empty for a hidden "Opening hours" caption that screen readers read.',
-							'orderwindow'
+							'hourgate'
 						)}
 						maxLength={100}
 						value={attributes.title}
@@ -27,11 +27,11 @@ export default function Edit({ attributes, setAttributes }) {
 					<ToggleControl
 						label={__(
 							'List closures and special hours',
-							'orderwindow'
+							'hourgate'
 						)}
 						help={__(
 							'Closures and special hours in the next 30 days.',
-							'orderwindow'
+							'hourgate'
 						)}
 						checked={!!attributes.showClosures}
 						onChange={(value) =>
@@ -41,11 +41,11 @@ export default function Edit({ attributes, setAttributes }) {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div {...useBlockProps({ className: 'orderwindow-hours' })}>
+			<div {...useBlockProps({ className: 'hourgate-hours' })}>
 				<table>
 					<caption>
 						{attributes.title ||
-							__('Opening hours', 'orderwindow')}
+							__('Opening hours', 'hourgate')}
 					</caption>
 					<tbody>
 						{days.map((day) => (

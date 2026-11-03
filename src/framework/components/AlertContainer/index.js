@@ -44,13 +44,13 @@ const AlertContainer = () => {
 	}, [alerts, leavingIdSet]);
 
 	return (
-		<Flex className="orderwindow-alert-container" gap={10} vertical>
+		<Flex className="hourgate-alert-container" gap={10} vertical>
 			{alerts.map((alert) => (
 				<Flex
 					key={alert.id}
-					className={`orderwindow-alert orderwindow-alert-${alert.type}${
+					className={`hourgate-alert hourgate-alert-${alert.type}${
 						leavingIdSet.has(alert.id)
-							? ' orderwindow-alert-leaving'
+							? ' hourgate-alert-leaving'
 							: ''
 					}`}
 					gap={5}

@@ -17,7 +17,7 @@ const Title = React.memo(({ level, size, style = {}, id, children }) => {
 	const TitleTag = `h${level}`;
 	return (
 		<TitleTag
-			className={`orderwindow-title is-size-${size || level}`}
+			className={`hourgate-title is-size-${size || level}`}
 			style={style}
 			id={id}
 		>

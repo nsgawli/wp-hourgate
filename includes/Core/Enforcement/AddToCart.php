@@ -1,8 +1,8 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core\Enforcement;
+namespace HourGate\Core\Enforcement;
 
-use OrderWindow\Core\OrderingPolicy;
-use OrderWindow\Core\Ordering\Situation;
+use HourGate\Core\OrderingPolicy;
+use HourGate\Core\Ordering\Situation;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

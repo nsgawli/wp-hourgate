@@ -1,23 +1,23 @@
-/* Common backend styles for Order Window plugin */
+/* Common backend styles for HourGate plugin */
 :root {
-	--orderwindow-primary-color: #4f46e5;
-	--orderwindow-link-color: #4338ca;
-	--orderwindow-primary-hover-color: #4338ca;
-	--orderwindow-primary-soft-color: #eef2ff;
-	--orderwindow-danger-color: #dc2626;
-	--orderwindow-success-color: #059669;
-	--orderwindow-warning-color: #d97706;
-	--orderwindow-info-color: #2563eb;
-	--orderwindow-info-soft-color: #eff6ff;
-	--orderwindow-text-primary-color: #0f172a;
-	--orderwindow-text-secondary-color: #475569;
-	--orderwindow-border-color: #e2e8f0;
-	--orderwindow-border-color-strong: #cbd5e1;
-	--orderwindow-text-tertiary-color: #94a3b8;
-	--orderwindow-surface-color: #ffffff;
-	--orderwindow-app-bg-color: #f8fafc;
-	--orderwindow-popup-z-index: 9999;
-	--orderwindow-radius-pill: 999px;
-	--orderwindow-focus-ring: 0 0 0 3px rgba(79, 70, 229, 0.15);
-	--orderwindow-transition-fast: 120ms ease;
+	--hourgate-primary-color: #4f46e5;
+	--hourgate-link-color: #4338ca;
+	--hourgate-primary-hover-color: #4338ca;
+	--hourgate-primary-soft-color: #eef2ff;
+	--hourgate-danger-color: #dc2626;
+	--hourgate-success-color: #059669;
+	--hourgate-warning-color: #d97706;
+	--hourgate-info-color: #2563eb;
+	--hourgate-info-soft-color: #eff6ff;
+	--hourgate-text-primary-color: #0f172a;
+	--hourgate-text-secondary-color: #475569;
+	--hourgate-border-color: #e2e8f0;
+	--hourgate-border-color-strong: #cbd5e1;
+	--hourgate-text-tertiary-color: #94a3b8;
+	--hourgate-surface-color: #ffffff;
+	--hourgate-app-bg-color: #f8fafc;
+	--hourgate-popup-z-index: 9999;
+	--hourgate-radius-pill: 999px;
+	--hourgate-focus-ring: 0 0 0 3px rgba(79, 70, 229, 0.15);
+	--hourgate-transition-fast: 120ms ease;
 }

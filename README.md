@@ -1,13 +1,13 @@
-# Order Window – Store Hours for WooCommerce
+# HourGate – Store Hours for WooCommerce
 
 Take WooCommerce orders only while your store is open: weekly opening hours, holiday closures, special hours and a one-click pause, enforced on the Checkout block, the classic checkout and the Store API.
 
 This repository holds the full, unminified source of the plugin published on WordPress.org:
-https://wordpress.org/plugins/orderwindow/
+https://wordpress.org/plugins/hourgate/
 
 ## Source layout
 
-- `includes/` – PHP (namespace `OrderWindow\`, PSR-4 autoloaded by Composer)
+- `includes/` – PHP (namespace `HourGate\`, PSR-4 autoloaded by Composer)
 - `src/` – JavaScript and CSS source for the admin screens, blocks and storefront script
 - `build/` – compiled assets; not in this repository, generated from `src/` by the build below
 
@@ -25,7 +25,7 @@ npm run build            # compiles src/ into build/ with @wordpress/scripts
 
 ## Contributing
 
-Bug reports and pull requests are welcome. For support, please use the [WordPress.org forum](https://wordpress.org/support/plugin/orderwindow/).
+Bug reports and pull requests are welcome. For support, please use the [WordPress.org forum](https://wordpress.org/support/plugin/hourgate/).
 
 ## License
 

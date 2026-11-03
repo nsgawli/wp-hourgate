@@ -1,7 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi;
+namespace HourGate\RestApi;
 
-use OrderWindow\Core\Capabilities;
+use HourGate\Core\Capabilities;
 use WP_Error;
 
 // Exit if accessed directly.
@@ -19,10 +19,10 @@ class BaseController {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'orderwindow/v1';
+	protected $namespace = 'hourgate/v1';
 
 	/**
-	 * Permission callback: Order Window's manage capability
+	 * Permission callback: HourGate's manage capability
 	 * (`manage_woocommerce` by default, filterable).
 	 *
 	 * Controllers for site-wide or destructive actions override this with

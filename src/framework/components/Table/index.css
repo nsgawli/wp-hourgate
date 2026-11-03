@@ -1,4 +1,4 @@
-.orderwindow-table-wrapper {
+.hourgate-table-wrapper {
 	position: relative;
 	width: 100%;
 	overflow-x: auto;
@@ -7,7 +7,7 @@
 	border-radius: 8px;
 }
 
-.orderwindow-table-loading-overlay {
+.hourgate-table-loading-overlay {
 	position: absolute;
 	inset: 0;
 	display: flex;
@@ -19,17 +19,17 @@
 	pointer-events: none;
 }
 
-.orderwindow-table {
+.hourgate-table {
 	width: 100%;
 	border-collapse: collapse;
 	min-width: 900px;
 }
 
-.orderwindow-table thead {
+.hourgate-table thead {
 	background-color: #f6f7f7;
 }
 
-.orderwindow-table th {
+.hourgate-table th {
 	padding: 14px 16px;
 	font-size: 13px;
 	font-weight: 600;
@@ -38,7 +38,7 @@
 	white-space: nowrap;
 }
 
-.orderwindow-table td {
+.hourgate-table td {
 	padding: 14px 16px;
 	font-size: 13px;
 	color: #3c434a;
@@ -46,47 +46,47 @@
 	vertical-align: middle;
 }
 
-.orderwindow-table tbody tr:last-child td {
+.hourgate-table tbody tr:last-child td {
 	border-bottom: none;
 }
 
-.orderwindow-table tbody tr:hover {
+.hourgate-table tbody tr:hover {
 	background-color: #f9fafb;
 }
 
-.orderwindow-table tbody tr {
+.hourgate-table tbody tr {
 	transition: background-color 0.16s ease;
 }
 
-.orderwindow-table-row-active {
+.hourgate-table-row-active {
 	background-color: #eef5ff;
 }
 
-.orderwindow-table-clickable-row {
+.hourgate-table-clickable-row {
 	cursor: pointer;
 }
 
-.orderwindow-table-loader {
+.hourgate-table-loader {
 	padding: 40px 0;
 }
 
-.orderwindow-table-empty {
+.hourgate-table-empty {
 	padding: 50px 20px;
 	text-align: center;
 	color: #646970;
 	font-size: 13px;
 }
 
-.orderwindow-table-sort-icon {
+.hourgate-table-sort-icon {
 	font-size: 10px;
 	opacity: 0.5;
 }
 
-.orderwindow-table-header-cell {
+.hourgate-table-header-cell {
 	vertical-align: middle;
 }
 
-.orderwindow-table-sort-button {
+.hourgate-table-sort-button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: space-between;
@@ -102,61 +102,61 @@
 	line-height: 1.2;
 }
 
-.orderwindow-table-sort-align-left {
+.hourgate-table-sort-align-left {
 	justify-content: flex-start;
 }
 
-.orderwindow-table-sort-align-center {
+.hourgate-table-sort-align-center {
 	justify-content: center;
 }
 
-.orderwindow-table-sort-align-right {
+.hourgate-table-sort-align-right {
 	justify-content: flex-end;
 }
 
-.orderwindow-table-header-sortable .orderwindow-table-sort-button:hover {
-	color: var(--orderwindow-primary-hover-color, var(--orderwindow-primary-color));
+.hourgate-table-header-sortable .hourgate-table-sort-button:hover {
+	color: var(--hourgate-primary-hover-color, var(--hourgate-primary-color));
 }
 
-.orderwindow-table-header-sortable .orderwindow-table-sort-button:focus {
+.hourgate-table-header-sortable .hourgate-table-sort-button:focus {
 	outline: none;
 }
 
-.orderwindow-table-header-sortable .orderwindow-table-sort-button:focus-visible {
-	outline: 2px solid var(--orderwindow-primary-color);
+.hourgate-table-header-sortable .hourgate-table-sort-button:focus-visible {
+	outline: 2px solid var(--hourgate-primary-color);
 	outline-offset: 2px;
 	border-radius: 4px;
 }
 
-.orderwindow-table-header-sortable .orderwindow-table-sort-icon {
+.hourgate-table-header-sortable .hourgate-table-sort-icon {
 	transition: opacity 0.2s ease;
 }
 
-.orderwindow-table-header-sortable:hover .orderwindow-table-sort-icon {
+.hourgate-table-header-sortable:hover .hourgate-table-sort-icon {
 	opacity: 0.85;
 }
 
-.orderwindow-table-header-sorted {
-	background: var(--orderwindow-primary-soft-color, #eff6ff);
-	color: var(--orderwindow-primary-hover-color, #1d4ed8);
+.hourgate-table-header-sorted {
+	background: var(--hourgate-primary-soft-color, #eff6ff);
+	color: var(--hourgate-primary-hover-color, #1d4ed8);
 }
 
-.orderwindow-table-header-sorted .orderwindow-table-sort-icon {
+.hourgate-table-header-sorted .hourgate-table-sort-icon {
 	opacity: 1;
 	font-size: 11px;
 }
 
-.orderwindow-table-header-title {
+.hourgate-table-header-title {
 	display: inline-flex;
 	align-items: center;
 	line-height: 1.2;
 }
 
-.orderwindow-table-checkbox-column {
+.hourgate-table-checkbox-column {
 	width: 50px;
 }
 
-.orderwindow-table-sticky-header thead th {
+.hourgate-table-sticky-header thead th {
 	position: sticky;
 	top: 0;
 	z-index: 1;
@@ -165,11 +165,11 @@
 	box-shadow: inset 0 -1px 0 #d9dde2;
 }
 
-.orderwindow-table-rows-animate tbody tr {
-	animation: orderwindow-table-row-fade-in 0.24s ease;
+.hourgate-table-rows-animate tbody tr {
+	animation: hourgate-table-row-fade-in 0.24s ease;
 }
 
-@keyframes orderwindow-table-row-fade-in {
+@keyframes hourgate-table-row-fade-in {
 	from {
 		opacity: 0.55;
 	}

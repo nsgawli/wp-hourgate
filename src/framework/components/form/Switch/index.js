@@ -32,7 +32,7 @@ const Switch = (props) => {
 	return (
 		<Flex
 			className={
-				className ? `orderwindow-form-field ${className}` : 'orderwindow-form-field'
+				className ? `hourgate-form-field ${className}` : 'hourgate-form-field'
 			}
 			style={style}
 			vertical
@@ -52,7 +52,7 @@ const Switch = (props) => {
 				rules={validations}
 				defaultValue={false}
 				render={({ field }) => (
-					<label className="orderwindow-switch">
+					<label className="hourgate-switch">
 						<input
 							type="checkbox"
 							role="switch"
@@ -74,13 +74,13 @@ const Switch = (props) => {
 							}}
 						/>
 						<span
-							className={`orderwindow-switch-slider${disabled ? ' disabled' : ''}`}
+							className={`hourgate-switch-slider${disabled ? ' disabled' : ''}`}
 						></span>
 					</label>
 				)}
 			/>
 			{fieldState.error && fieldState.error.message && (
-				<small id={ids.error} className="orderwindow-form-field-error-msg">
+				<small id={ids.error} className="hourgate-form-field-error-msg">
 					{fieldState.error.message}
 				</small>
 			)}

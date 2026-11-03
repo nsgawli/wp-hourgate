@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { getPreview } from './resource';
 
 /**
- * Warns when the saved schedule is invalid, so Order Window treats the store
+ * Warns when the saved schedule is invalid, so HourGate treats the store
  * as always open (`fallback` from the preview route; OW-016). Shown on every
  * editor tab, because either group (weekly hours or closures) can be the
  * broken one. Re-checks whenever `refreshKey` changes (after a save).
@@ -30,10 +30,10 @@ const FallbackNotice = ({ refreshKey }) => {
 		return null;
 	}
 	return (
-		<div className="orderwindow-store-hours-notice is-warning orderwindow-fallback-notice">
+		<div className="hourgate-store-hours-notice is-warning hourgate-fallback-notice">
 			{__(
-				'The saved store hours or closures are invalid, so Order Window treats the store as always open until they are fixed and saved.',
-				'orderwindow'
+				'The saved store hours or closures are invalid, so HourGate treats the store as always open until they are fixed and saved.',
+				'hourgate'
 			)}
 		</div>
 	);

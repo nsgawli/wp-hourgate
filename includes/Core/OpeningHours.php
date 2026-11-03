@@ -1,10 +1,10 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core;
+namespace HourGate\Core;
 
-use OrderWindow\Core\Schedule\Calendar;
-use OrderWindow\Core\Schedule\DayPlan;
-use OrderWindow\Core\Schedule\TimeRange;
-use OrderWindow\Core\Schedule\WeeklyHours;
+use HourGate\Core\Schedule\Calendar;
+use HourGate\Core\Schedule\DayPlan;
+use HourGate\Core\Schedule\TimeRange;
+use HourGate\Core\Schedule\WeeklyHours;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -153,7 +153,7 @@ class OpeningHours {
 			$entries[ $i ]['dates'] = $entry['from'] === $entry['to']
 				? self::format_date( $entry['from'] )
 				/* translators: 1: first date, 2: last date of a closure. */
-				: sprintf( _x( '%1$s – %2$s', 'date range', 'orderwindow' ), self::format_date( $entry['from'] ), self::format_date( $entry['to'] ) );
+				: sprintf( _x( '%1$s – %2$s', 'date range', 'hourgate' ), self::format_date( $entry['from'] ), self::format_date( $entry['to'] ) );
 		}
 
 		return $entries;
@@ -188,18 +188,18 @@ class OpeningHours {
 	private static function label( $status, array $ranges ) {
 
 		if ( self::STATUS_CLOSED === $status ) {
-			return __( 'Closed', 'orderwindow' );
+			return __( 'Closed', 'hourgate' );
 		}
 
 		if ( self::STATUS_ALL_DAY === $status ) {
-			return __( 'Open 24 hours', 'orderwindow' );
+			return __( 'Open 24 hours', 'hourgate' );
 		}
 
 		$parts = array_map(
 			function ( TimeRange $range ) {
 				return sprintf(
 					/* translators: 1: opening time, 2: closing time, e.g. "9:00 am – 5:00 pm". */
-					_x( '%1$s – %2$s', 'time range', 'orderwindow' ),
+					_x( '%1$s – %2$s', 'time range', 'hourgate' ),
 					self::format_minutes( $range->get_start() ),
 					self::format_minutes( $range->get_end() )
 				);
@@ -208,7 +208,7 @@ class OpeningHours {
 		);
 
 		/* translators: separator between a day's time ranges, e.g. "9:00 am – 1:00 pm, 2:00 pm – 6:00 pm". */
-		return implode( __( ', ', 'orderwindow' ), $parts );
+		return implode( __( ', ', 'hourgate' ), $parts );
 	}
 
 	/**

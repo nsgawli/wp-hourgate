@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Admin;
+namespace HourGate\Admin;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,7 +25,7 @@ class Onboarding {
 	/**
 	 * Redirect to the Settings screen once, right after activation.
 	 *
-	 * Consumes the transient `OrderWindow::activate()` sets, so a newly
+	 * Consumes the transient `HourGate::activate()` sets, so a newly
 	 * activated site lands on Settings instead of the plain Plugins
 	 * list with no orientation. Skips bulk activation (multiple plugins
 	 * activated at once) and AJAX/REST/cron requests, matching the standard
@@ -35,15 +35,15 @@ class Onboarding {
 	 */
 	public static function maybe_redirect_after_activation() {
 
-		$user_id = get_transient( 'orderwindow_activation_redirect' );
+		$user_id = get_transient( 'hourgate_activation_redirect' );
 
 		if ( ! $user_id ) {
 			return;
 		}
 
-		delete_transient( 'orderwindow_activation_redirect' );
+		delete_transient( 'hourgate_activation_redirect' );
 
-		if ( wp_doing_ajax() || ORDERWINDOW_REST_REQUEST || defined( 'DOING_CRON' ) ) {
+		if ( wp_doing_ajax() || HOURGATE_REST_REQUEST || defined( 'DOING_CRON' ) ) {
 			return;
 		}
 

@@ -1,10 +1,10 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Frontend;
+namespace HourGate\Frontend;
 
-use OrderWindow\Core\Enforcement\AddToCart;
-use OrderWindow\Core\Enforcement\Message;
-use OrderWindow\Core\Ordering\Situation;
-use OrderWindow\Core\OrderingPolicy;
+use HourGate\Core\Enforcement\AddToCart;
+use HourGate\Core\Enforcement\Message;
+use HourGate\Core\Ordering\Situation;
+use HourGate\Core\OrderingPolicy;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -81,7 +81,7 @@ class CartNotices {
 				'type' => 'info',
 				'text' => sprintf(
 					/* translators: %s: when the store can fulfil the order, e.g. "tomorrow 9:00 am". */
-					__( 'Orders placed now are scheduled for %s.', 'orderwindow' ),
+					__( 'Orders placed now are scheduled for %s.', 'hourgate' ),
 					OrderingPolicy::format_when( (int) $decision->get_scheduled_for() )
 				),
 			);
@@ -157,7 +157,7 @@ class CartNotices {
 
 		if ( null !== $notice && 'info' === $notice['type'] ) {
 			$html .= sprintf(
-				'<div class="wc-block-components-notice-banner is-info orderwindow-notice orderwindow-notice--scheduled" role="status"><div class="wc-block-components-notice-banner__content">%s</div></div>',
+				'<div class="wc-block-components-notice-banner is-info hourgate-notice hourgate-notice--scheduled" role="status"><div class="wc-block-components-notice-banner__content">%s</div></div>',
 				esc_html( $notice['text'] )
 			);
 		}
@@ -166,10 +166,10 @@ class CartNotices {
 		Assets::need();
 
 		$html .= sprintf(
-			'<div class="wc-block-components-notice-banner is-warning orderwindow-notice orderwindow-notice--closed" role="status" data-blocked="%1$s" data-place-order-label="%2$s"%3$s><div class="wc-block-components-notice-banner__content">%4$s</div></div>',
+			'<div class="wc-block-components-notice-banner is-warning hourgate-notice hourgate-notice--closed" role="status" data-blocked="%1$s" data-place-order-label="%2$s"%3$s><div class="wc-block-components-notice-banner__content">%4$s</div></div>',
 			$closed ? '1' : '0',
 			/* translators: Label of the Checkout block's Place order button while the store is closed. */
-			esc_attr__( 'Ordering is closed', 'orderwindow' ),
+			esc_attr__( 'Ordering is closed', 'hourgate' ),
 			// Not `hidden`: WooCommerce's banner CSS sets `display` and would win.
 			$closed ? '' : ' style="display:none"',
 			$closed ? esc_html( $notice['text'] ) : ''
@@ -192,7 +192,7 @@ class CartNotices {
 			return;
 		}
 
-		echo '<div class="woocommerce woocommerce-notices-wrapper orderwindow-notices">';
+		echo '<div class="woocommerce woocommerce-notices-wrapper hourgate-notices">';
 		wc_print_notices();
 		echo '</div>';
 	}
