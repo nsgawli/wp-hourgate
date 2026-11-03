@@ -49,7 +49,7 @@ const SpecialHours = () => {
 			.then((data) => accept(data, { closures: [], specialHours: [] }))
 			.catch((error) =>
 				setLoadError(
-					error?.message || __('Unknown error.', 'orderwindow')
+					error?.message || __('Unknown error.', 'hourgate')
 				)
 			);
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -71,7 +71,7 @@ const SpecialHours = () => {
 			addAlert({
 				id: Date.now(),
 				type: 'success',
-				title: __('Saved', 'orderwindow'),
+				title: __('Saved', 'hourgate'),
 				description: successText,
 			});
 		} catch (error) {
@@ -88,13 +88,13 @@ const SpecialHours = () => {
 						/* translators: %s: error message. */
 						__(
 							'The special hours couldn’t be loaded: %s',
-							'orderwindow'
+							'hourgate'
 						),
 						loadError
 					)}
 				</p>
 				<Button onClick={load}>
-					{__('Try again', 'orderwindow')}
+					{__('Try again', 'hourgate')}
 				</Button>
 			</div>
 		);
@@ -108,19 +108,19 @@ const SpecialHours = () => {
 	const askConvert = (index) => {
 		const entry = list[index];
 		setConfirm({
-			title: __('Convert to a closure?', 'orderwindow'),
+			title: __('Convert to a closure?', 'hourgate'),
 			message: sprintf(
 				/* translators: %s: the entry's date. */
 				__(
 					'%s becomes a one-day closure with the same label. Unlike empty special hours, a closure also ends the night before at midnight.',
-					'orderwindow'
+					'hourgate'
 				),
 				describeDate(entry)
 			),
-			label: __('Convert', 'orderwindow'),
+			label: __('Convert', 'hourgate'),
 			destructive: false,
 			body: convertToClosure(lists.closures, list, index),
-			success: __('Converted to a closure.', 'orderwindow'),
+			success: __('Converted to a closure.', 'hourgate'),
 		});
 	};
 
@@ -133,19 +133,19 @@ const SpecialHours = () => {
 		next[index] = entry;
 		return persist(
 			{ specialHours: next },
-			__('Special hours saved.', 'orderwindow')
+			__('Special hours saved.', 'hourgate')
 		).then(() => setDialog(null));
 	};
 
 	const askDelete = (key) => {
 		const row = byKey[key];
 		setConfirm({
-			title: __('Delete these special hours?', 'orderwindow'),
+			title: __('Delete these special hours?', 'hourgate'),
 			message: row.label ? `${row.dates} — ${row.label}` : row.dates,
-			label: __('Delete', 'orderwindow'),
+			label: __('Delete', 'hourgate'),
 			destructive: true,
 			body: { specialHours: list.filter((_, i) => i !== row.index) },
-			success: __('Special hours deleted.', 'orderwindow'),
+			success: __('Special hours deleted.', 'hourgate'),
 		});
 	};
 
@@ -154,42 +154,42 @@ const SpecialHours = () => {
 			rows.filter((row) => row.past).map((row) => row.index)
 		);
 		setConfirm({
-			title: __('Delete past special hours?', 'orderwindow'),
+			title: __('Delete past special hours?', 'hourgate'),
 			message: sprintf(
 				/* translators: %d: number of entries. */
 				_n(
 					'%d one-off entry whose date has passed will be deleted. Yearly entries are kept.',
 					'%d one-off entries whose dates have passed will be deleted. Yearly entries are kept.',
 					past.size,
-					'orderwindow'
+					'hourgate'
 				),
 				past.size
 			),
-			label: __('Delete past special hours', 'orderwindow'),
+			label: __('Delete past special hours', 'hourgate'),
 			destructive: true,
 			body: { specialHours: list.filter((_, i) => !past.has(i)) },
-			success: __('Past special hours deleted.', 'orderwindow'),
+			success: __('Past special hours deleted.', 'hourgate'),
 		});
 	};
 
 	return (
-		<div className="orderwindow-closures">
-			<p className="orderwindow-closures__intro">
+		<div className="hourgate-closures">
+			<p className="hourgate-closures__intro">
 				{__(
 					'Special hours replace the weekly hours on one date, for example a late opening before a holiday. To close for the whole day, add a closure instead. Changes are saved as soon as you confirm them.',
-					'orderwindow'
+					'hourgate'
 				)}
 			</p>
 			<FallbackNotice refreshKey={savedVersion} />
 			{unreadableCount > 0 && (
-				<div className="orderwindow-store-hours-notice is-warning">
+				<div className="hourgate-store-hours-notice is-warning">
 					{sprintf(
 						/* translators: %d: number of entries. */
 						_n(
 							'%d saved special-hours entry can’t be read. Edit or delete it; other changes can’t be saved until it’s fixed.',
 							'%d saved special-hours entries can’t be read. Edit or delete them; other changes can’t be saved until they’re fixed.',
 							unreadableCount,
-							'orderwindow'
+							'hourgate'
 						),
 						unreadableCount
 					)}
@@ -197,14 +197,14 @@ const SpecialHours = () => {
 			)}
 			<ExceptionList
 				items={rows}
-				noun={__('special hours', 'orderwindow')}
-				addLabel={__('Add special hours', 'orderwindow')}
-				emptyText={__('No upcoming special hours.', 'orderwindow')}
+				noun={__('special hours', 'hourgate')}
+				addLabel={__('Add special hours', 'hourgate')}
+				emptyText={__('No upcoming special hours.', 'hourgate')}
 				limitText={sprintf(
 					/* translators: %d: the most entries allowed. */
 					__(
 						'Up to %d special-hours entries. Delete past or unused ones to add more.',
-						'orderwindow'
+						'hourgate'
 					),
 					MAX_SPECIAL_HOURS
 				)}
@@ -212,11 +212,11 @@ const SpecialHours = () => {
 				max={MAX_SPECIAL_HOURS}
 				pastTitle={
 					/* translators: %d: number of past entries. */
-					__('Past special hours (%d)', 'orderwindow')
+					__('Past special hours (%d)', 'hourgate')
 				}
 				deletePastLabel={__(
 					'Delete past special hours',
-					'orderwindow'
+					'hourgate'
 				)}
 				busy={busy}
 				onAdd={() => setDialog({ index: list.length, entry: null })}
@@ -255,11 +255,11 @@ const SpecialHours = () => {
 						addAlert({
 							id: Date.now(),
 							type: 'error',
-							title: __('Not saved', 'orderwindow'),
+							title: __('Not saved', 'hourgate'),
 							description: error?.errors
 								? error.errors.map((e) => e.message).join(' ')
 								: error?.message ||
-									__('Unknown error.', 'orderwindow'),
+									__('Unknown error.', 'hourgate'),
 						});
 					} finally {
 						setBusy(false);

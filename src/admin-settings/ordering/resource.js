@@ -7,7 +7,7 @@ import { apiCache } from '@framework/middlewares';
  * `data`. A rejected request rejects with WordPress's error object intact.
  */
 
-const NS = '/orderwindow/v1';
+const NS = '/hourgate/v1';
 export const ROUTES = {
 	behaviour: `${NS}/settings/behaviour`,
 	status: `${NS}/ordering/status`,

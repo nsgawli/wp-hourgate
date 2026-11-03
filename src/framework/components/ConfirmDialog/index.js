@@ -24,8 +24,8 @@ const ConfirmDialog = ({
 	isOpen,
 	title,
 	message,
-	confirmLabel = __('Confirm', 'orderwindow'),
-	cancelLabel = __('Cancel', 'orderwindow'),
+	confirmLabel = __('Confirm', 'hourgate'),
+	cancelLabel = __('Cancel', 'hourgate'),
 	onConfirm,
 	onCancel,
 	destructive = false,
@@ -44,10 +44,10 @@ const ConfirmDialog = ({
 			initialFocusRef={cancelRef}
 			role={destructive ? 'alertdialog' : 'dialog'}
 		>
-			<div className="orderwindow-confirm-dialog__message">
+			<div className="hourgate-confirm-dialog__message">
 				{message}
 			</div>
-			<div className="orderwindow-confirm-dialog__actions">
+			<div className="hourgate-confirm-dialog__actions">
 				<Button ref={cancelRef} onClick={close} disabled={busy}>
 					{cancelLabel}
 				</Button>

@@ -18,22 +18,22 @@ export const BASE_PATH = '/store-hours';
 const subTabs = () => [
 	{
 		key: 'weekly',
-		label: __('Weekly hours', 'orderwindow'),
+		label: __('Weekly hours', 'hourgate'),
 		element: <WeeklyHours />,
 	},
 	{
 		key: 'closures',
-		label: __('Closures', 'orderwindow'),
+		label: __('Closures', 'hourgate'),
 		element: <Closures />,
 	},
 	{
 		key: 'special-hours',
-		label: __('Special hours', 'orderwindow'),
+		label: __('Special hours', 'hourgate'),
 		element: <SpecialHours />,
 	},
 	{
 		key: 'preview',
-		label: __('Preview', 'orderwindow'),
+		label: __('Preview', 'hourgate'),
 		element: <Preview />,
 	},
 ];
@@ -48,19 +48,19 @@ function StoreClock() {
 	}, []);
 
 	return (
-		<p className="orderwindow-store-clock">
+		<p className="hourgate-store-clock">
 			{sprintf(
 				/* translators: 1: time zone, e.g. "Europe/London" or "UTC+5:30"; 2: the store's current time. */
 				__(
 					'Times use the store’s time zone: %1$s. Store time now: %2$s.',
-					'orderwindow'
+					'hourgate'
 				),
 				storeZoneLabel(),
 				now
 			)}{' '}
 			{canManageSite() && (
 				<a href="options-general.php#timezone_string">
-					{__('Change it in Settings → General.', 'orderwindow')}
+					{__('Change it in Settings → General.', 'hourgate')}
 				</a>
 			)}
 		</p>
@@ -91,7 +91,7 @@ const StoreHours = () => {
 				<Flex vertical gap={10}>
 					<Flex vertical gap={5}>
 						<Title level={2} size={3}>
-							{__('Store hours', 'orderwindow')}
+							{__('Store hours', 'hourgate')}
 						</Title>
 						<StoreClock />
 					</Flex>
@@ -101,16 +101,16 @@ const StoreHours = () => {
 						items={tabs}
 						active={current?.key}
 						onChange={(key) => navigate(`${BASE_PATH}/${key}`)}
-						idPrefix="orderwindow-store-hours"
-						ariaLabel={__('Store hours', 'orderwindow')}
+						idPrefix="hourgate-store-hours"
+						ariaLabel={__('Store hours', 'hourgate')}
 					/>
 					{current && (
 						<div
 							{...tabPanelProps(
-								'orderwindow-store-hours',
+								'hourgate-store-hours',
 								current.key
 							)}
-							className="orderwindow-store-hours-panel"
+							className="hourgate-store-hours-panel"
 						>
 							{current.element}
 						</div>

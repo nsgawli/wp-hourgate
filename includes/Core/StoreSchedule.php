@@ -1,13 +1,13 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core;
+namespace HourGate\Core;
 
-use OrderWindow\Core\Schedule\Engine;
-use OrderWindow\Core\Schedule\Schedule;
-use OrderWindow\Core\Schedule\ScheduleFactory;
-use OrderWindow\Core\Schedule\ValidationError;
-use OrderWindow\Core\Schedule\Window;
-use OrderWindow\Installation\Settings\Closures as ClosuresSettings;
-use OrderWindow\Installation\Settings\Schedule as ScheduleSettings;
+use HourGate\Core\Schedule\Engine;
+use HourGate\Core\Schedule\Schedule;
+use HourGate\Core\Schedule\ScheduleFactory;
+use HourGate\Core\Schedule\ValidationError;
+use HourGate\Core\Schedule\Window;
+use HourGate\Installation\Settings\Closures as ClosuresSettings;
+use HourGate\Installation\Settings\Schedule as ScheduleSettings;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,13 +16,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * The store's schedule in WordPress: reads the settings, builds the pure
- * `Schedule\Engine` with `wp_timezone()`, and exposes it as Order Window's
+ * `Schedule\Engine` with `wp_timezone()`, and exposes it as HourGate's
  * public PHP API.
  *
  * Nothing runs at boot. The engine is built on first use and memoized for the
  * request; saving the settings or the site's time zone resets it. A stored
  * schedule that fails validation never blocks the store: it falls back to
- * "always open" and is logged (WooCommerce logger, source `orderwindow`).
+ * "always open" and is logged (WooCommerce logger, source `hourgate`).
  */
 class StoreSchedule {
 
@@ -32,14 +32,14 @@ class StoreSchedule {
 	 *
 	 * @var string
 	 */
-	const LOGGED_TRANSIENT = 'orderwindow_invalid_schedule_logged';
+	const LOGGED_TRANSIENT = 'hourgate_invalid_schedule_logged';
 
 	/**
 	 * WooCommerce log source.
 	 *
 	 * @var string
 	 */
-	const LOG_SOURCE = 'orderwindow';
+	const LOG_SOURCE = 'hourgate';
 
 	/**
 	 * The memoized engine.
@@ -200,7 +200,7 @@ class StoreSchedule {
 
 	/**
 	 * Open windows within `[from, to)`, merged and clipped, filtered by
-	 * `orderwindow_schedule_windows`.
+	 * `hourgate_schedule_windows`.
 	 *
 	 * @param int $from UTC timestamp, inclusive.
 	 * @param int $to   UTC timestamp, exclusive.
@@ -221,7 +221,7 @@ class StoreSchedule {
 		 * @param int      $from    UTC timestamp, inclusive.
 		 * @param int      $to      UTC timestamp, exclusive.
 		 */
-		$filtered = apply_filters( 'orderwindow_schedule_windows', $windows, $from, $to );
+		$filtered = apply_filters( 'hourgate_schedule_windows', $windows, $from, $to );
 
 		if ( ! is_array( $filtered ) ) {
 			return $windows;
@@ -238,7 +238,7 @@ class StoreSchedule {
 
 	/**
 	 * Look-ahead for `next_open()` / `next_close()`, filtered by
-	 * `orderwindow_schedule_horizon_days`. A return that isn't an integer
+	 * `hourgate_schedule_horizon_days`. A return that isn't an integer
 	 * from 1 to `Engine::MAX_HORIZON_DAYS` falls back to the default (400).
 	 *
 	 * @return int
@@ -250,7 +250,7 @@ class StoreSchedule {
 		 *
 		 * @param int $days Default 400. Must be an integer from 1 to 3660.
 		 */
-		$days = apply_filters( 'orderwindow_schedule_horizon_days', Engine::DEFAULT_HORIZON_DAYS );
+		$days = apply_filters( 'hourgate_schedule_horizon_days', Engine::DEFAULT_HORIZON_DAYS );
 
 		if ( ! is_int( $days ) || $days < 1 || $days > Engine::MAX_HORIZON_DAYS ) {
 			return Engine::DEFAULT_HORIZON_DAYS;
@@ -291,7 +291,7 @@ class StoreSchedule {
 		$schedule = ScheduleFactory::from_arrays( ScheduleSettings::get_default_settings(), ClosuresSettings::get_default_settings() );
 
 		if ( ! $schedule instanceof Schedule ) {
-			throw new \LogicException( 'Order Window default schedule is invalid.' );
+			throw new \LogicException( 'HourGate default schedule is invalid.' );
 		}
 
 		return $schedule;
@@ -334,7 +334,7 @@ class StoreSchedule {
 		wc_get_logger()->warning(
 			sprintf(
 				/* translators: %s: list of problems, e.g. "weekly.mon.0.start invalid_time". */
-				__( 'The saved opening hours are invalid, so Order Window treats the store as open at all times until they are saved again. Problems: %s', 'orderwindow' ),
+				__( 'The saved opening hours are invalid, so HourGate treats the store as open at all times until they are saved again. Problems: %s', 'hourgate' ),
 				implode( '; ', $details )
 			),
 			array( 'source' => self::LOG_SOURCE )

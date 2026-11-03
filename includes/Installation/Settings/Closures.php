@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Installation\Settings;
+namespace HourGate\Installation\Settings;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,7 +16,7 @@ class Closures {
 	 *
 	 * @var string
 	 */
-	const OPTION = 'orderwindow_closures_settings';
+	const OPTION = 'hourgate_closures_settings';
 
 	/**
 	 * Install the defaults. `add_option()` never overwrites saved entries.

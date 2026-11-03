@@ -1,9 +1,9 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core\Enforcement;
+namespace HourGate\Core\Enforcement;
 
-use OrderWindow\Core\OrderingPolicy;
-use OrderWindow\Core\OrderMeta;
-use OrderWindow\Core\Ordering\Situation;
+use HourGate\Core\OrderingPolicy;
+use HourGate\Core\OrderMeta;
+use HourGate\Core\Ordering\Situation;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -263,7 +263,7 @@ class ScheduledOrders {
 
 		foreach ( wc_get_order_notes( array( 'order_id' => $order->get_id() ) ) as $note ) {
 			if ( isset( $note->content ) && $text === $note->content ) {
-				$order->add_order_note( __( 'Placed again while the store was open. No longer scheduled.', 'orderwindow' ), 0, false );
+				$order->add_order_note( __( 'Placed again while the store was open. No longer scheduled.', 'hourgate' ), 0, false );
 				return;
 			}
 		}
@@ -279,7 +279,7 @@ class ScheduledOrders {
 
 		return sprintf(
 			/* translators: %s: date and time the order can be fulfilled, in the site's format. */
-			__( 'Placed while the store was closed. Scheduled for %s.', 'orderwindow' ),
+			__( 'Placed while the store was closed. Scheduled for %s.', 'hourgate' ),
 			OrderingPolicy::format_time( $scheduled )
 		);
 	}

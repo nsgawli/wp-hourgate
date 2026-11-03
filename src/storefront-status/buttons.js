@@ -3,7 +3,7 @@
  * every add-to-cart control on the page is disabled; it is restored when the
  * store reopens. Prices and the product links stay.
  *
- * - **Disabled** means `aria-disabled="true"`, the `orderwindow-closed`
+ * - **Disabled** means `aria-disabled="true"`, the `hourgate-closed`
  *   class, the label from the response ("Closed") as its visible text and
  *   accessible name, and clicks, Enter, Space and form submits cancelled.
  *   It stays focusable, so keyboard and screen-reader users hear why.
@@ -21,7 +21,7 @@
  * only what the shopper sees.
  */
 
-const CLASS = 'orderwindow-closed';
+const CLASS = 'hourgate-closed';
 const SELECTOR = [
 	// Classic loop links and buttons, older grid blocks, the Product Button block.
 	'.add_to_cart_button',
@@ -88,7 +88,7 @@ function textNodes(el) {
 /**
  * Watch the page's status and keep its add-to-cart controls in step.
  *
- * @param {Object} config `window.orderWindowStorefront`.
+ * @param {Object} config `window.hourGateStorefront`.
  */
 export function watchButtons(config) {
 	// Element → its original attributes; Text → its original text.
@@ -236,7 +236,7 @@ export function watchButtons(config) {
 		true
 	);
 
-	document.addEventListener('orderwindow:status', (event) =>
+	document.addEventListener('hourgate:status', (event) =>
 		apply(event.detail)
 	);
 	if (config.status) {

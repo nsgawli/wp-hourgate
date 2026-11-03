@@ -1,9 +1,9 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core\Enforcement;
+namespace HourGate\Core\Enforcement;
 
 use Automattic\WooCommerce\StoreApi\Exceptions\RouteException;
-use OrderWindow\Core\OrderingPolicy;
-use OrderWindow\Core\Ordering\Situation;
+use HourGate\Core\OrderingPolicy;
+use HourGate\Core\Ordering\Situation;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,11 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * - block checkout, direct Store API `POST /checkout` and express payment
  *   buttons (they post to the Store API): `woocommerce_store_api_cart_errors`,
- *   which rejects before any draft order exists (HTTP 409, `orderwindow_closed`);
+ *   which rejects before any draft order exists (HTTP 409, `hourgate_closed`);
  * - classic checkout (`wc-ajax=checkout`): `woocommerce_after_checkout_validation`.
  *
  * Paying an existing order is allowed while closed (D1). The filter
- * `orderwindow_allow_order_pay_while_closed` (default true) can refuse
+ * `hourgate_allow_order_pay_while_closed` (default true) can refuse
  * it, so the order-pay hooks are registered too but return at once unless it
  * is false. Orders made by staff and integrations (admin, REST `wc/v3`,
  * `wc_create_order()`, renewals) never pass through these hooks (D3).
@@ -36,7 +36,7 @@ class Checkout {
 	 *
 	 * @var string
 	 */
-	const ERROR_CODE = 'orderwindow_closed';
+	const ERROR_CODE = 'hourgate_closed';
 
 	/**
 	 * Register the hooks. No queries.
@@ -223,7 +223,7 @@ class Checkout {
 		 * @param bool           $allow Whether to allow it.
 		 * @param \WC_Order|null $order The order being paid.
 		 */
-		$allow = apply_filters( 'orderwindow_allow_order_pay_while_closed', true, $order instanceof \WC_Order ? $order : null );
+		$allow = apply_filters( 'hourgate_allow_order_pay_while_closed', true, $order instanceof \WC_Order ? $order : null );
 
 		if ( false !== $allow ) {
 			return null;

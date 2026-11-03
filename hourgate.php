@@ -1,6 +1,6 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName -- The main plugin file is named after the plugin slug, not its bootstrap class.
 /**
- * Plugin Name: Order Window
+ * Plugin Name: HourGate – Store Hours for WooCommerce
  * Description: Store hours for WooCommerce: take orders only while you're open. Holiday closures, a pause switch, and a clear closed message for shoppers.
  * Version: 1.0.0
  * Author: Nikhil
@@ -12,9 +12,9 @@
  * WC tested up to: 11.2
  * License: GPL v3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain: orderwindow
+ * Text Domain: hourgate
  *
- * @package orderwindow
+ * @package hourgate
  */
 
 // Exit if accessed directly.
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin bootstrap: constants, autoloader and activation hooks.
  */
-final class OrderWindow {
+final class HourGate {
 
 	/**
 	 * Plugin version
@@ -37,7 +37,7 @@ final class OrderWindow {
 	/**
 	 * The single instance of the class.
 	 *
-	 * @var OrderWindow
+	 * @var HourGate
 	 */
 	public static function init() {
 
@@ -76,11 +76,11 @@ final class OrderWindow {
 
 		self::define_constants();
 
-		require_once ORDERWINDOW_ABSPATH . 'vendor/autoload.php';
+		require_once HOURGATE_ABSPATH . 'vendor/autoload.php';
 
-		OrderWindow\Installation\Autoloader::activate();
+		HourGate\Installation\Autoloader::activate();
 
-		set_transient( 'orderwindow_activation_redirect', get_current_user_id(), MINUTE_IN_SECONDS * 5 );
+		set_transient( 'hourgate_activation_redirect', get_current_user_id(), MINUTE_IN_SECONDS * 5 );
 	}
 
 	/**
@@ -96,9 +96,9 @@ final class OrderWindow {
 
 		self::define_constants();
 
-		require_once ORDERWINDOW_ABSPATH . 'vendor/autoload.php';
+		require_once HOURGATE_ABSPATH . 'vendor/autoload.php';
 
-		OrderWindow\Installation\Autoloader::deactivate();
+		HourGate\Installation\Autoloader::deactivate();
 	}
 
 	/**
@@ -110,9 +110,9 @@ final class OrderWindow {
 		self::define_constants();
 
 		// load plugin files.
-		require_once ORDERWINDOW_ABSPATH . 'vendor/autoload.php';
+		require_once HOURGATE_ABSPATH . 'vendor/autoload.php';
 
-		OrderWindow\Init::run();
+		HourGate\Init::run();
 	}
 
 	/**
@@ -122,30 +122,30 @@ final class OrderWindow {
 	 */
 	public static function define_constants() {
 
-		self::define( 'ORDERWINDOW_PLUGIN_FILE', __FILE__ );
-		self::define( 'ORDERWINDOW_ABSPATH', __DIR__ . '/' );
-		self::define( 'ORDERWINDOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-		self::define( 'ORDERWINDOW_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-		self::define( 'ORDERWINDOW_VERSION', self::$version );
+		self::define( 'HOURGATE_PLUGIN_FILE', __FILE__ );
+		self::define( 'HOURGATE_ABSPATH', __DIR__ . '/' );
+		self::define( 'HOURGATE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+		self::define( 'HOURGATE_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+		self::define( 'HOURGATE_VERSION', self::$version );
 
 		$request_uri     = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only searched for the REST prefix to choose which subsystems load; never stored or printed, and enforcement (Core) loads either way.
 		$is_rest_request = ( false !== strpos( $request_uri, '/' . rest_get_url_prefix() . '/' ) )
 			|| isset( $_GET['rest_route'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Presence check only, to choose which subsystems load; changes no state.
 
-		self::define( 'ORDERWINDOW_REST_REQUEST', $is_rest_request );
+		self::define( 'HOURGATE_REST_REQUEST', $is_rest_request );
 
 		// load admin user interface.
-		if ( is_admin() && ! ( wp_doing_ajax() || ORDERWINDOW_REST_REQUEST ) ) {
-			self::define( 'ORDERWINDOW_ADMIN_INTERFACE', true );
+		if ( is_admin() && ! ( wp_doing_ajax() || HOURGATE_REST_REQUEST ) ) {
+			self::define( 'HOURGATE_ADMIN_INTERFACE', true );
 		} else {
-			self::define( 'ORDERWINDOW_ADMIN_INTERFACE', false );
+			self::define( 'HOURGATE_ADMIN_INTERFACE', false );
 		}
 
 		// load frontend user interface.
-		if ( ! ( is_admin() || defined( 'DOING_CRON' ) || ORDERWINDOW_REST_REQUEST ) ) {
-			self::define( 'ORDERWINDOW_FRONTEND_INTERFACE', true );
+		if ( ! ( is_admin() || defined( 'DOING_CRON' ) || HOURGATE_REST_REQUEST ) ) {
+			self::define( 'HOURGATE_FRONTEND_INTERFACE', true );
 		} else {
-			self::define( 'ORDERWINDOW_FRONTEND_INTERFACE', false );
+			self::define( 'HOURGATE_FRONTEND_INTERFACE', false );
 		}
 	}
 
@@ -158,7 +158,7 @@ final class OrderWindow {
 	 */
 	private static function define( $name, $value ) {
 		if ( ! defined( $name ) ) {
-			define( $name, $value ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.VariableConstantNameFound -- Only called with ORDERWINDOW_* names from define_constants().
+			define( $name, $value ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.VariableConstantNameFound -- Only called with HOURGATE_* names from define_constants().
 		}
 	}
 
@@ -170,13 +170,13 @@ final class OrderWindow {
 	 */
 	public static function add_plugin_links( $links ) {
 		$custom_links = array(
-			'<a href="' . admin_url( 'admin.php?page=orderwindow-settings' ) . '">' . __( 'Settings', 'orderwindow' ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=hourgate-settings' ) . '">' . __( 'Settings', 'hourgate' ) . '</a>',
 		);
 		return array_merge( $links, $custom_links );
 	}
 }
 
-register_activation_hook( __FILE__, array( 'OrderWindow', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'OrderWindow', 'deactivate' ) );
+register_activation_hook( __FILE__, array( 'HourGate', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'HourGate', 'deactivate' ) );
 
-OrderWindow::init();
+HourGate::init();

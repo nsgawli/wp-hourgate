@@ -3,8 +3,8 @@ import './index.css';
 
 const Drawer = ({ isOpen, onClose, children, direction = 'right' }) => {
 	const drawerDirectionClass = `drawer-${direction}`;
-	const backdropClass = `orderwindow-drawer-backdrop ${drawerDirectionClass}`;
-	const contentClass = `orderwindow-drawer-content ${drawerDirectionClass}`;
+	const backdropClass = `hourgate-drawer-backdrop ${drawerDirectionClass}`;
+	const contentClass = `hourgate-drawer-content ${drawerDirectionClass}`;
 
 	useEffect(() => {
 		const handleEsc = (event) => {

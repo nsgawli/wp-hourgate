@@ -49,7 +49,7 @@ const SpecialHoursDialog = ({
 	// Focus the date input itself on open (DateField doesn't forward refs).
 	const [dateRef] = useState(() => ({
 		get current() {
-			return document.getElementById('orderwindow-special-date');
+			return document.getElementById('hourgate-special-date');
 		},
 	}));
 
@@ -105,7 +105,7 @@ const SpecialHoursDialog = ({
 							...NO_SERVER,
 							general: [
 								error?.message ||
-									__('Unknown error.', 'orderwindow'),
+									__('Unknown error.', 'hourgate'),
 							],
 						}
 			);
@@ -125,19 +125,19 @@ const SpecialHoursDialog = ({
 			initialFocusRef={dateRef}
 			title={
 				isNew
-					? __('Add special hours', 'orderwindow')
-					: __('Edit special hours', 'orderwindow')
+					? __('Add special hours', 'hourgate')
+					: __('Edit special hours', 'hourgate')
 			}
 		>
 			<form
-				className="orderwindow-closure-form"
+				className="hourgate-closure-form"
 				onSubmit={submit}
 				noValidate
 			>
-				<p className="orderwindow-closure-form__help">
+				<p className="hourgate-closure-form__help">
 					{__(
 						'Special hours replace the weekly hours on this date.',
-						'orderwindow'
+						'hourgate'
 					)}{' '}
 					<button
 						type="button"
@@ -149,20 +149,20 @@ const SpecialHoursDialog = ({
 					>
 						{__(
 							'To close for the day, add a closure instead.',
-							'orderwindow'
+							'hourgate'
 						)}
 					</button>
 				</p>
 
 				{server.general.length > 0 && (
 					<div
-						className="orderwindow-closure-form__errors"
+						className="hourgate-closure-form__errors"
 						role="alert"
 					>
 						<p>
 							{__(
 								'The special hours weren’t saved:',
-								'orderwindow'
+								'hourgate'
 							)}
 						</p>
 						<ul>
@@ -174,8 +174,8 @@ const SpecialHoursDialog = ({
 				)}
 
 				<DateField
-					id="orderwindow-special-date"
-					label={__('Date', 'orderwindow')}
+					id="hourgate-special-date"
+					label={__('Date', 'hourgate')}
 					value={form.date}
 					onChange={(date) => update({ date })}
 					error={fieldError('date')}
@@ -183,40 +183,40 @@ const SpecialHoursDialog = ({
 				/>
 
 				<label
-					className="orderwindow-closure-form__check"
-					htmlFor="orderwindow-special-yearly"
+					className="hourgate-closure-form__check"
+					htmlFor="hourgate-special-yearly"
 				>
 					<input
-						id="orderwindow-special-yearly"
+						id="hourgate-special-yearly"
 						type="checkbox"
 						checked={form.yearly}
 						onChange={(event) =>
 							update({ yearly: event.target.checked })
 						}
-						aria-describedby="orderwindow-special-yearly-help"
+						aria-describedby="hourgate-special-yearly-help"
 					/>
-					{__('Repeat every year', 'orderwindow')}
+					{__('Repeat every year', 'hourgate')}
 				</label>
 				<small
-					id="orderwindow-special-yearly-help"
-					className="orderwindow-closure-form__help"
+					id="hourgate-special-yearly-help"
+					className="hourgate-closure-form__help"
 				>
 					{__(
 						'Repeats on the same date every year. On 29 February it applies only in leap years. Only one special-hours entry is allowed per date.',
-						'orderwindow'
+						'hourgate'
 					)}
 				</small>
 
-				<fieldset className="orderwindow-special-form__hours">
-					<legend className="orderwindow-form-field-label">
-						{__('Hours', 'orderwindow')}
+				<fieldset className="hourgate-special-form__hours">
+					<legend className="hourgate-form-field-label">
+						{__('Hours', 'hourgate')}
 					</legend>
 					<label
-						className="orderwindow-closure-form__check"
-						htmlFor="orderwindow-special-open24"
+						className="hourgate-closure-form__check"
+						htmlFor="hourgate-special-open24"
 					>
 						<input
-							id="orderwindow-special-open24"
+							id="hourgate-special-open24"
 							type="checkbox"
 							checked={form.open24}
 							onChange={(event) =>
@@ -232,12 +232,12 @@ const SpecialHoursDialog = ({
 								})
 							}
 						/>
-						{__('Open 24 hours', 'orderwindow')}
+						{__('Open 24 hours', 'hourgate')}
 					</label>
 					{!form.open24 && (
 						<TimeRangesEditor
-							idPrefix="orderwindow-special-ranges"
-							context={__('Special hours', 'orderwindow')}
+							idPrefix="hourgate-special-ranges"
+							context={__('Special hours', 'hourgate')}
 							value={form.ranges}
 							onChange={(ranges) => update({ ranges })}
 							errors={rangeErrors}
@@ -247,23 +247,23 @@ const SpecialHoursDialog = ({
 					)}
 					{fieldError('ranges') && (
 						<small
-							id="orderwindow-special-ranges-error"
-							className="orderwindow-form-field-error-msg"
+							id="hourgate-special-ranges-error"
+							className="hourgate-form-field-error-msg"
 						>
 							{fieldError('ranges')}
 						</small>
 					)}
 				</fieldset>
 
-				<div className="orderwindow-form-field">
+				<div className="hourgate-form-field">
 					<label
-						htmlFor="orderwindow-special-label"
-						className="orderwindow-form-field-label"
+						htmlFor="hourgate-special-label"
+						className="hourgate-form-field-label"
 					>
-						{__('Label (optional)', 'orderwindow')}
+						{__('Label (optional)', 'hourgate')}
 					</label>
 					<input
-						id="orderwindow-special-label"
+						id="hourgate-special-label"
 						type="text"
 						value={form.label}
 						onChange={(event) =>
@@ -272,15 +272,15 @@ const SpecialHoursDialog = ({
 						aria-invalid={fieldError('label') ? true : undefined}
 						aria-describedby={
 							fieldError('label')
-								? 'orderwindow-special-label-count orderwindow-special-label-error'
-								: 'orderwindow-special-label-count'
+								? 'hourgate-special-label-count hourgate-special-label-error'
+								: 'hourgate-special-label-count'
 						}
 					/>
 					<small
-						id="orderwindow-special-label-count"
+						id="hourgate-special-label-count"
 						className={
 							length > MAX_LABEL
-								? 'orderwindow-form-field-error-msg'
+								? 'hourgate-form-field-error-msg'
 								: ''
 						}
 					>
@@ -288,7 +288,7 @@ const SpecialHoursDialog = ({
 							/* translators: 1: characters used; 2: the most allowed. */
 							__(
 								'%1$d of %2$d characters, e.g. “Late opening”.',
-								'orderwindow'
+								'hourgate'
 							),
 							length,
 							MAX_LABEL
@@ -296,20 +296,20 @@ const SpecialHoursDialog = ({
 					</small>
 					{fieldError('label') && (
 						<small
-							id="orderwindow-special-label-error"
-							className="orderwindow-form-field-error-msg"
+							id="hourgate-special-label-error"
+							className="hourgate-form-field-error-msg"
 						>
 							{fieldError('label')}
 						</small>
 					)}
 				</div>
 
-				<div className="orderwindow-closure-form__actions">
+				<div className="hourgate-closure-form__actions">
 					<Button onClick={close} disabled={saving}>
-						{__('Cancel', 'orderwindow')}
+						{__('Cancel', 'hourgate')}
 					</Button>
 					<Button type="primary" htmlType="submit" loading={saving}>
-						{__('Save special hours', 'orderwindow')}
+						{__('Save special hours', 'hourgate')}
 					</Button>
 				</div>
 			</form>

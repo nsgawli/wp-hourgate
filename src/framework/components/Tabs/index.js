@@ -52,7 +52,7 @@ const Tabs = ({ items = [], active, onChange, idPrefix, ariaLabel }) => {
 
 	return (
 		<div
-			className="orderwindow-tabs"
+			className="hourgate-tabs"
 			role="tablist"
 			aria-label={ariaLabel}
 			ref={listRef}
@@ -68,7 +68,7 @@ const Tabs = ({ items = [], active, onChange, idPrefix, ariaLabel }) => {
 						aria-selected={selected}
 						aria-controls={panelId(idPrefix, item.key)}
 						tabIndex={selected ? 0 : -1}
-						className={`orderwindow-tabs__item${selected ? ' is-active' : ''}`}
+						className={`hourgate-tabs__item${selected ? ' is-active' : ''}`}
 						onClick={() => !selected && onChange(item.key)}
 						onKeyDown={(event) => onKeyDown(event, index)}
 					>

@@ -1,5 +1,5 @@
 /* ModalPopup */
-@keyframes orderWindowModalSlideDown {
+@keyframes hourGateModalSlideDown {
 	from {
 		transform: translateY(-1.5rem);
 		opacity: 0;
@@ -9,7 +9,7 @@
 		opacity: 1;
 	}
 }
-.orderwindow-modal-backdrop {
+.hourgate-modal-backdrop {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -19,12 +19,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	z-index: var(--orderwindow-popup-z-index);
+	z-index: var(--hourgate-popup-z-index);
 }
-.orderwindow-modal-content {
+.hourgate-modal-content {
 	position: relative;
 	box-sizing: border-box;
-	animation: orderWindowModalSlideDown 0.2s ease-out forwards;
+	animation: hourGateModalSlideDown 0.2s ease-out forwards;
 	background-color: #fff;
 	padding: 1.25rem;
 	margin-top: 10vh;
@@ -35,21 +35,21 @@
 	max-height: 80vh;
 	overflow-y: auto;
 }
-.orderwindow-modal-small {
+.hourgate-modal-small {
 	width: 25rem;
 }
-.orderwindow-modal-large {
+.hourgate-modal-large {
 	width: 50rem;
 }
-.orderwindow-modal-content:focus {
+.hourgate-modal-content:focus {
 	outline: none;
 }
-.orderwindow-modal-title {
+.hourgate-modal-title {
 	margin: 0 2.5rem 1rem 0;
 	font-size: 1.125rem;
 	line-height: 1.4;
 }
-.orderwindow-modal-close-icon {
+.hourgate-modal-close-icon {
 	position: absolute;
 	top: 0.75rem;
 	right: 0.75rem;
@@ -66,15 +66,15 @@
 	font-size: 1.5rem;
 	color: rgba(0, 0, 0, 0.55);
 }
-.orderwindow-modal-close-icon:hover {
+.hourgate-modal-close-icon:hover {
 	color: rgba(0, 0, 0, 0.85);
 }
-.orderwindow-modal-close-icon:focus-visible {
-	outline: 0.125rem solid var(--orderwindow-primary-color);
+.hourgate-modal-close-icon:focus-visible {
+	outline: 0.125rem solid var(--hourgate-primary-color);
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.orderwindow-modal-content {
+	.hourgate-modal-content {
 		animation: none;
 	}
 }

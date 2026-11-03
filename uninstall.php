@@ -2,7 +2,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package orderwindow
+ * @package hourgate
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
@@ -15,7 +15,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  * Every option, transient, user meta key, table and cron hook the plugin
  * adds must be removed here.
  */
-class OrderWindow_Uninstall {
+class HourGate_Uninstall {
 
 	/**
 	 * Sites read per query when walking a network.
@@ -87,7 +87,7 @@ class OrderWindow_Uninstall {
 	 */
 	private static function should_remove_data() {
 
-		$general_settings = get_option( 'orderwindow_general_settings', array() );
+		$general_settings = get_option( 'hourgate_general_settings', array() );
 
 		return is_array( $general_settings ) && ! empty( $general_settings['removeDataOnUninstall'] );
 	}
@@ -99,12 +99,12 @@ class OrderWindow_Uninstall {
 	 */
 	private static function delete_options() {
 
-		delete_option( 'orderwindow_general_settings' );
-		delete_option( 'orderwindow_schedule_settings' );
-		delete_option( 'orderwindow_closures_settings' );
-		delete_option( 'orderwindow_behaviour_settings' );
-		delete_option( 'orderwindow_pause_state' );
-		delete_option( 'orderwindow_current_version' );
+		delete_option( 'hourgate_general_settings' );
+		delete_option( 'hourgate_schedule_settings' );
+		delete_option( 'hourgate_closures_settings' );
+		delete_option( 'hourgate_behaviour_settings' );
+		delete_option( 'hourgate_pause_state' );
+		delete_option( 'hourgate_current_version' );
 	}
 
 	/**
@@ -114,11 +114,11 @@ class OrderWindow_Uninstall {
 	 */
 	private static function delete_transients() {
 
-		delete_transient( 'orderwindow_installing' );
-		delete_transient( 'orderwindow_activation_redirect' );
-		delete_transient( 'orderwindow_invalid_schedule_logged' );
-		delete_transient( 'orderwindow_policy_error_logged' );
+		delete_transient( 'hourgate_installing' );
+		delete_transient( 'hourgate_activation_redirect' );
+		delete_transient( 'hourgate_invalid_schedule_logged' );
+		delete_transient( 'hourgate_policy_error_logged' );
 	}
 }
 
-OrderWindow_Uninstall::run();
+HourGate_Uninstall::run();

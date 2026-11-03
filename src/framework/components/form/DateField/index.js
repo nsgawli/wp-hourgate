@@ -45,7 +45,7 @@ const DateField = ({
 					/* translators: %s: the stored value that isn't a date. */
 					__(
 						'Couldn’t read the saved date “%s”. Enter it again.',
-						'orderwindow'
+						'hourgate'
 					),
 					String(value).slice(0, 20)
 				));
@@ -56,9 +56,9 @@ const DateField = ({
 
 	return (
 		<div
-			className={`orderwindow-form-field orderwindow-time-field ${className}`.trim()}
+			className={`hourgate-form-field hourgate-time-field ${className}`.trim()}
 		>
-			<label htmlFor={id} className="orderwindow-form-field-label">
+			<label htmlFor={id} className="hourgate-form-field-label">
 				{label}
 			</label>
 			<input
@@ -74,7 +74,7 @@ const DateField = ({
 			{message && (
 				<small
 					id={errorId}
-					className="orderwindow-form-field-error-msg"
+					className="hourgate-form-field-error-msg"
 				>
 					{message}
 				</small>

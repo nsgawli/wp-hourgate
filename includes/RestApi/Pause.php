@@ -1,8 +1,8 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi;
+namespace HourGate\RestApi;
 
-use OrderWindow\Core\Ordering\PauseState;
-use OrderWindow\Core\Pause as CorePause;
+use HourGate\Core\Ordering\PauseState;
+use HourGate\Core\Pause as CorePause;
 use WP_REST_Request;
 
 // Exit if accessed directly.
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Uses the manage capability (`manage_woocommerce` by default, filterable),
  * so shop managers can pause. The pause works whether or not opening hours
  * are enforced (sprint 4, decision 1). Starting and resuming fire
- * `orderwindow_paused` / `orderwindow_resumed` (from `Core\Pause`).
+ * `hourgate_paused` / `hourgate_resumed` (from `Core\Pause`).
  */
 class Pause extends BaseController {
 
@@ -110,7 +110,7 @@ class Pause extends BaseController {
 			return new \WP_Error(
 				'rest_invalid_type',
 				/* translators: %s: the name of a request parameter or setting, e.g. closedMode. */
-				sprintf( __( '%s must not be null.', 'orderwindow' ), $param )
+				sprintf( __( '%s must not be null.', 'hourgate' ), $param )
 			);
 		}
 
@@ -145,7 +145,7 @@ class Pause extends BaseController {
 		$state = CorePause::start( (string) $request->get_param( 'mode' ), $input );
 
 		if ( ! $state instanceof PauseState ) {
-			return $this->error_response( 'orderwindow_' . $state, self::error_message( (string) $state ), 400 );
+			return $this->error_response( 'hourgate_' . $state, self::error_message( (string) $state ), 400 );
 		}
 
 		return $this->success_response( self::describe( $state ) );
@@ -197,21 +197,21 @@ class Pause extends BaseController {
 
 		switch ( $code ) {
 			case PauseState::ERROR_INVALID_MODE:
-				return __( 'Choose how long to pause ordering.', 'orderwindow' );
+				return __( 'Choose how long to pause ordering.', 'hourgate' );
 			case PauseState::ERROR_MISSING_MINUTES:
 			case PauseState::ERROR_INVALID_MINUTES:
-				return __( 'Pause for 1 minute to 7 days.', 'orderwindow' );
+				return __( 'Pause for 1 minute to 7 days.', 'hourgate' );
 			case PauseState::ERROR_MISSING_UNTIL:
 			case PauseState::ERROR_INVALID_UNTIL:
-				return __( 'Enter the date and time ordering should resume.', 'orderwindow' );
+				return __( 'Enter the date and time ordering should resume.', 'hourgate' );
 			case PauseState::ERROR_UNTIL_IN_PAST:
-				return __( 'The time ordering resumes must be in the future.', 'orderwindow' );
+				return __( 'The time ordering resumes must be in the future.', 'hourgate' );
 			case PauseState::ERROR_UNTIL_TOO_FAR:
-				return __( 'Ordering can be paused for at most 400 days.', 'orderwindow' );
+				return __( 'Ordering can be paused for at most 400 days.', 'hourgate' );
 			case PauseState::ERROR_NO_NEXT_OPENING:
-				return __( 'The store has no opening in the schedule after the current one, so it can’t pause until the next opening.', 'orderwindow' );
+				return __( 'The store has no opening in the schedule after the current one, so it can’t pause until the next opening.', 'hourgate' );
 			default:
-				return __( 'Ordering could not be paused.', 'orderwindow' );
+				return __( 'Ordering could not be paused.', 'hourgate' );
 		}
 	}
 }

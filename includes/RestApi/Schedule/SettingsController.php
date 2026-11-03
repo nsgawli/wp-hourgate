@@ -1,9 +1,9 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi\Schedule;
+namespace HourGate\RestApi\Schedule;
 
-use OrderWindow\Core\Schedule\Schedule;
-use OrderWindow\Core\Schedule\ValidationError;
-use OrderWindow\RestApi\BaseController;
+use HourGate\Core\Schedule\Schedule;
+use HourGate\Core\Schedule\ValidationError;
+use HourGate\RestApi\BaseController;
 use WP_Error;
 use WP_REST_Request;
 
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The nested values deliberately have no WordPress `type` schema: WordPress's
  * array sanitizer would reindex objects into lists and split comma-separated
  * strings, hiding mistakes. `ScheduleFactory` checks every type instead, and
- * every problem comes back in one format: 400 `orderwindow_invalid_schedule`
+ * every problem comes back in one format: 400 `hourgate_invalid_schedule`
  * with `data.errors: [ { path, code, message } ]`.
  */
 abstract class SettingsController extends BaseController {
@@ -34,7 +34,7 @@ abstract class SettingsController extends BaseController {
 	 *
 	 * @var string
 	 */
-	const INVALID_CODE = 'orderwindow_invalid_schedule';
+	const INVALID_CODE = 'hourgate_invalid_schedule';
 
 	/**
 	 * Route, e.g. `/settings/schedule`.
@@ -209,7 +209,7 @@ abstract class SettingsController extends BaseController {
 
 		return new WP_Error(
 			self::INVALID_CODE,
-			__( 'The schedule was not saved because some entries are invalid.', 'orderwindow' ),
+			__( 'The schedule was not saved because some entries are invalid.', 'hourgate' ),
 			array(
 				'status' => 400,
 				'errors' => ErrorMessages::to_response( $errors ),

@@ -29,11 +29,11 @@ const sample = () => ({
 
 export default function Edit({ attributes, setAttributes }) {
 	const [previewing, setPreviewing] = useState('open');
-	const settings = window.orderWindowBlocks || {};
+	const settings = window.hourGateBlocks || {};
 	const SAMPLE = sample();
 	const defaultOpen =
 		settings.defaultOpenText ||
-		__('Open now · closes {closes_at}', 'orderwindow');
+		__('Open now · closes {closes_at}', 'hourgate');
 	const closedMessage = (settings.closedMessage || '')
 		.split('{next_open}')
 		.join(SAMPLE.nextOpenLabel)
@@ -49,20 +49,20 @@ export default function Edit({ attributes, setAttributes }) {
 		{
 			open: attributes.openText || defaultOpen,
 			closed: attributes.closedText,
-			openFallback: __('Open now', 'orderwindow'),
-			later: __('later', 'orderwindow'),
+			openFallback: __('Open now', 'hourgate'),
+			later: __('later', 'hourgate'),
 		}
 	);
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__('Store status', 'orderwindow')}>
+				<PanelBody title={__('Store status', 'hourgate')}>
 					<TextControl
-						label={__('Text while open', 'orderwindow')}
+						label={__('Text while open', 'hourgate')}
 						help={__(
 							'Leave empty for the default. {closes_at} is when the store next closes; with no closing time the text is just "Open now".',
-							'orderwindow'
+							'hourgate'
 						)}
 						placeholder={defaultOpen}
 						maxLength={200}
@@ -72,10 +72,10 @@ export default function Edit({ attributes, setAttributes }) {
 						__next40pxDefaultSize
 					/>
 					<TextControl
-						label={__('Text while closed', 'orderwindow')}
+						label={__('Text while closed', 'hourgate')}
 						help={__(
 							'Leave empty to show the store’s closed message (Ordering tab). {next_open} is the next opening.',
-							'orderwindow'
+							'hourgate'
 						)}
 						maxLength={200}
 						value={attributes.closedText}
@@ -89,7 +89,7 @@ export default function Edit({ attributes, setAttributes }) {
 			</InspectorControls>
 			<div {...useBlockProps()}>
 				<ButtonGroup
-					aria-label={__('Preview state', 'orderwindow')}
+					aria-label={__('Preview state', 'hourgate')}
 					style={{ marginBottom: 8 }}
 				>
 					<Button
@@ -100,7 +100,7 @@ export default function Edit({ attributes, setAttributes }) {
 						aria-pressed={previewing === 'open'}
 						onClick={() => setPreviewing('open')}
 					>
-						{__('Preview: open', 'orderwindow')}
+						{__('Preview: open', 'hourgate')}
 					</Button>
 					<Button
 						size="small"
@@ -110,10 +110,10 @@ export default function Edit({ attributes, setAttributes }) {
 						aria-pressed={previewing === 'closed'}
 						onClick={() => setPreviewing('closed')}
 					>
-						{__('Preview: closed', 'orderwindow')}
+						{__('Preview: closed', 'hourgate')}
 					</Button>
 				</ButtonGroup>
-				<div className={`orderwindow-store-status is-${previewing}`}>
+				<div className={`hourgate-store-status is-${previewing}`}>
 					{text}
 				</div>
 			</div>

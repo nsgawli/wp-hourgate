@@ -1,12 +1,12 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi\Settings;
+namespace HourGate\RestApi\Settings;
 
-use OrderWindow\Core\Schedule\Schedule as ValidSchedule;
-use OrderWindow\Core\Schedule\ScheduleFactory;
-use OrderWindow\Core\StoreSchedule;
-use OrderWindow\Installation\Settings\Closures as ClosuresSettings;
-use OrderWindow\Installation\Settings\Schedule as ScheduleSettings;
-use OrderWindow\RestApi\Schedule\SettingsController;
+use HourGate\Core\Schedule\Schedule as ValidSchedule;
+use HourGate\Core\Schedule\ScheduleFactory;
+use HourGate\Core\StoreSchedule;
+use HourGate\Installation\Settings\Closures as ClosuresSettings;
+use HourGate\Installation\Settings\Schedule as ScheduleSettings;
+use HourGate\RestApi\Schedule\SettingsController;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -70,7 +70,7 @@ class Closures extends SettingsController {
 	 * Validate with weekly hours at their defaults, so bad stored hours can't block saving closures.
 	 *
 	 * @param array $group Group.
-	 * @return ValidSchedule|\OrderWindow\Core\Schedule\ValidationError[]
+	 * @return ValidSchedule|\HourGate\Core\Schedule\ValidationError[]
 	 */
 	protected function build( array $group ) {
 		return ScheduleFactory::from_arrays( ScheduleSettings::get_default_settings(), $group );

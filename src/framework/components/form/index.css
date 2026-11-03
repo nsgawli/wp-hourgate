@@ -1,50 +1,50 @@
 /* Form Field Error Message */
-.orderwindow-form-field-error-msg,
-.orderwindow-form-field-required {
-	color: var(--orderwindow-danger-color);
+.hourgate-form-field-error-msg,
+.hourgate-form-field-required {
+	color: var(--hourgate-danger-color);
 }
 
 /* Form Field Helper Text */
-.orderwindow-form-field > small {
+.hourgate-form-field > small {
 	font-size: 0.75rem;
 	line-height: 1.5;
 }
 
-.orderwindow-form-field > small:not(.orderwindow-form-field-error-msg) {
-	color: var(--orderwindow-text-secondary-color, #475569);
+.hourgate-form-field > small:not(.hourgate-form-field-error-msg) {
+	color: var(--hourgate-text-secondary-color, #475569);
 }
 
 /* Input fields */
-.orderwindow-form-field input[type="date"],
-.orderwindow-form-field input[type="datetime-local"],
-.orderwindow-form-field input[type="email"],
-.orderwindow-form-field input[type="number"],
-.orderwindow-form-field input[type="password"],
-.orderwindow-form-field input[type="text"],
-.orderwindow-form-field input[type="time"],
-.orderwindow-form-field input[type="url"] {
+.hourgate-form-field input[type="date"],
+.hourgate-form-field input[type="datetime-local"],
+.hourgate-form-field input[type="email"],
+.hourgate-form-field input[type="number"],
+.hourgate-form-field input[type="password"],
+.hourgate-form-field input[type="text"],
+.hourgate-form-field input[type="time"],
+.hourgate-form-field input[type="url"] {
 	width: 100%;
 	padding: 0 0.5rem;
 	min-height: 2.5rem;
 	border: 0.0625rem solid #ccc;
 	border-radius: 0.25rem;
 }
-.orderwindow-form-field textarea {
+.hourgate-form-field textarea {
 	padding: 0.5rem;
 	border: 0.0625rem solid #ccc;
 	border-radius: 0.25rem;
 }
-.orderwindow-form-field input[type="datetime-local"]:focus,
-.orderwindow-form-field input[type="date"]:focus,
-.orderwindow-form-field input[type="email"]:focus,
-.orderwindow-form-field input[type="number"]:focus,
-.orderwindow-form-field input[type="password"]:focus,
-.orderwindow-form-field input[type="text"]:focus,
-.orderwindow-form-field input[type="time"]:focus,
-.orderwindow-form-field input[type="url"]:focus,
-.orderwindow-form-field input[type="checkbox"]:focus,
-.orderwindow-form-field input[type="radio"]:focus,
-.orderwindow-form-field textarea:focus {
-	border-color: var(--orderwindow-primary-color) !important;
-	box-shadow: 0 0 0 1px var(--orderwindow-primary-color) !important;
+.hourgate-form-field input[type="datetime-local"]:focus,
+.hourgate-form-field input[type="date"]:focus,
+.hourgate-form-field input[type="email"]:focus,
+.hourgate-form-field input[type="number"]:focus,
+.hourgate-form-field input[type="password"]:focus,
+.hourgate-form-field input[type="text"]:focus,
+.hourgate-form-field input[type="time"]:focus,
+.hourgate-form-field input[type="url"]:focus,
+.hourgate-form-field input[type="checkbox"]:focus,
+.hourgate-form-field input[type="radio"]:focus,
+.hourgate-form-field textarea:focus {
+	border-color: var(--hourgate-primary-color) !important;
+	box-shadow: 0 0 0 1px var(--hourgate-primary-color) !important;
 }

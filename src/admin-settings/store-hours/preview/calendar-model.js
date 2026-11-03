@@ -166,14 +166,14 @@ export const daySegments = (day, previous = null) => {
 			tab: before.tab,
 			times: sprintf(
 				/* translators: 1: opening time; 2: closing time. */
-				__('%1$s – %2$s', 'orderwindow'),
+				__('%1$s – %2$s', 'hourgate'),
 				formatSiteTime('00:00'),
 				formatSiteTime(carried.endTime)
 			),
 			why: before.text,
 			text: sprintf(
 				/* translators: 1: closing time, e.g. "2:00 am"; 2: the weekday the opening started, e.g. "Friday"; 3: the rule, e.g. "Weekly hours". */
-				__('Open until %1$s, continued from %2$s, %3$s', 'orderwindow'),
+				__('Open until %1$s, continued from %2$s, %3$s', 'hourgate'),
 				formatSiteTime(carried.endTime),
 				formatSiteDate(carried.fromDate, 'l'),
 				before.text
@@ -205,7 +205,7 @@ export const daySegments = (day, previous = null) => {
 			why: why.text,
 			text: sprintf(
 				/* translators: 1: opening hours, e.g. "9:00 am – 5:00 pm"; 2: the rule, e.g. "Weekly hours". */
-				_x('%1$s, %2$s', 'opening hours and their rule', 'orderwindow'),
+				_x('%1$s, %2$s', 'opening hours and their rule', 'hourgate'),
 				times,
 				why.text
 			),

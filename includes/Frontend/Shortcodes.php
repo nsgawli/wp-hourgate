@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Frontend;
+namespace HourGate\Frontend;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,12 +18,12 @@ class Shortcodes {
 	 * @return void
 	 */
 	public static function register_hooks() {
-		add_shortcode( 'orderwindow_status', array( __CLASS__, 'status' ) );
-		add_shortcode( 'orderwindow_hours', array( __CLASS__, 'hours' ) );
+		add_shortcode( 'hourgate_status', array( __CLASS__, 'status' ) );
+		add_shortcode( 'hourgate_hours', array( __CLASS__, 'hours' ) );
 	}
 
 	/**
-	 * `[orderwindow_status open_text="" closed_text=""]`: the same output
+	 * `[hourgate_status open_text="" closed_text=""]`: the same output
 	 * as the "Store status" block. Unknown attributes are ignored; both
 	 * values are cleaned to plain text and escaped on output.
 	 *
@@ -38,14 +38,14 @@ class Shortcodes {
 				'closed_text' => '',
 			),
 			is_array( $atts ) ? $atts : array(),
-			'orderwindow_status'
+			'hourgate_status'
 		);
 
 		return StoreStatus::render( $atts['open_text'], $atts['closed_text'] );
 	}
 
 	/**
-	 * `[orderwindow_hours title="" show_closures="no"]`: the same output
+	 * `[hourgate_hours title="" show_closures="no"]`: the same output
 	 * as the "Opening hours" block. Unknown attributes are ignored.
 	 *
 	 * @param array|string $atts Shortcode attributes.
@@ -59,7 +59,7 @@ class Shortcodes {
 				'show_closures' => 'no',
 			),
 			is_array( $atts ) ? $atts : array(),
-			'orderwindow_hours'
+			'hourgate_hours'
 		);
 
 		return HoursTable::render( $atts['title'], $atts['show_closures'] );

@@ -33,10 +33,10 @@ import {
 import './index.css';
 
 export const BASE_PATH = '/ordering';
-const ID = 'orderwindow-ordering';
+const ID = 'hourgate-ordering';
 
 const errorText = (error) =>
-	error?.message || __('Unknown error.', 'orderwindow');
+	error?.message || __('Unknown error.', 'hourgate');
 
 /**
  * The status line: what checkout does right now, from the saved settings.
@@ -53,44 +53,44 @@ const describeStatus = (status) => {
 		headline = pause?.untilLabel
 			? sprintf(
 					/* translators: %s: when ordering resumes, e.g. "2:30 pm" or "Tue 9:00 am". */
-					__('Paused until %s', 'orderwindow'),
+					__('Paused until %s', 'hourgate'),
 					pause.untilLabel
 				)
-			: __('Paused until you resume', 'orderwindow');
+			: __('Paused until you resume', 'hourgate');
 		tone = 'paused';
 	} else if (reason === 'outside_hours' || reason === 'closure') {
 		headline = status.nextOpenLabel
 			? sprintf(
 					/* translators: %s: when the store opens, e.g. "Tue 9:00 am". */
-					__('Closed, opens %s', 'orderwindow'),
+					__('Closed, opens %s', 'hourgate'),
 					status.nextOpenLabel
 				)
-			: __('Closed, with no opening ahead', 'orderwindow');
+			: __('Closed, with no opening ahead', 'hourgate');
 	} else if (reason === 'not_enforced') {
 		return {
 			tone: 'neutral',
-			headline: __('Not enforced', 'orderwindow'),
+			headline: __('Not enforced', 'hourgate'),
 			detail: __(
 				'Shoppers can order at any time. Turn on “Enforce opening hours” to use your store hours.',
-				'orderwindow'
+				'hourgate'
 			),
 		};
 	} else if (reason === 'fallback') {
 		return {
 			tone: 'open',
-			headline: __('Open', 'orderwindow'),
+			headline: __('Open', 'hourgate'),
 			detail: __(
 				'The saved store hours are invalid, so the store is treated as open. Save them again in Store hours.',
-				'orderwindow'
+				'hourgate'
 			),
 		};
 	} else if (reason === 'error') {
 		return {
 			tone: 'open',
-			headline: __('Open', 'orderwindow'),
+			headline: __('Open', 'hourgate'),
 			detail: __(
-				'Order Window hit an error, so ordering is allowed. Details are in WooCommerce → Status → Logs.',
-				'orderwindow'
+				'HourGate hit an error, so ordering is allowed. Details are in WooCommerce → Status → Logs.',
+				'hourgate'
 			),
 		};
 	} else {
@@ -99,11 +99,11 @@ const describeStatus = (status) => {
 			headline: status.nextCloseLabel
 				? sprintf(
 						/* translators: %s: when the store closes, e.g. "6:00 pm". */
-						__('Open now, closes %s', 'orderwindow'),
+						__('Open now, closes %s', 'hourgate'),
 						status.nextCloseLabel
 					)
-				: __('Open now', 'orderwindow'),
-			detail: __('Shoppers can order.', 'orderwindow'),
+				: __('Open now', 'hourgate'),
+			detail: __('Shoppers can order.', 'hourgate'),
 		};
 	}
 
@@ -111,22 +111,22 @@ const describeStatus = (status) => {
 	if (outcome === 'scheduled') {
 		detail = __(
 			'Orders are accepted and scheduled for the next opening.',
-			'orderwindow'
+			'hourgate'
 		);
 	} else if (mode === 'catalogue') {
 		detail = __(
 			'Shoppers can browse but can’t add to cart or check out.',
-			'orderwindow'
+			'hourgate'
 		);
 	} else if (mode === 'schedule') {
 		detail = __(
 			'There is no opening to schedule orders for, so checkout is blocked.',
-			'orderwindow'
+			'hourgate'
 		);
 	} else {
 		detail = __(
 			'Shoppers can browse and add to cart but can’t check out.',
-			'orderwindow'
+			'hourgate'
 		);
 	}
 	return { tone, headline, detail };
@@ -140,14 +140,14 @@ const describeStatus = (status) => {
  */
 const pauseStateText = (pause) => {
 	if (!pause?.active) {
-		return __('Ordering is not paused.', 'orderwindow');
+		return __('Ordering is not paused.', 'hourgate');
 	}
 	if (!pause.untilLabel) {
-		return __('Ordering is paused until you resume it.', 'orderwindow');
+		return __('Ordering is paused until you resume it.', 'hourgate');
 	}
 	return sprintf(
 		/* translators: %s: when ordering resumes, e.g. "Tue 2:30 pm". */
-		__('Ordering is paused until %s.', 'orderwindow'),
+		__('Ordering is paused until %s.', 'hourgate'),
 		pause.untilLabel
 	);
 };
@@ -155,26 +155,26 @@ const pauseStateText = (pause) => {
 const modeOptions = () => [
 	{
 		value: 'block',
-		label: __('Block checkout', 'orderwindow'),
+		label: __('Block checkout', 'hourgate'),
 		help: __(
 			'Shoppers can browse and add to cart, but can’t check out until you open. Paying an existing order still works.',
-			'orderwindow'
+			'hourgate'
 		),
 	},
 	{
 		value: 'schedule',
-		label: __('Accept orders for the next opening', 'orderwindow'),
+		label: __('Accept orders for the next opening', 'hourgate'),
 		help: __(
 			'Shoppers order as usual. Each order is marked as placed while closed and scheduled for the next opening. With no opening ahead, checkout is blocked.',
-			'orderwindow'
+			'hourgate'
 		),
 	},
 	{
 		value: 'catalogue',
-		label: __('Catalogue mode', 'orderwindow'),
+		label: __('Catalogue mode', 'hourgate'),
 		help: __(
 			'Shoppers can browse, but can’t add to cart or check out. Paying an existing order still works.',
-			'orderwindow'
+			'hourgate'
 		),
 	},
 ];
@@ -182,27 +182,27 @@ const modeOptions = () => [
 const pausePresets = () => [
 	{
 		id: '30m',
-		label: __('30 minutes', 'orderwindow'),
+		label: __('30 minutes', 'hourgate'),
 		body: { mode: 'duration', minutes: 30 },
 	},
 	{
 		id: '1h',
-		label: __('1 hour', 'orderwindow'),
+		label: __('1 hour', 'hourgate'),
 		body: { mode: 'duration', minutes: 60 },
 	},
 	{
 		id: '2h',
-		label: __('2 hours', 'orderwindow'),
+		label: __('2 hours', 'hourgate'),
 		body: { mode: 'duration', minutes: 120 },
 	},
 	{
 		id: 'today',
-		label: __('Rest of today', 'orderwindow'),
+		label: __('Rest of today', 'hourgate'),
 		body: { mode: 'end_of_day' },
 	},
 	{
 		id: 'next',
-		label: __('Until the next opening', 'orderwindow'),
+		label: __('Until the next opening', 'hourgate'),
 		body: { mode: 'next_opening' },
 	},
 ];
@@ -272,13 +272,13 @@ const Ordering = () => {
 							/* translators: %s: error message. */
 							__(
 								'The ordering settings couldn’t be loaded: %s',
-								'orderwindow'
+								'hourgate'
 							),
 							loadError
 						)}
 					</p>
 					<Button onClick={load}>
-						{__('Try again', 'orderwindow')}
+						{__('Try again', 'hourgate')}
 					</Button>
 				</div>
 			</Shell>
@@ -326,8 +326,8 @@ const Ordering = () => {
 			addAlert({
 				id: Date.now(),
 				type: 'success',
-				title: __('Saved', 'orderwindow'),
-				description: __('Ordering settings saved.', 'orderwindow'),
+				title: __('Saved', 'hourgate'),
+				description: __('Ordering settings saved.', 'hourgate'),
 			});
 		} catch (error) {
 			const byField = fieldErrors(error);
@@ -350,7 +350,7 @@ const Ordering = () => {
 			addAlert({
 				id: Date.now(),
 				type: 'success',
-				title: __('Done', 'orderwindow'),
+				title: __('Done', 'hourgate'),
 				description: successText,
 			});
 			return true;
@@ -365,7 +365,7 @@ const Ordering = () => {
 
 	const pauseUntilTime = async () => {
 		if (!untilDate || !untilTime) {
-			setUntilError(__('Enter a date and a time.', 'orderwindow'));
+			setUntilError(__('Enter a date and a time.', 'hourgate'));
 			return;
 		}
 		setUntilError('');
@@ -375,7 +375,7 @@ const Ordering = () => {
 					mode: 'until_time',
 					until: `${untilDate} ${untilTime}`,
 				}),
-			__('Ordering is paused.', 'orderwindow')
+			__('Ordering is paused.', 'hourgate')
 		);
 		if (ok) {
 			setUntilDate('');
@@ -391,7 +391,7 @@ const Ordering = () => {
 					/* translators: %d: the character limit. */
 					__(
 						'The message is too long: use at most %d characters.',
-						'orderwindow'
+						'hourgate'
 					),
 					MESSAGE_MAX
 				)
@@ -404,7 +404,7 @@ const Ordering = () => {
 					/* translators: %d: the character limit. */
 					__(
 						'The note is too long: use at most %d characters.',
-						'orderwindow'
+						'hourgate'
 					),
 					MESSAGE_MAX
 				)
@@ -433,7 +433,7 @@ const Ordering = () => {
 					<span className={`${ID}__status-note`}>
 						{__(
 							'This reflects your saved settings.',
-							'orderwindow'
+							'hourgate'
 						)}
 					</span>
 				)}
@@ -444,7 +444,7 @@ const Ordering = () => {
 				aria-labelledby={`${ID}-enforce-title`}
 			>
 				<Title level={3} size={4} id={`${ID}-enforce-title`}>
-					{__('Opening hours', 'orderwindow')}
+					{__('Opening hours', 'hourgate')}
 				</Title>
 				<label className={`${ID}__switch`} htmlFor={`${ID}-enforce`}>
 					<input
@@ -458,26 +458,26 @@ const Ordering = () => {
 							update({ enforce: event.target.checked })
 						}
 					/>
-					<span>{__('Enforce opening hours', 'orderwindow')}</span>
+					<span>{__('Enforce opening hours', 'hourgate')}</span>
 				</label>
 				<p id={`${ID}-enforce-help`} className={`${ID}__help`}>
 					{__(
 						'When on, shoppers can only order while the store is open; outside your store hours and closures the closed mode below applies. A pause applies either way.',
-						'orderwindow'
+						'hourgate'
 					)}
 				</p>
 				{!model.enforce && !status.hoursAlwaysOpen && (
 					<p className={`${ID}__warning`}>
 						{__(
 							'Hours are set but not enforced: shoppers can order at any time.',
-							'orderwindow'
+							'hourgate'
 						)}
 					</p>
 				)}
 			</section>
 
 			<fieldset className={`${ID}__section ${ID}__modes`}>
-				<legend>{__('When the store is closed', 'orderwindow')}</legend>
+				<legend>{__('When the store is closed', 'hourgate')}</legend>
 				{modeOptions().map((option) => (
 					<div key={option.value} className={`${ID}__mode`}>
 						<input
@@ -510,12 +510,12 @@ const Ordering = () => {
 				aria-labelledby={`${ID}-message-title`}
 			>
 				<Title level={3} size={4} id={`${ID}-message-title`}>
-					{__('Closed message', 'orderwindow')}
+					{__('Closed message', 'hourgate')}
 				</Title>
 				<label htmlFor={`${ID}-message`} className={`${ID}__label`}>
 					{__(
 						'Message shown when an order is refused',
-						'orderwindow'
+						'hourgate'
 					)}
 				</label>
 				<textarea
@@ -542,28 +542,28 @@ const Ordering = () => {
 						<p>
 							{__(
 								'Plain text. Leave it empty to use the default.',
-								'orderwindow'
+								'hourgate'
 							)}
 						</p>
-						<p>{__('Tokens:', 'orderwindow')}</p>
+						<p>{__('Tokens:', 'hourgate')}</p>
 						<ul className={`${ID}__tokens`}>
 							<li>
 								{__(
 									'{next_open}: when the store next opens',
-									'orderwindow'
+									'hourgate'
 								)}
 							</li>
 							<li>
 								{__(
 									'{closures_label}: the name of the closure in force',
-									'orderwindow'
+									'hourgate'
 								)}
 							</li>
 						</ul>
 						<p>
 							{__(
 								'Write “and” rather than “&”: some screen readers read “&” as “amp”.',
-								'orderwindow'
+								'hourgate'
 							)}
 						</p>
 					</div>
@@ -573,7 +573,7 @@ const Ordering = () => {
 					>
 						{sprintf(
 							/* translators: 1: characters used, 2: the limit. */
-							__('%1$d / %2$d characters', 'orderwindow'),
+							__('%1$d / %2$d characters', 'hourgate'),
 							length,
 							MESSAGE_MAX
 						)}
@@ -582,13 +582,13 @@ const Ordering = () => {
 				{messageError && (
 					<p
 						id={messageErrorId}
-						className="orderwindow-form-field-error-msg"
+						className="hourgate-form-field-error-msg"
 					>
 						{messageError}
 					</p>
 				)}
 				<p className={`${ID}__preview`}>
-					<span>{__('Shoppers see:', 'orderwindow')}</span>{' '}
+					<span>{__('Shoppers see:', 'hourgate')}</span>{' '}
 					<q>
 						{previewMessage(
 							model.closedMessage,
@@ -605,7 +605,7 @@ const Ordering = () => {
 					aria-labelledby={`${ID}-note-title`}
 				>
 					<Title level={3} size={4} id={`${ID}-note-title`}>
-						{__('Order email note', 'orderwindow')}
+						{__('Order email note', 'hourgate')}
 					</Title>
 					<label
 						className={`${ID}__switch`}
@@ -625,17 +625,17 @@ const Ordering = () => {
 							}
 						/>
 						<span>
-							{__('Add a note to order emails', 'orderwindow')}
+							{__('Add a note to order emails', 'hourgate')}
 						</span>
 					</label>
 					<p id={`${ID}-note-on-help`} className={`${ID}__help`}>
 						{__(
 							'For orders placed while the store was closed, the note shows above the order details in the customer’s Processing order, Order on-hold and invoice emails.',
-							'orderwindow'
+							'hourgate'
 						)}
 					</p>
 					<label htmlFor={`${ID}-note`} className={`${ID}__label`}>
-						{__('Note', 'orderwindow')}
+						{__('Note', 'hourgate')}
 					</label>
 					<textarea
 						id={`${ID}-note`}
@@ -663,15 +663,15 @@ const Ordering = () => {
 							<p>
 								{__(
 									'Plain text. Leave it empty to use the default.',
-									'orderwindow'
+									'hourgate'
 								)}
 							</p>
-							<p>{__('Tokens:', 'orderwindow')}</p>
+							<p>{__('Tokens:', 'hourgate')}</p>
 							<ul className={`${ID}__tokens`}>
 								<li>
 									{__(
 										'{scheduled_for}: the date and time the order is scheduled for',
-										'orderwindow'
+										'hourgate'
 									)}
 								</li>
 							</ul>
@@ -682,7 +682,7 @@ const Ordering = () => {
 						>
 							{sprintf(
 								/* translators: 1: characters used, 2: the limit. */
-								__('%1$d / %2$d characters', 'orderwindow'),
+								__('%1$d / %2$d characters', 'hourgate'),
 								noteLength,
 								MESSAGE_MAX
 							)}
@@ -691,14 +691,14 @@ const Ordering = () => {
 					{noteError && (
 						<p
 							id={noteErrorId}
-							className="orderwindow-form-field-error-msg"
+							className="hourgate-form-field-error-msg"
 						>
 							{noteError}
 						</p>
 					)}
 					{model.scheduledOrderNote && (
 						<p className={`${ID}__preview`}>
-							<span>{__('Customers see:', 'orderwindow')}</span>{' '}
+							<span>{__('Customers see:', 'hourgate')}</span>{' '}
 							<q>
 								{previewNote(
 									model.scheduledOrderNoteText,
@@ -716,7 +716,7 @@ const Ordering = () => {
 				aria-labelledby={`${ID}-bar-title`}
 			>
 				<Title level={3} size={4} id={`${ID}-bar-title`}>
-					{__('Shopper messages', 'orderwindow')}
+					{__('Shopper messages', 'hourgate')}
 				</Title>
 				<label className={`${ID}__switch`} htmlFor={`${ID}-bar`}>
 					<input
@@ -731,35 +731,35 @@ const Ordering = () => {
 						}
 					/>
 					<span>
-						{__('Show a notice bar while closed', 'orderwindow')}
+						{__('Show a notice bar while closed', 'hourgate')}
 					</span>
 				</label>
 				<p id={`${ID}-bar-help`} className={`${ID}__help`}>
 					{__(
 						'A bar at the top of the page shows the closed message while ordering is closed or paused, and is hidden while the store is open. Shoppers can dismiss it for their visit. It never shows on the pay-for-order and order-received pages.',
-						'orderwindow'
+						'hourgate'
 					)}
 				</p>
 				<fieldset
 					className={`${ID}__scopes`}
 					disabled={saving || !model.noticeBar}
 				>
-					<legend>{__('Where it shows', 'orderwindow')}</legend>
+					<legend>{__('Where it shows', 'hourgate')}</legend>
 					{[
 						{
 							value: 'woocommerce',
-							label: __('WooCommerce pages only', 'orderwindow'),
+							label: __('WooCommerce pages only', 'hourgate'),
 							help: __(
 								'The shop, product pages, cart, checkout and My Account. Other pages load nothing.',
-								'orderwindow'
+								'hourgate'
 							),
 						},
 						{
 							value: 'all',
-							label: __('Every page', 'orderwindow'),
+							label: __('Every page', 'hourgate'),
 							help: __(
 								'Every page of the site, including the home page and posts.',
-								'orderwindow'
+								'hourgate'
 							),
 						},
 					].map((option) => (
@@ -801,7 +801,7 @@ const Ordering = () => {
 							/* translators: %s: error message. */
 							__(
 								'The settings weren’t saved: %s Your changes are kept; try again.',
-								'orderwindow'
+								'hourgate'
 							),
 							saveError
 						)}
@@ -821,11 +821,11 @@ const Ordering = () => {
 						!draft || saving || Object.keys(problems).length > 0
 					}
 				>
-					{__('Save', 'orderwindow')}
+					{__('Save', 'hourgate')}
 				</Button>
 				{draft && (
 					<small>
-						{__('You have unsaved changes.', 'orderwindow')}
+						{__('You have unsaved changes.', 'hourgate')}
 					</small>
 				)}
 			</div>
@@ -837,7 +837,7 @@ const Ordering = () => {
 				aria-labelledby={`${ID}-pause-title`}
 			>
 				<Title level={3} size={4} id={`${ID}-pause-title`}>
-					{__('Pause ordering', 'orderwindow')}
+					{__('Pause ordering', 'hourgate')}
 				</Title>
 				<p className={`${ID}__pause-state`} aria-live="polite">
 					{pauseStateText(status.pause)}
@@ -845,7 +845,7 @@ const Ordering = () => {
 				<p className={`${ID}__help`}>
 					{__(
 						'Pausing applies at once, whether or not opening hours are enforced. It doesn’t change the settings above.',
-						'orderwindow'
+						'hourgate'
 					)}
 				</p>
 				{paused && (
@@ -856,23 +856,23 @@ const Ordering = () => {
 							onClick={() =>
 								runPause(
 									resumeOrdering,
-									__('Ordering resumed.', 'orderwindow')
+									__('Ordering resumed.', 'hourgate')
 								)
 							}
 						>
-							{__('Resume ordering', 'orderwindow')}
+							{__('Resume ordering', 'hourgate')}
 						</Button>
 					</div>
 				)}
 				<div
 					className={`${ID}__pause-row`}
 					role="group"
-					aria-label={__('Pause for', 'orderwindow')}
+					aria-label={__('Pause for', 'hourgate')}
 				>
 					<span className={`${ID}__pause-label`} aria-hidden="true">
 						{paused
-							? __('Pause instead for:', 'orderwindow')
-							: __('Pause for:', 'orderwindow')}
+							? __('Pause instead for:', 'hourgate')
+							: __('Pause for:', 'hourgate')}
 					</span>
 					{pausePresets().map((preset) => {
 						const unavailable =
@@ -884,7 +884,7 @@ const Ordering = () => {
 								onClick={() =>
 									runPause(
 										() => startPause(preset.body),
-										__('Ordering is paused.', 'orderwindow')
+										__('Ordering is paused.', 'hourgate')
 									)
 								}
 							>
@@ -896,14 +896,14 @@ const Ordering = () => {
 						disabled={pauseBusy}
 						onClick={() => setConfirmResumed(true)}
 					>
-						{__('Until I resume', 'orderwindow')}
+						{__('Until I resume', 'hourgate')}
 					</Button>
 				</div>
 				{!status.nextOpening && (
 					<p className={`${ID}__help`}>
 						{__(
 							'“Until the next opening” needs an opening after the current one in your store hours.',
-							'orderwindow'
+							'hourgate'
 						)}
 					</p>
 				)}
@@ -916,11 +916,11 @@ const Ordering = () => {
 						id={`${ID}-until-title`}
 						className={`${ID}__pause-label`}
 					>
-						{__('Until a date and time:', 'orderwindow')}
+						{__('Until a date and time:', 'hourgate')}
 					</span>
 					<DateField
 						id={`${ID}-until-date`}
-						label={__('Resume on', 'orderwindow')}
+						label={__('Resume on', 'hourgate')}
 						value={untilDate}
 						onChange={(value) => {
 							setUntilDate(value);
@@ -932,7 +932,7 @@ const Ordering = () => {
 					/>
 					<TimeField
 						id={`${ID}-until-time`}
-						label={__('At (store time)', 'orderwindow')}
+						label={__('At (store time)', 'hourgate')}
 						value={untilTime}
 						onChange={(value) => {
 							setUntilTime(value);
@@ -942,13 +942,13 @@ const Ordering = () => {
 						describedBy={untilError ? `${ID}-until-error` : ''}
 					/>
 					<Button disabled={pauseBusy} onClick={pauseUntilTime}>
-						{__('Pause until then', 'orderwindow')}
+						{__('Pause until then', 'hourgate')}
 					</Button>
 				</div>
 				{untilError && (
 					<p
 						id={`${ID}-until-error`}
-						className="orderwindow-form-field-error-msg"
+						className="hourgate-form-field-error-msg"
 					>
 						{untilError}
 					</p>
@@ -957,7 +957,7 @@ const Ordering = () => {
 					<p className={`${ID}__pause-error`} role="alert">
 						{sprintf(
 							/* translators: %s: error message. */
-							__('Ordering wasn’t paused: %s', 'orderwindow'),
+							__('Ordering wasn’t paused: %s', 'hourgate'),
 							pauseError
 						)}
 					</p>
@@ -967,7 +967,7 @@ const Ordering = () => {
 						/* translators: %s: today's date in the store, Y-m-d. */
 						__(
 							'Dates and times are the store’s (today is %s there).',
-							'orderwindow'
+							'hourgate'
 						),
 						storeToday()
 					)}
@@ -976,12 +976,12 @@ const Ordering = () => {
 
 			<ConfirmDialog
 				isOpen={confirmResumed}
-				title={__('Pause ordering until you resume?', 'orderwindow')}
+				title={__('Pause ordering until you resume?', 'hourgate')}
 				message={__(
 					'Shoppers can’t order until you click Resume, here or in the admin bar. Opening hours don’t end this pause.',
-					'orderwindow'
+					'hourgate'
 				)}
-				confirmLabel={__('Pause ordering', 'orderwindow')}
+				confirmLabel={__('Pause ordering', 'hourgate')}
 				busy={pauseBusy}
 				onCancel={() => setConfirmResumed(false)}
 				onConfirm={async () => {
@@ -989,7 +989,7 @@ const Ordering = () => {
 						() => startPause({ mode: 'until_resumed' }),
 						__(
 							'Ordering is paused until you resume it.',
-							'orderwindow'
+							'hourgate'
 						)
 					);
 					setConfirmResumed(false);
@@ -1016,7 +1016,7 @@ function Shell({ children }) {
 			<Content>
 				<Flex vertical gap={10}>
 					<Title level={2} size={3}>
-						{__('Ordering', 'orderwindow')}
+						{__('Ordering', 'hourgate')}
 					</Title>
 					<Divider />
 					<div className={ID}>{children}</div>

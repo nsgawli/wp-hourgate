@@ -18,7 +18,7 @@ const Button = React.forwardRef(({
 	style = {},
 	children,
 }, ref) => {
-	let classNames = ['orderwindow-button', size];
+	let classNames = ['hourgate-button', size];
 	if (type !== 'default') {
 		classNames.push(type);
 	}

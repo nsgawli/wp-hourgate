@@ -1,7 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi;
+namespace HourGate\RestApi;
 
-use OrderWindow\Core\OrderingPolicy;
+use HourGate\Core\OrderingPolicy;
 use WP_REST_Request;
 
 // Exit if accessed directly.
@@ -99,7 +99,7 @@ class Status extends BaseController {
 		} catch ( \Throwable $e ) {
 			OrderingPolicy::report_status( $e );
 
-			$response = rest_convert_error_to_response( $this->error_response( 'orderwindow_status_unavailable', __( 'The store status is not available right now.', 'orderwindow' ), 500 ) );
+			$response = rest_convert_error_to_response( $this->error_response( 'hourgate_status_unavailable', __( 'The store status is not available right now.', 'hourgate' ), 500 ) );
 			$response->header( 'Cache-Control', 'no-store, max-age=0' );
 
 			return $response;

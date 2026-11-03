@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core;
+namespace HourGate\Core;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -7,14 +7,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Order Window's order meta: read and write only, through the order object
+ * HourGate's order meta: read and write only, through the order object
  * (`get_meta()` / `update_meta_data()`), so it works with HPOS on and off.
  * Setters change the order in memory; the caller saves it.
  *
  * Keys (OW-002 naming; the contract for sprint 5's display and Free 1.1's picker):
- * - `_orderwindow_scheduled_for`: when the order can be fulfilled, ISO 8601
+ * - `_hourgate_scheduled_for`: when the order can be fulfilled, ISO 8601
  *   with the store's offset at that instant (`2026-10-19T10:00:00+05:30`);
- * - `_orderwindow_placed_while_closed`: `'1'` when the order came in
+ * - `_hourgate_placed_while_closed`: `'1'` when the order came in
  *   while the store was closed or paused.
  */
 class OrderMeta {
@@ -24,14 +24,14 @@ class OrderMeta {
 	 *
 	 * @var string
 	 */
-	const SCHEDULED_FOR = '_orderwindow_scheduled_for';
+	const SCHEDULED_FOR = '_hourgate_scheduled_for';
 
 	/**
 	 * Placed while closed.
 	 *
 	 * @var string
 	 */
-	const PLACED_WHILE_CLOSED = '_orderwindow_placed_while_closed';
+	const PLACED_WHILE_CLOSED = '_hourgate_placed_while_closed';
 
 	/**
 	 * When the order can be fulfilled (UTC), or null when it has no valid value.

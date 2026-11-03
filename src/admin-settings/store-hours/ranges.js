@@ -21,13 +21,13 @@ export const validateRanges = (ranges) => {
 		const end = range?.end;
 		if (!isHhmm(start)) {
 			errors[`${index}.start`] = start
-				? __('Enter a valid time.', 'orderwindow')
-				: __('Enter an opening time.', 'orderwindow');
+				? __('Enter a valid time.', 'hourgate')
+				: __('Enter an opening time.', 'hourgate');
 		}
 		if (!isHhmm(end, true)) {
 			errors[`${index}.end`] = end
-				? __('Enter a valid time.', 'orderwindow')
-				: __('Enter a closing time.', 'orderwindow');
+				? __('Enter a valid time.', 'hourgate')
+				: __('Enter a closing time.', 'hourgate');
 		}
 		if (`${index}.start` in errors || `${index}.end` in errors) {
 			return;
@@ -39,7 +39,7 @@ export const validateRanges = (ranges) => {
 		if (rawEnd === s) {
 			errors[String(index)] = __(
 				'Opening and closing times are the same. For a full day, choose Open 24 hours.',
-				'orderwindow'
+				'hourgate'
 			);
 			return;
 		}
@@ -59,7 +59,7 @@ export const validateRanges = (ranges) => {
 		) {
 			errors[String(current.index)] = sprintf(
 				/* translators: %d: number of the other time range. */
-				__('Overlaps range %d.', 'orderwindow'),
+				__('Overlaps range %d.', 'hourgate'),
 				reach.index + 1
 			);
 		}

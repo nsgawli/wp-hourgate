@@ -1,6 +1,6 @@
 /**
  * The closed notice on the Cart and Checkout blocks (OW-048). PHP prints
- * `.orderwindow-notice--closed` on these blocks whenever the cart has an
+ * `.hourgate-notice--closed` on these blocks whenever the cart has an
  * order to place: with the closed message and `data-blocked="1"` while
  * checkout is refused, hidden and empty otherwise. WooCommerce would put
  * "Please fix the following error before continuing" above the same message
@@ -10,7 +10,7 @@
  *   checkout is refused (also when the store closes after the page loaded),
  *   hidden as soon as it is allowed again. The mode 2 "scheduled for" notice
  *   is hidden while it is shown.
- * - The closed error (`orderwindow_closed`, which WooCommerce uses as the
+ * - The closed error (`hourgate_closed`, which WooCommerce uses as the
  *   notice id) is removed from the blocks' notices whenever a response brings
  *   it back, and so is WooCommerce's notice for a refused checkout (id
  *   `checkout`) when it carries the same message. The server's word wins:
@@ -30,11 +30,11 @@
  *   before: the server refuses it. The server always decides.
  */
 
-const ERROR_CODE = 'orderwindow_closed';
+const ERROR_CODE = 'hourgate_closed';
 const NOTICE_CONTEXTS = ['wc/cart', 'wc/checkout'];
 const VALIDATION = 'wc/store/validation';
-const KEY = 'orderwindow-closed';
-const NAMESPACE = 'orderwindow';
+const KEY = 'hourgate-closed';
+const NAMESPACE = 'hourgate';
 const BUTTON = '.wc-block-components-checkout-place-order-button';
 const TRIES = 50;
 const TRY_EVERY = 200;
@@ -88,7 +88,7 @@ function comparable(text) {
  */
 export function watchCheckout() {
 	const notices = document.querySelectorAll(
-		'.orderwindow-notice--closed'
+		'.hourgate-notice--closed'
 	);
 	if (!notices.length) {
 		return;
@@ -127,7 +127,7 @@ export function watchCheckout() {
 			}
 		});
 		document
-			.querySelectorAll('.orderwindow-notice--scheduled')
+			.querySelectorAll('.hourgate-notice--scheduled')
 			.forEach((notice) => {
 				notice.style.display = blocked ? 'none' : '';
 			});
@@ -244,7 +244,7 @@ export function watchCheckout() {
 		syncBlocks();
 	}
 
-	document.addEventListener('orderwindow:status', (event) => {
+	document.addEventListener('hourgate:status', (event) => {
 		const status = event.detail;
 		blocked = status.checkout === 'blocked';
 		showNotices(typeof status.message === 'string' ? status.message : '');

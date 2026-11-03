@@ -1,5 +1,5 @@
 /* Button */
-.orderwindow-button {
+.hourgate-button {
 	border: 1px solid;
 	text-decoration: none;
 	font-weight: 400;
@@ -10,58 +10,58 @@
 	height: fit-content;
 }
 /* With `href` it is an <a>: same look as the <button> (OW-053). */
-a.orderwindow-button {
+a.hourgate-button {
 	display: inline-block;
 	color: inherit;
 	box-sizing: border-box;
 }
-a.orderwindow-button.primary,
-a.orderwindow-button.danger {
+a.hourgate-button.primary,
+a.hourgate-button.danger {
 	color: #fff;
 }
-.orderwindow-button:hover {
-	color: var(--orderwindow-primary-hover-color, var(--orderwindow-primary-color));
+.hourgate-button:hover {
+	color: var(--hourgate-primary-hover-color, var(--hourgate-primary-color));
 	background-color: #fff;
-	border-color: var(--orderwindow-primary-hover-color, var(--orderwindow-primary-color));
+	border-color: var(--hourgate-primary-hover-color, var(--hourgate-primary-color));
 }
-.orderwindow-button:disabled {
+.hourgate-button:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 }
-.orderwindow-button.small {
+.hourgate-button.small {
 	font-size: 0.75rem;
 	padding: 0.3125rem 0.625rem;
 	border-radius: 0.1875rem;
 }
-.orderwindow-button.medium {
+.hourgate-button.medium {
 	font-size: 0.875rem;
 	padding: 0.4375rem 0.9375rem;
 	line-height: 1rem;
 	border-radius: 0.25rem;
 }
-.orderwindow-button.large {
+.hourgate-button.large {
 	font-size: 0.875rem;
 	padding: 0.625rem 0.9375rem;
 	line-height: 1.125rem;
 	border-radius: 0.375rem;
 }
-.orderwindow-button.primary {
+.hourgate-button.primary {
 	color: #fff;
-	background-color: var(--orderwindow-primary-color);
-	border-color: var(--orderwindow-primary-color);
+	background-color: var(--hourgate-primary-color);
+	border-color: var(--hourgate-primary-color);
 }
-.orderwindow-button.primary:hover {
+.hourgate-button.primary:hover {
 	opacity: 0.8;
 }
-.orderwindow-button.danger {
+.hourgate-button.danger {
 	color: #fff;
-	background-color: var(--orderwindow-danger-color);
-	border-color: var(--orderwindow-danger-color);
+	background-color: var(--hourgate-danger-color);
+	border-color: var(--hourgate-danger-color);
 }
-.orderwindow-button.danger:hover {
+.hourgate-button.danger:hover {
 	color: #fff;
 	opacity: 0.85;
 }
-.orderwindow-setting-info {
+.hourgate-setting-info {
 	font-size: 0.8125rem;
 }

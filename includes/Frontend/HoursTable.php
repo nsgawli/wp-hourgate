@@ -1,7 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Frontend;
+namespace HourGate\Frontend;
 
-use OrderWindow\Core\OpeningHours;
+use HourGate\Core\OpeningHours;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * The "Opening hours" markup (OW-041), shared by the block and the
- * `[orderwindow_hours]` shortcode.
+ * `[hourgate_hours]` shortcode.
  *
  * One `<table>` row per weekday from `Core\OpeningHours`, today marked with
  * `aria-current="date"` and `is-today`. The script (`hours-block.js`) rebuilds
@@ -84,7 +84,7 @@ class HoursTable {
 	 */
 	private static function date_sep() {
 		/* translators: separator in a closures list line, e.g. "March 3: Diwali". */
-		return __( ': ', 'orderwindow' );
+		return __( ': ', 'hourgate' );
 	}
 
 	/**
@@ -94,7 +94,7 @@ class HoursTable {
 	 */
 	private static function hours_sep() {
 		/* translators: separator between a special day's name and its hours, e.g. "Christmas Eve · 10:00 am – 2:00 pm". */
-		return __( ' · ', 'orderwindow' );
+		return __( ' · ', 'hourgate' );
 	}
 
 	/**
@@ -103,7 +103,7 @@ class HoursTable {
 	 * @return string
 	 */
 	private static function closed_word() {
-		return __( 'Closed', 'orderwindow' );
+		return __( 'Closed', 'hourgate' );
 	}
 
 	/**
@@ -126,7 +126,7 @@ class HoursTable {
 		}
 
 		Assets::need( 'hours' );
-		Assets::add_style( '.orderwindow-hours table{border-collapse:collapse}.orderwindow-hours th,.orderwindow-hours td{text-align:start;padding:.25em 1em .25em 0}.orderwindow-hours .is-today{font-weight:600}.orderwindow-hours [hidden]{display:none}' );
+		Assets::add_style( '.hourgate-hours table{border-collapse:collapse}.hourgate-hours th,.hourgate-hours td{text-align:start;padding:.25em 1em .25em 0}.hourgate-hours .is-today{font-weight:600}.hourgate-hours [hidden]{display:none}' );
 
 		$rows = '';
 
@@ -150,19 +150,19 @@ class HoursTable {
 		}
 
 		return sprintf(
-			'<div class="orderwindow-hours" data-closures="%1$s" data-date-sep="%2$s" data-hours-sep="%3$s" data-closed="%4$s"><table><caption%5$s>%6$s</caption><tbody>%7$s</tbody></table>%8$s</div>',
+			'<div class="hourgate-hours" data-closures="%1$s" data-date-sep="%2$s" data-hours-sep="%3$s" data-closed="%4$s"><table><caption%5$s>%6$s</caption><tbody>%7$s</tbody></table>%8$s</div>',
 			$closures ? '1' : '0',
 			esc_attr( self::date_sep() ),
 			esc_attr( self::hours_sep() ),
 			esc_attr( self::closed_word() ),
 			'' === $title ? ' class="screen-reader-text"' : '',
-			esc_html( '' === $title ? __( 'Opening hours', 'orderwindow' ) : $title ),
+			esc_html( '' === $title ? __( 'Opening hours', 'hourgate' ) : $title ),
 			$rows,
 			$closures
 				? sprintf(
-					'<div class="orderwindow-hours__closures"%1$s><h4>%2$s</h4><ul>%3$s</ul></div>',
+					'<div class="hourgate-hours__closures"%1$s><h4>%2$s</h4><ul>%3$s</ul></div>',
 					'' === $list ? ' hidden' : '',
-					esc_html__( 'Upcoming closures and special hours', 'orderwindow' ),
+					esc_html__( 'Upcoming closures and special hours', 'hourgate' ),
 					$list
 				)
 				: ''

@@ -9,7 +9,7 @@ import apiFetch from '@wordpress/api-fetch';
  * registered middleware reads, and `apiCache.register()` adds the middleware
  * once per page however many bundles call it.
  */
-const STORE_KEY = '__orderWindowApiCache';
+const STORE_KEY = '__hourGateApiCache';
 
 const getStore = () => {
 	if (!window[STORE_KEY]) {

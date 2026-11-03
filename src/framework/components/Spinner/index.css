@@ -1,8 +1,8 @@
 /* Spinner */
-.orderwindow-spinner-icon {
-	animation: orderWindowSpinIconAnimation 2s linear infinite;
+.hourgate-spinner-icon {
+	animation: hourGateSpinIconAnimation 2s linear infinite;
 }
-@keyframes orderWindowSpinIconAnimation {
+@keyframes hourGateSpinIconAnimation {
 	0% {
 		transform: rotate(0deg);
 	}

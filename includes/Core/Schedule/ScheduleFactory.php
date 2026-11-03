@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core\Schedule;
+namespace HourGate\Core\Schedule;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -80,8 +80,8 @@ final class ScheduleFactory {
 	/**
 	 * Validate the two settings groups and build the schedule.
 	 *
-	 * @param mixed $schedule_settings The schedule group (`orderwindow_schedule_settings`).
-	 * @param mixed $closures_settings The closures group (`orderwindow_closures_settings`).
+	 * @param mixed $schedule_settings The schedule group (`hourgate_schedule_settings`).
+	 * @param mixed $closures_settings The closures group (`hourgate_closures_settings`).
 	 * @return Schedule|ValidationError[] The schedule, or a non-empty list of errors.
 	 */
 	public static function from_arrays( $schedule_settings, $closures_settings ) {

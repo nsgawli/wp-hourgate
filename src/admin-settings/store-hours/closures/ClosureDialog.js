@@ -91,7 +91,7 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 							fields: {},
 							general: [
 								error?.message ||
-									__('Unknown error.', 'orderwindow'),
+									__('Unknown error.', 'hourgate'),
 							],
 						}
 			);
@@ -111,22 +111,22 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 			initialFocusRef={labelRef}
 			title={
 				isNew
-					? __('Add closure', 'orderwindow')
-					: __('Edit closure', 'orderwindow')
+					? __('Add closure', 'hourgate')
+					: __('Edit closure', 'hourgate')
 			}
 		>
 			<form
-				className="orderwindow-closure-form"
+				className="hourgate-closure-form"
 				onSubmit={submit}
 				noValidate
 			>
 				{general.length > 0 && (
 					<div
-						className="orderwindow-closure-form__errors"
+						className="hourgate-closure-form__errors"
 						role="alert"
 					>
 						<p>
-							{__('The closure wasn’t saved:', 'orderwindow')}
+							{__('The closure wasn’t saved:', 'hourgate')}
 						</p>
 						<ul>
 							{general.map((message, i) => (
@@ -136,16 +136,16 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 					</div>
 				)}
 
-				<div className="orderwindow-form-field">
+				<div className="hourgate-form-field">
 					<label
-						htmlFor="orderwindow-closure-label"
-						className="orderwindow-form-field-label"
+						htmlFor="hourgate-closure-label"
+						className="hourgate-form-field-label"
 					>
-						{__('Label (optional)', 'orderwindow')}
+						{__('Label (optional)', 'hourgate')}
 					</label>
 					<input
 						ref={labelRef}
-						id="orderwindow-closure-label"
+						id="hourgate-closure-label"
 						type="text"
 						value={form.label}
 						onChange={(event) =>
@@ -154,15 +154,15 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 						aria-invalid={errorFor('label') ? true : undefined}
 						aria-describedby={
 							errorFor('label')
-								? 'orderwindow-closure-label-count orderwindow-closure-label-error'
-								: 'orderwindow-closure-label-count'
+								? 'hourgate-closure-label-count hourgate-closure-label-error'
+								: 'hourgate-closure-label-count'
 						}
 					/>
 					<small
-						id="orderwindow-closure-label-count"
+						id="hourgate-closure-label-count"
 						className={
 							length > MAX_LABEL
-								? 'orderwindow-form-field-error-msg'
+								? 'hourgate-form-field-error-msg'
 								: ''
 						}
 					>
@@ -170,7 +170,7 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 							/* translators: 1: characters used; 2: the most allowed. */
 							__(
 								'%1$d of %2$d characters, e.g. “Diwali”.',
-								'orderwindow'
+								'hourgate'
 							),
 							length,
 							MAX_LABEL
@@ -178,8 +178,8 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 					</small>
 					{errorFor('label') && (
 						<small
-							id="orderwindow-closure-label-error"
-							className="orderwindow-form-field-error-msg"
+							id="hourgate-closure-label-error"
+							className="hourgate-form-field-error-msg"
 						>
 							{errorFor('label')}
 						</small>
@@ -187,11 +187,11 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 				</div>
 
 				<label
-					className="orderwindow-closure-form__check"
-					htmlFor="orderwindow-closure-one-day"
+					className="hourgate-closure-form__check"
+					htmlFor="hourgate-closure-one-day"
 				>
 					<input
-						id="orderwindow-closure-one-day"
+						id="hourgate-closure-one-day"
 						type="checkbox"
 						checked={form.oneDay}
 						onChange={(event) =>
@@ -201,16 +201,16 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 							})
 						}
 					/>
-					{__('One day', 'orderwindow')}
+					{__('One day', 'hourgate')}
 				</label>
 
-				<div className="orderwindow-closure-form__dates">
+				<div className="hourgate-closure-form__dates">
 					<DateField
-						id="orderwindow-closure-from"
+						id="hourgate-closure-from"
 						label={
 							form.oneDay
-								? __('Date', 'orderwindow')
-								: __('First closed date', 'orderwindow')
+								? __('Date', 'hourgate')
+								: __('First closed date', 'hourgate')
 						}
 						value={form.from}
 						onChange={(from) =>
@@ -226,8 +226,8 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 					/>
 					{!form.oneDay && (
 						<DateField
-							id="orderwindow-closure-to"
-							label={__('Last closed date', 'orderwindow')}
+							id="hourgate-closure-to"
+							label={__('Last closed date', 'hourgate')}
 							value={form.to}
 							onChange={(to) => update({ to })}
 							error={errorFor('to')}
@@ -237,36 +237,36 @@ const ClosureDialog = ({ isOpen, entry, index, today, onSave, onClose }) => {
 				</div>
 
 				<label
-					className="orderwindow-closure-form__check"
-					htmlFor="orderwindow-closure-yearly"
+					className="hourgate-closure-form__check"
+					htmlFor="hourgate-closure-yearly"
 				>
 					<input
-						id="orderwindow-closure-yearly"
+						id="hourgate-closure-yearly"
 						type="checkbox"
 						checked={form.yearly}
 						onChange={(event) =>
 							update({ yearly: event.target.checked })
 						}
-						aria-describedby="orderwindow-closure-yearly-help"
+						aria-describedby="hourgate-closure-yearly-help"
 					/>
-					{__('Repeat every year', 'orderwindow')}
+					{__('Repeat every year', 'hourgate')}
 				</label>
 				<small
-					id="orderwindow-closure-yearly-help"
-					className="orderwindow-closure-form__help"
+					id="hourgate-closure-yearly-help"
+					className="hourgate-closure-form__help"
 				>
 					{__(
 						'Repeats on the same dates every year, for less than a year at a time. It can run over the new year (for example 24 December – 2 January). A yearly closure on 29 February applies only in leap years.',
-						'orderwindow'
+						'hourgate'
 					)}
 				</small>
 
-				<div className="orderwindow-closure-form__actions">
+				<div className="hourgate-closure-form__actions">
 					<Button onClick={close} disabled={saving}>
-						{__('Cancel', 'orderwindow')}
+						{__('Cancel', 'hourgate')}
 					</Button>
 					<Button type="primary" htmlType="submit" loading={saving}>
-						{__('Save closure', 'orderwindow')}
+						{__('Save closure', 'hourgate')}
 					</Button>
 				</div>
 			</form>

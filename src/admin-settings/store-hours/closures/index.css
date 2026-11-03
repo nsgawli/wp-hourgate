@@ -1,28 +1,28 @@
 /* Closures */
-.orderwindow-closures {
+.hourgate-closures {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 }
 
-.orderwindow-closures__intro {
+.hourgate-closures__intro {
 	margin: 0;
-	color: var(--orderwindow-text-secondary-color);
+	color: var(--hourgate-text-secondary-color);
 }
 
-.orderwindow-closure-form {
+.hourgate-closure-form {
 	display: flex;
 	flex-direction: column;
 	gap: 0.875rem;
 }
 
-.orderwindow-closure-form .orderwindow-form-field {
+.hourgate-closure-form .hourgate-form-field {
 	display: flex;
 	flex-direction: column;
 	gap: 0.1875rem;
 }
 
-.orderwindow-closure-form input[type="text"] {
+.hourgate-closure-form input[type="text"] {
 	width: 100%;
 	min-height: 2.5rem;
 	padding: 0 0.5rem;
@@ -30,47 +30,47 @@
 	border-radius: 0.25rem;
 }
 
-.orderwindow-closure-form__dates {
+.hourgate-closure-form__dates {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem;
 }
 
-.orderwindow-closure-form__check {
+.hourgate-closure-form__check {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.375rem;
 }
 
-.orderwindow-closure-form__help {
+.hourgate-closure-form__help {
 	margin-top: -0.5rem;
-	color: var(--orderwindow-text-secondary-color);
+	color: var(--hourgate-text-secondary-color);
 }
 
-.orderwindow-closure-form__errors {
+.hourgate-closure-form__errors {
 	padding: 0.75rem 1rem;
-	border-left: 0.25rem solid var(--orderwindow-danger-color);
+	border-left: 0.25rem solid var(--hourgate-danger-color);
 	background: #fef2f2;
 }
 
-.orderwindow-closure-form__errors p,
-.orderwindow-closure-form__errors ul {
+.hourgate-closure-form__errors p,
+.hourgate-closure-form__errors ul {
 	margin: 0;
 }
 
-.orderwindow-closure-form__errors ul {
+.hourgate-closure-form__errors ul {
 	padding-left: 1.25rem;
 	list-style: disc;
 }
 
-.orderwindow-closure-form__actions {
+.hourgate-closure-form__actions {
 	display: flex;
 	justify-content: flex-end;
 	gap: 0.5rem;
 }
 
 /* Special hours dialog (shares the closure form styles) */
-.orderwindow-special-form__hours {
+.hourgate-special-form__hours {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
@@ -79,11 +79,11 @@
 	border: 0;
 }
 
-.orderwindow-closure-form__help .button-link {
+.hourgate-closure-form__help .button-link {
 	padding: 0;
 	border: 0;
 	background: none;
-	color: var(--orderwindow-link-color);
+	color: var(--hourgate-link-color);
 	text-decoration: underline;
 	cursor: pointer;
 }

@@ -1,12 +1,12 @@
 /* Tabs */
-.orderwindow-tabs {
+.hourgate-tabs {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0 1.5rem;
 	border-bottom: 0.0625rem solid #dcdcde;
 }
 
-.orderwindow-tabs__item {
+.hourgate-tabs__item {
 	appearance: none;
 	background: none;
 	border: none;
@@ -19,16 +19,16 @@
 	cursor: pointer;
 }
 
-.orderwindow-tabs__item:hover {
-	color: var(--orderwindow-primary-hover-color, var(--orderwindow-primary-color));
+.hourgate-tabs__item:hover {
+	color: var(--hourgate-primary-hover-color, var(--hourgate-primary-color));
 }
 
-.orderwindow-tabs__item.is-active {
-	color: var(--orderwindow-primary-color);
-	border-bottom-color: var(--orderwindow-primary-color);
+.hourgate-tabs__item.is-active {
+	color: var(--hourgate-primary-color);
+	border-bottom-color: var(--hourgate-primary-color);
 }
 
-.orderwindow-tabs__item:focus-visible {
-	outline: 0.125rem solid var(--orderwindow-primary-color);
+.hourgate-tabs__item:focus-visible {
+	outline: 0.125rem solid var(--hourgate-primary-color);
 	outline-offset: 0.125rem;
 }

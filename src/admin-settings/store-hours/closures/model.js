@@ -51,7 +51,7 @@ export const describeDates = (entry) => {
 		const to = formatSiteDate(entry.to, format);
 		return sprintf(
 			/* translators: %s: a date or a date range without the year, e.g. "December 24" or "December 24 – January 2". */
-			__('Every year: %s', 'orderwindow'),
+			__('Every year: %s', 'hourgate'),
 			entry.from.slice(5) === entry.to.slice(5) && entry.from === entry.to
 				? from
 				: `${from} – ${to}`
@@ -80,7 +80,7 @@ export const toRows = (list, today) => {
 					key: `i${index}`,
 					index,
 					unreadable: true,
-					dates: __('Unreadable closure', 'orderwindow'),
+					dates: __('Unreadable closure', 'hourgate'),
 					label:
 						isObject(entry) && typeof entry.label === 'string'
 							? entry.label
@@ -88,7 +88,7 @@ export const toRows = (list, today) => {
 					notes: [
 						__(
 							'The saved dates can’t be read. Edit or delete it.',
-							'orderwindow'
+							'hourgate'
 						),
 					],
 					sort: '',
@@ -104,7 +104,7 @@ export const toRows = (list, today) => {
 				notes.push(
 					__(
 						'29 February applies only in leap years.',
-						'orderwindow'
+						'hourgate'
 					)
 				);
 			}
@@ -196,24 +196,24 @@ export const validateForm = (form) => {
 	if (labelLength(form.label) > MAX_LABEL) {
 		errors.label = sprintf(
 			/* translators: %d: the most characters allowed. */
-			__('Use at most %d characters.', 'orderwindow'),
+			__('Use at most %d characters.', 'hourgate'),
 			MAX_LABEL
 		);
 	}
 	if (!isYmd(form.from)) {
 		errors.from = form.from
-			? __('Enter a valid date.', 'orderwindow')
-			: __('Choose the first closed date.', 'orderwindow');
+			? __('Enter a valid date.', 'hourgate')
+			: __('Choose the first closed date.', 'hourgate');
 	}
 	if (!form.oneDay) {
 		if (!isYmd(form.to)) {
 			errors.to = form.to
-				? __('Enter a valid date.', 'orderwindow')
-				: __('Choose the last closed date.', 'orderwindow');
+				? __('Enter a valid date.', 'hourgate')
+				: __('Choose the last closed date.', 'hourgate');
 		} else if (isYmd(form.from) && form.to < form.from) {
 			errors.to = __(
 				'The last date must be on or after the first date.',
-				'orderwindow'
+				'hourgate'
 			);
 		}
 	}

@@ -86,18 +86,18 @@ const Pagination = ({
 
 	return (
 		<Flex
-			className="orderwindow-pagination"
+			className="hourgate-pagination"
 			justify="space-between"
 			align="center"
 			gap={10}
 			wrap
 		>
-			<div className="orderwindow-pagination-info">
+			<div className="hourgate-pagination-info">
 				{startItem} - {endItem} of {totalItems} {label}
 			</div>
 
 			<Flex
-				className="orderwindow-pagination-controls"
+				className="hourgate-pagination-controls"
 				align="center"
 				gap={4}
 				wrap
@@ -121,7 +121,7 @@ const Pagination = ({
 						return (
 							<span
 								key={page}
-								className="orderwindow-pagination-ellipsis"
+								className="hourgate-pagination-ellipsis"
 							>
 								&hellip;
 							</span>
@@ -133,7 +133,7 @@ const Pagination = ({
 							key={page}
 							size="small"
 							type={page === current ? 'primary' : 'default'}
-							className="orderwindow-pagination-page"
+							className="hourgate-pagination-page"
 							onClick={() => goToPage(page)}
 						>
 							{page}
@@ -157,13 +157,13 @@ const Pagination = ({
 			</Flex>
 
 			{total > 1 && (
-				<Flex className="orderwindow-pagination-jump" align="center" gap={6}>
-					<label htmlFor="orderwindow-pagination-jump-input">
+				<Flex className="hourgate-pagination-jump" align="center" gap={6}>
+					<label htmlFor="hourgate-pagination-jump-input">
 						Go to page
 					</label>
 
 					<input
-						id="orderwindow-pagination-jump-input"
+						id="hourgate-pagination-jump-input"
 						type="number"
 						min={1}
 						max={total}

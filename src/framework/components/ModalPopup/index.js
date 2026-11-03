@@ -114,7 +114,7 @@ const ModalPopup = ({
 
 	return (
 		<div
-			className="orderwindow-modal-backdrop"
+			className="hourgate-modal-backdrop"
 			// Mouse only: the keyboard equivalent is Esc.
 			role="presentation"
 			onMouseDown={(event) => {
@@ -125,7 +125,7 @@ const ModalPopup = ({
 		>
 			<div
 				ref={dialogRef}
-				className={`orderwindow-modal-content orderwindow-modal-${size}`}
+				className={`hourgate-modal-content hourgate-modal-${size}`}
 				role={role}
 				aria-modal="true"
 				aria-labelledby={title ? titleId : undefined}
@@ -133,7 +133,7 @@ const ModalPopup = ({
 				tabIndex={-1}
 			>
 				{title && (
-					<h2 id={titleId} className="orderwindow-modal-title">
+					<h2 id={titleId} className="hourgate-modal-title">
 						{title}
 					</h2>
 				)}
@@ -141,9 +141,9 @@ const ModalPopup = ({
 				{closeIcon && (
 					<button
 						type="button"
-						className="orderwindow-modal-close-icon"
+						className="hourgate-modal-close-icon"
 						onClick={onClose}
-						aria-label={__('Close', 'orderwindow')}
+						aria-label={__('Close', 'hourgate')}
 					>
 						<IoMdClose aria-hidden="true" focusable="false" />
 					</button>

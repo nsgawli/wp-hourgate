@@ -46,9 +46,9 @@ const Table = ({
 	}, [loading, hasRows]);
 
 	const tableClassName = `
-		orderwindow-table-wrapper
-		${stickyHeader ? 'orderwindow-table-sticky-header' : ''}
-		${animateRows ? 'orderwindow-table-rows-animate' : ''}
+		hourgate-table-wrapper
+		${stickyHeader ? 'hourgate-table-sticky-header' : ''}
+		${animateRows ? 'hourgate-table-rows-animate' : ''}
 		${className}
 	`;
 
@@ -95,26 +95,26 @@ const Table = ({
 	return (
 		<div className={tableClassName}>
 			{loading && hasRows && (
-				<div className="orderwindow-table-loading-overlay">
+				<div className="hourgate-table-loading-overlay">
 					<Spinner />
 				</div>
 			)}
 
-			<table className="orderwindow-table">
+			<table className="hourgate-table">
 				<thead>
 					<tr>
 						{selectable && (
-							<th className="orderwindow-table-checkbox-column"></th>
+							<th className="hourgate-table-checkbox-column"></th>
 						)}
 
 						{columns.map((column) => (
 							<th
 								key={column.key}
 								className={`
-									orderwindow-table-header-cell
+									hourgate-table-header-cell
 									${column.headerClassName || column.className || ''}
-									${column.sortable ? 'orderwindow-table-header-sortable' : ''}
-									${isColumnSorted(column) ? 'orderwindow-table-header-sorted' : ''}
+									${column.sortable ? 'hourgate-table-header-sortable' : ''}
+									${isColumnSorted(column) ? 'hourgate-table-header-sorted' : ''}
 								`}
 								style={{
 									width: column.width || 'auto',
@@ -125,20 +125,20 @@ const Table = ({
 									<button
 										type="button"
 										className={`
-											orderwindow-table-sort-button
-											orderwindow-table-sort-align-${column.align || 'left'}
+											hourgate-table-sort-button
+											hourgate-table-sort-align-${column.align || 'left'}
 										`}
 										onClick={() => {
 											handleSort(column);
 										}}
 									>
 										<span>{column.title}</span>
-										<span className="orderwindow-table-sort-icon">
+										<span className="hourgate-table-sort-icon">
 											{getSortIcon(column)}
 										</span>
 									</button>
 								) : (
-									<span className="orderwindow-table-header-title">
+									<span className="hourgate-table-header-title">
 										{column.title}
 									</span>
 								)}
@@ -158,7 +158,7 @@ const Table = ({
 								}
 							>
 								<Flex
-									className="orderwindow-table-loader"
+									className="hourgate-table-loader"
 									justify="center"
 									align="center"
 								>
@@ -177,7 +177,7 @@ const Table = ({
 										: columns.length
 								}
 							>
-								<div className="orderwindow-table-empty">
+								<div className="hourgate-table-empty">
 									{emptyText}
 								</div>
 							</td>
@@ -193,8 +193,8 @@ const Table = ({
 									key={rowId}
 									data-row-id={rowId}
 									className={`
-										${onRowClick ? 'orderwindow-table-clickable-row' : ''}
-										${activeRowId === rowId ? 'orderwindow-table-row-active' : ''}
+										${onRowClick ? 'hourgate-table-clickable-row' : ''}
+										${activeRowId === rowId ? 'hourgate-table-row-active' : ''}
 									`}
 									onClick={(event) => {
 										if (onRowClick) {

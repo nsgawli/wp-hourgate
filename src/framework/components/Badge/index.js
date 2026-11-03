@@ -7,7 +7,7 @@ const Badge = ({
 	className = '',
 }) => {
 	return (
-		<span className={`orderwindow-badge orderwindow-badge-${type} ${className}`}>
+		<span className={`hourgate-badge hourgate-badge-${type} ${className}`}>
 			{children}
 		</span>
 	);

@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "orderwindow/store-status",
+	"name": "hourgate/store-status",
 	"title": "Store status",
 	"category": "woocommerce",
 	"description": "Shows whether the store is open now, and when it closes or opens again.",
-	"keywords": [ "open", "closed", "hours", "order window" ],
-	"textdomain": "orderwindow",
+	"keywords": [ "open", "closed", "hours", "hourgate" ],
+	"textdomain": "hourgate",
 	"attributes": {
 		"openText": { "type": "string", "default": "" },
 		"closedText": { "type": "string", "default": "" }

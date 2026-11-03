@@ -1,9 +1,9 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi\Settings;
+namespace HourGate\RestApi\Settings;
 
-use OrderWindow\Core\Behaviour as CoreBehaviour;
-use OrderWindow\Installation\Settings\Behaviour as BehaviourSettings;
-use OrderWindow\RestApi\BaseController;
+use HourGate\Core\Behaviour as CoreBehaviour;
+use HourGate\Installation\Settings\Behaviour as BehaviourSettings;
+use HourGate\RestApi\BaseController;
 use WP_REST_Request;
 
 // Exit if accessed directly.
@@ -149,7 +149,7 @@ class Behaviour extends BaseController {
 			return new \WP_Error(
 				'rest_invalid_type',
 				/* translators: %s: the name of a request parameter or setting, e.g. closedMode. */
-				sprintf( __( '%s must not be null.', 'orderwindow' ), $param )
+				sprintf( __( '%s must not be null.', 'hourgate' ), $param )
 			);
 		}
 
@@ -194,7 +194,7 @@ class Behaviour extends BaseController {
 		if ( null !== $json && ! is_array( $json ) ) {
 			return $this->error_response(
 				'rest_invalid_param',
-				__( 'The request body must be a JSON object.', 'orderwindow' ),
+				__( 'The request body must be a JSON object.', 'hourgate' ),
 				400
 			);
 		}

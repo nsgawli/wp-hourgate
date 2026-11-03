@@ -1,18 +1,18 @@
 /* Tooltip */
-.orderwindow-tooltip-container {
+.hourgate-tooltip-container {
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.orderwindow-tooltip-content {
+.hourgate-tooltip-content {
 	background-color: black;
 	color: #fff;
 	text-align: center;
 	border-radius: 5px;
 	padding: 0.5rem 0.625rem;
 	position: absolute;
-	z-index: var(--orderwindow-popup-z-index);
+	z-index: var(--hourgate-popup-z-index);
 	bottom: 125%;
 	left: 50%;
 	transform: translateX(-50%);
@@ -23,8 +23,8 @@
 	max-width: 12.5rem;
 	font-weight: 400;
 }
-.orderwindow-tooltip-container:hover .orderwindow-tooltip-content,
-.orderwindow-tooltip-container:focus-within .orderwindow-tooltip-content {
+.hourgate-tooltip-container:hover .hourgate-tooltip-content,
+.hourgate-tooltip-container:focus-within .hourgate-tooltip-content {
 	visibility: visible;
 	opacity: 1;
 	transform: translateX(-50%) translateY(-5px);

@@ -28,7 +28,7 @@ const defaultTabs = [
 		key: 'store-hours',
 		path: STORE_HOURS_PATH,
 		icon: <FiClock />,
-		label: __('Store hours', 'orderwindow'),
+		label: __('Store hours', 'hourgate'),
 		element: <StoreHours />,
 	},
 	// Ordering second: the switch, closed mode, message and pause (sprint 4, decision 2).
@@ -36,14 +36,14 @@ const defaultTabs = [
 		key: 'ordering',
 		path: ORDERING_PATH,
 		icon: <FiShoppingCart />,
-		label: __('Ordering', 'orderwindow'),
+		label: __('Ordering', 'hourgate'),
 		element: <Ordering />,
 	},
 	{
 		key: 'data-management',
 		path: '/data-management',
 		icon: <FiSettings />,
-		label: __('Data Management', 'orderwindow'),
+		label: __('Data Management', 'hourgate'),
 		element: <DataManagement />,
 	},
 ];
@@ -55,13 +55,13 @@ function App() {
 	const { requestLeave } = useUnsavedChanges();
 
 	/**
-	 * Extension point: add-ons (e.g. orderwindow-pro) can inject additional
+	 * Extension point: add-ons (e.g. hourgate-pro) can inject additional
 	 * settings tabs by filtering this list, each item shaped like
 	 * defaultTabs. Evaluated at render time (not module load) so it picks
 	 * up filters regardless of script load order.
 	 */
 	const menuItems = applyFilters(
-		'orderwindow.settingsTabs',
+		'hourgate.settingsTabs',
 		// Data Management holds only the admin-only uninstall switch for now, so shop
 		// managers don't get the tab (#/data-management falls back to the
 		// default tab below). Show it to everyone again once it has a setting
@@ -104,11 +104,11 @@ function App() {
 		<Flex vertical>
 			<AdminPageHeader
 				icon={<ProductIcon className="product-icon" />}
-				title={__('Order Window', 'orderwindow')}
+				title={__('HourGate', 'hourgate')}
 				showHelpButtons
 			/>
 			<Flex
-				className="orderwindow-settings-layout"
+				className="hourgate-settings-layout"
 				style={{ padding: '1.5rem' }}
 				gap={25}
 			>
@@ -116,7 +116,7 @@ function App() {
 					items={menuItems}
 					current={current}
 					onClick={onClickMenuItem}
-					collapseKey="orderWindowToggleMenuCollapse"
+					collapseKey="hourGateToggleMenuCollapse"
 				/>
 				<Routes>
 					<Route path="/" element={<span />} />

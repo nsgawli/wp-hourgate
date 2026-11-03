@@ -22,7 +22,7 @@ const RadioButton = ({
 	});
 	const ids = useFieldIds();
 
-	className = className ? `orderwindow-form-field ${className}` : 'orderwindow-form-field';
+	className = className ? `hourgate-form-field ${className}` : 'hourgate-form-field';
 
 	return (
 		<Flex className={className} style={style} vertical gap={3}>
@@ -50,10 +50,10 @@ const RadioButton = ({
 								.join(' ') || undefined
 						}
 						aria-required={validations.required ? true : undefined}
-						className="orderwindow-radio-group"
+						className="hourgate-radio-group"
 					>
 						{options.map((option, index) => (
-							<label key={index} className="orderwindow-radio-option">
+							<label key={index} className="hourgate-radio-option">
 								<input
 									type="radio"
 									{...field}
@@ -70,7 +70,7 @@ const RadioButton = ({
 				)}
 			/>
 			{fieldState.error && fieldState.error.message && (
-				<small id={ids.error} className="orderwindow-form-field-error-msg">
+				<small id={ids.error} className="hourgate-form-field-error-msg">
 					{fieldState.error.message}
 				</small>
 			)}

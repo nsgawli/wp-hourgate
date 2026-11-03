@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Frontend;
+namespace HourGate\Frontend;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,7 +25,7 @@ class Assets {
 	 *
 	 * @var string
 	 */
-	const HANDLE = 'orderwindow-storefront-status';
+	const HANDLE = 'hourgate-storefront-status';
 
 	/**
 	 * Extra parts of the status a component can ask for (`/status?include=`).
@@ -41,7 +41,7 @@ class Assets {
 	 *
 	 * @var string
 	 */
-	const CSS = '.orderwindow-closed{opacity:.5;cursor:not-allowed}';
+	const CSS = '.hourgate-closed{opacity:.5;cursor:not-allowed}';
 
 	/**
 	 * Whether something on the page needs the script.
@@ -129,7 +129,7 @@ class Assets {
 	 */
 	public static function status_url() {
 
-		$url = rest_url( 'orderwindow/v1/status' );
+		$url = rest_url( 'hourgate/v1/status' );
 
 		if ( self::$parts ) {
 			$url = add_query_arg( 'include', implode( ',', array_keys( self::$parts ) ), $url );
@@ -149,7 +149,7 @@ class Assets {
 			return;
 		}
 
-		$file = ORDERWINDOW_ABSPATH . 'build/storefront-status/index.asset.php';
+		$file = HOURGATE_ABSPATH . 'build/storefront-status/index.asset.php';
 
 		if ( ! is_readable( $file ) ) {
 			return;
@@ -159,9 +159,9 @@ class Assets {
 
 		wp_register_script(
 			self::HANDLE,
-			ORDERWINDOW_PLUGIN_URL . 'build/storefront-status/index.js',
+			HOURGATE_PLUGIN_URL . 'build/storefront-status/index.js',
 			isset( $asset['dependencies'] ) ? (array) $asset['dependencies'] : array(),
-			isset( $asset['version'] ) ? $asset['version'] : ORDERWINDOW_VERSION,
+			isset( $asset['version'] ) ? $asset['version'] : HOURGATE_VERSION,
 			array(
 				'in_footer' => true,
 				'strategy'  => 'defer',
@@ -170,14 +170,14 @@ class Assets {
 
 		wp_add_inline_script(
 			self::HANDLE,
-			'window.orderWindowStorefront = ' . wp_json_encode( array( 'url' => self::status_url() ), JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_SLASHES ) . ';',
+			'window.hourGateStorefront = ' . wp_json_encode( array( 'url' => self::status_url() ), JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_SLASHES ) . ';',
 			'before'
 		);
 
 		wp_enqueue_script( self::HANDLE );
 
 		// What the script's markup changes need, inline (no request): disabled add-to-cart controls (OW-039).
-		wp_register_style( self::HANDLE, false, array(), ORDERWINDOW_VERSION );
+		wp_register_style( self::HANDLE, false, array(), HOURGATE_VERSION );
 		wp_add_inline_style( self::HANDLE, self::CSS . implode( '', self::$styles ) );
 		wp_enqueue_style( self::HANDLE );
 	}

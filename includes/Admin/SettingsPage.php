@@ -1,7 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Admin;
+namespace HourGate\Admin;
 
-use OrderWindow\Core\Capabilities;
+use HourGate\Core\Capabilities;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,7 +21,7 @@ class SettingsPage {
 	 */
 	public static function init() {
 
-		add_filter( 'orderwindow_admin_submenus', array( __CLASS__, 'add_submenu' ) );
+		add_filter( 'hourgate_admin_submenus', array( __CLASS__, 'add_submenu' ) );
 
 		// Enqueue the scripts and styles for the admin page.
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
@@ -36,10 +36,10 @@ class SettingsPage {
 	public static function add_submenu( $submenus ) {
 
 		$submenus[] = array(
-			'page_title' => esc_attr__( 'Settings', 'orderwindow' ),
-			'menu_title' => esc_attr__( 'Settings', 'orderwindow' ),
+			'page_title' => esc_attr__( 'Settings', 'hourgate' ),
+			'menu_title' => esc_attr__( 'Settings', 'hourgate' ),
 			'capability' => Capabilities::get_manage_capability(),
-			'menu_slug'  => 'orderwindow-settings',
+			'menu_slug'  => 'hourgate-settings',
 			'callback'   => array( __CLASS__, 'render_settings_page' ),
 			'position'   => 99,
 		);
@@ -60,10 +60,10 @@ class SettingsPage {
 		// WordPress already checks the menu capability; check again so the
 		// screen never relies on the menu alone.
 		if ( ! Capabilities::current_user_can_manage() ) {
-			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'orderwindow' ), 403 );
+			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'hourgate' ), 403 );
 		}
 
-		echo '<div id="orderwindow-admin-settings"></div>';
+		echo '<div id="hourgate-admin-settings"></div>';
 	}
 
 	/**
@@ -77,7 +77,7 @@ class SettingsPage {
 	 */
 	public static function enqueue_scripts( $hook ) {
 
-		if ( ! preg_match( '/_page_orderwindow-settings$/', $hook ) ) {
+		if ( ! preg_match( '/_page_hourgate-settings$/', $hook ) ) {
 			return;
 		}
 
@@ -85,26 +85,26 @@ class SettingsPage {
 		add_filter(
 			'admin_body_class',
 			function ( $classes ) {
-				$classes .= ' toplevel-orderwindow-page';
+				$classes .= ' toplevel-hourgate-page';
 				return $classes;
 			}
 		);
 
 		// Load asset file.
-		$assets = require ORDERWINDOW_ABSPATH . 'build/admin-settings/index.asset.php';
+		$assets = require HOURGATE_ABSPATH . 'build/admin-settings/index.asset.php';
 
 		// Enqueue page styles.
 		wp_enqueue_style(
-			'orderwindow-admin-settings',
-			ORDERWINDOW_PLUGIN_URL . 'build/admin-settings/index' . ( is_rtl() ? '-rtl.css' : '.css' ),
+			'hourgate-admin-settings',
+			HOURGATE_PLUGIN_URL . 'build/admin-settings/index' . ( is_rtl() ? '-rtl.css' : '.css' ),
 			array(),
 			$assets['version']
 		);
 
 		// Enqueue page script.
 		wp_enqueue_script(
-			'orderwindow-admin-settings',
-			ORDERWINDOW_PLUGIN_URL . 'build/admin-settings/index.js',
+			'hourgate-admin-settings',
+			HOURGATE_PLUGIN_URL . 'build/admin-settings/index.js',
 			$assets['dependencies'],
 			$assets['version'],
 			true
@@ -113,8 +113,8 @@ class SettingsPage {
 		// What the current user may do, so the UI can hide what the server would refuse.
 		// The server still enforces every check; this only shapes the UI.
 		wp_add_inline_script(
-			'orderwindow-admin-settings',
-			'window.orderWindowSettings = ' . wp_json_encode(
+			'hourgate-admin-settings',
+			'window.hourGateSettings = ' . wp_json_encode(
 				array(
 					'user' => array(
 						'canManageSite' => Capabilities::current_user_can_manage_site(),
@@ -125,6 +125,6 @@ class SettingsPage {
 		);
 
 		// script translations.
-		wp_set_script_translations( 'orderwindow-admin-settings', 'orderwindow' );
+		wp_set_script_translations( 'hourgate-admin-settings', 'hourgate' );
 	}
 }

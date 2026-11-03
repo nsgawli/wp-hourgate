@@ -9,7 +9,7 @@ const Tooltip = ({ children, content }) => {
 
 	return (
 		<div
-			className="orderwindow-tooltip-container"
+			className="hourgate-tooltip-container"
 			onMouseEnter={showTooltip}
 			onMouseLeave={hideTooltip}
 			// Keyboard users get it too (OW-053); focus events bubble in React.
@@ -17,7 +17,7 @@ const Tooltip = ({ children, content }) => {
 			onBlur={hideTooltip}
 		>
 			{children}
-			{visible && <div className="orderwindow-tooltip-content">{content}</div>}
+			{visible && <div className="hourgate-tooltip-content">{content}</div>}
 		</div>
 	);
 };

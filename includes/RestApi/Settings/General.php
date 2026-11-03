@@ -1,9 +1,9 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi\Settings;
+namespace HourGate\RestApi\Settings;
 
-use OrderWindow\Core\Capabilities;
-use OrderWindow\Installation\Settings\General as InstallationGeneral;
-use OrderWindow\RestApi\BaseController;
+use HourGate\Core\Capabilities;
+use HourGate\Installation\Settings\General as InstallationGeneral;
+use HourGate\RestApi\BaseController;
 use WP_REST_Request;
 
 // Exit if accessed directly.
@@ -93,7 +93,7 @@ class General extends BaseController {
 			return new \WP_Error(
 				'rest_invalid_type',
 				/* translators: %s: the name of a request parameter or setting, e.g. closedMode. */
-				sprintf( __( '%s must not be null.', 'orderwindow' ), $param )
+				sprintf( __( '%s must not be null.', 'hourgate' ), $param )
 			);
 		}
 
@@ -129,7 +129,7 @@ class General extends BaseController {
 		if ( null !== $json && ! is_array( $json ) ) {
 			return $this->error_response(
 				'rest_invalid_param',
-				__( 'The request body must be a JSON object.', 'orderwindow' ),
+				__( 'The request body must be a JSON object.', 'hourgate' ),
 				400
 			);
 		}
@@ -142,8 +142,8 @@ class General extends BaseController {
 
 			if ( $remove_data !== $settings['removeDataOnUninstall'] && ! Capabilities::current_user_can_manage_site() ) {
 				return $this->error_response(
-					'orderwindow_forbidden_setting',
-					__( 'Only administrators can change "Remove Data on Uninstall".', 'orderwindow' ),
+					'hourgate_forbidden_setting',
+					__( 'Only administrators can change "Remove Data on Uninstall".', 'hourgate' ),
 					403
 				);
 			}
@@ -151,7 +151,7 @@ class General extends BaseController {
 			$settings['removeDataOnUninstall'] = $remove_data;
 		}
 
-		update_option( 'orderwindow_general_settings', $settings );
+		update_option( 'hourgate_general_settings', $settings );
 
 		return $this->success_response( $settings );
 	}
@@ -164,7 +164,7 @@ class General extends BaseController {
 	private static function get_stored_settings() {
 
 		$defaults = InstallationGeneral::get_default_settings();
-		$stored   = get_option( 'orderwindow_general_settings', array() );
+		$stored   = get_option( 'hourgate_general_settings', array() );
 		$settings = array_intersect_key( wp_parse_args( is_array( $stored ) ? $stored : array(), $defaults ), $defaults );
 
 		$settings['removeDataOnUninstall'] = (bool) $settings['removeDataOnUninstall'];

@@ -1,100 +1,100 @@
 /* ExceptionList (closures, special hours) */
-.orderwindow-exceptions {
+.hourgate-exceptions {
 	display: flex;
 	flex-direction: column;
 	gap: 0.75rem;
 }
 
-.orderwindow-exceptions__toolbar {
+.hourgate-exceptions__toolbar {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	gap: 0.75rem;
 }
 
-.orderwindow-exceptions__list {
+.hourgate-exceptions__list {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	border-top: 0.0625rem solid var(--orderwindow-border-color);
+	border-top: 0.0625rem solid var(--hourgate-border-color);
 }
 
-.orderwindow-exceptions__item {
+.hourgate-exceptions__item {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 1rem;
 	margin: 0;
 	padding: 0.625rem 0;
-	border-bottom: 0.0625rem solid var(--orderwindow-border-color);
+	border-bottom: 0.0625rem solid var(--hourgate-border-color);
 }
 
-.orderwindow-exceptions__item.is-unreadable {
+.hourgate-exceptions__item.is-unreadable {
 	background: #fef2f2;
 	padding-left: 0.5rem;
 }
 
-.orderwindow-exceptions__text {
+.hourgate-exceptions__text {
 	display: flex;
 	flex-direction: column;
 	gap: 0.125rem;
 	min-width: 0;
 }
 
-.orderwindow-exceptions__dates {
+.hourgate-exceptions__dates {
 	font-weight: 600;
 }
 
-.orderwindow-exceptions__label {
+.hourgate-exceptions__label {
 	overflow-wrap: anywhere;
 }
 
-.orderwindow-exceptions__note {
-	color: var(--orderwindow-text-secondary-color);
+.hourgate-exceptions__note {
+	color: var(--hourgate-text-secondary-color);
 }
 
-.orderwindow-exceptions__actions {
+.hourgate-exceptions__actions {
 	display: flex;
 	align-items: center;
 	flex-shrink: 0;
 	gap: 0.25rem;
 }
 
-.orderwindow-exceptions__action {
+.hourgate-exceptions__action {
 	appearance: none;
 	min-width: 2.5rem;
 	min-height: 2.5rem;
 	border: 0.0625rem solid transparent;
 	border-radius: 0.25rem;
 	background: none;
-	color: var(--orderwindow-text-secondary-color);
+	color: var(--hourgate-text-secondary-color);
 	cursor: pointer;
 }
 
-.orderwindow-exceptions__action:hover:not(:disabled) {
-	border-color: var(--orderwindow-border-color);
-	color: var(--orderwindow-primary-color);
+.hourgate-exceptions__action:hover:not(:disabled) {
+	border-color: var(--hourgate-border-color);
+	color: var(--hourgate-primary-color);
 }
 
-.orderwindow-exceptions__action.is-danger:hover:not(:disabled) {
-	color: var(--orderwindow-danger-color);
+.hourgate-exceptions__action.is-danger:hover:not(:disabled) {
+	color: var(--hourgate-danger-color);
 }
 
-.orderwindow-exceptions__action:focus-visible {
-	outline: 0.125rem solid var(--orderwindow-primary-color);
+.hourgate-exceptions__action:focus-visible {
+	outline: 0.125rem solid var(--hourgate-primary-color);
 }
 
-.orderwindow-exceptions__empty {
+.hourgate-exceptions__empty {
 	margin: 0;
-	color: var(--orderwindow-text-secondary-color);
+	color: var(--hourgate-text-secondary-color);
 }
 
-.orderwindow-exceptions__past summary {
+.hourgate-exceptions__past summary {
 	cursor: pointer;
 	padding: 0.5rem 0;
 	font-weight: 600;
 }
 
-.orderwindow-exceptions__past .orderwindow-button {
+.hourgate-exceptions__past .hourgate-button {
 	margin-top: 0.75rem;
 }

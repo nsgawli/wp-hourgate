@@ -28,7 +28,7 @@ const Textarea = ({
 		required: !!validations.required,
 	});
 
-	className = className ? `orderwindow-form-field ${className}` : 'orderwindow-form-field';
+	className = className ? `hourgate-form-field ${className}` : 'hourgate-form-field';
 
 	return (
 		<Flex className={className} style={style} vertical gap={3}>
@@ -60,7 +60,7 @@ const Textarea = ({
 				)}
 			/>
 			{fieldState.error && fieldState.error.message && (
-				<small id={ids.error} className="orderwindow-form-field-error-msg">
+				<small id={ids.error} className="hourgate-form-field-error-msg">
 					{fieldState.error.message}
 				</small>
 			)}

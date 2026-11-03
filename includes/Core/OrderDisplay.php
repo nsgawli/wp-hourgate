@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core;
+namespace HourGate\Core;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -70,7 +70,7 @@ class OrderDisplay {
 				return;
 			}
 
-			echo '<p class="orderwindow-scheduled-note" style="margin:0 0 16px;overflow-wrap:break-word;word-break:break-word;">' . nl2br( esc_html( $note ) ) . '</p>';
+			echo '<p class="hourgate-scheduled-note" style="margin:0 0 16px;overflow-wrap:break-word;word-break:break-word;">' . nl2br( esc_html( $note ) ) . '</p>';
 		} catch ( \Throwable $e ) {
 			OrderingPolicy::report_display( $e );
 		}
@@ -117,7 +117,7 @@ class OrderDisplay {
 		 * @param WC_Order $order Order.
 		 * @param WC_Email $email Email.
 		 */
-		$note = apply_filters( 'orderwindow_scheduled_order_note', $note, $order, $email );
+		$note = apply_filters( 'hourgate_scheduled_order_note', $note, $order, $email );
 
 		return is_string( $note ) ? trim( $note ) : '';
 	}
@@ -177,8 +177,8 @@ class OrderDisplay {
 
 			if ( OrderMeta::is_placed_while_closed( $order ) ) {
 				$rows['placed_while_closed'] = array(
-					'label' => __( 'Placed while the store was closed', 'orderwindow' ),
-					'value' => __( 'Yes', 'orderwindow' ),
+					'label' => __( 'Placed while the store was closed', 'hourgate' ),
+					'value' => __( 'Yes', 'hourgate' ),
 				);
 			}
 
@@ -186,7 +186,7 @@ class OrderDisplay {
 				return;
 			}
 
-			echo '<div class="form-field form-field-wide orderwindow-order-details">';
+			echo '<div class="form-field form-field-wide hourgate-order-details">';
 
 			foreach ( $rows as $row ) {
 				if ( ! is_array( $row ) || ! isset( $row['label'], $row['value'] ) || ! is_scalar( $row['label'] ) || ! is_scalar( $row['value'] ) ) {
@@ -215,13 +215,13 @@ class OrderDisplay {
 
 		if ( null !== $ts ) {
 			$rows['scheduled_for'] = array(
-				'label' => __( 'Scheduled for:', 'orderwindow' ),
+				'label' => __( 'Scheduled for:', 'hourgate' ),
 				'value' => OrderingPolicy::format_time( $ts ),
 			);
 		}
 
 		/**
-		 * Rows Order Window adds to an order's totals and to the admin order screen.
+		 * Rows HourGate adds to an order's totals and to the admin order screen.
 		 *
 		 * Keyed like WooCommerce's totals rows, each `array( 'label' => string, 'value' => string )`
 		 * as plain text (WooCommerce's templates and the admin box escape it). Rows that aren't
@@ -230,7 +230,7 @@ class OrderDisplay {
 		 * @param array    $rows  Rows, keyed.
 		 * @param WC_Order $order Order.
 		 */
-		$filtered = apply_filters( 'orderwindow_order_display_rows', $rows, $order );
+		$filtered = apply_filters( 'hourgate_order_display_rows', $rows, $order );
 
 		return is_array( $filtered ) ? self::clean( $filtered ) : array();
 	}

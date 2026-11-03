@@ -1,11 +1,11 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core;
+namespace HourGate\Core;
 
-use OrderWindow\Core\Ordering\Decision;
-use OrderWindow\Core\Ordering\Situation;
-use OrderWindow\Installation\Settings\Behaviour as BehaviourSettings;
-use OrderWindow\Installation\Settings\Closures as ClosuresSettings;
-use OrderWindow\Installation\Settings\Schedule as ScheduleSettings;
+use HourGate\Core\Ordering\Decision;
+use HourGate\Core\Ordering\Situation;
+use HourGate\Installation\Settings\Behaviour as BehaviourSettings;
+use HourGate\Installation\Settings\Closures as ClosuresSettings;
+use HourGate\Installation\Settings\Schedule as ScheduleSettings;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,9 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * resets it.
  *
  * It fails open: if its own code throws, ordering is allowed and the error is
- * logged (WooCommerce logger, source `orderwindow`, once a day per
+ * logged (WooCommerce logger, source `hourgate`, once a day per
  * distinct problem). A store must never lose sales or get a fatal because of
- * Order Window.
+ * HourGate.
  */
 class OrderingPolicy {
 
@@ -34,7 +34,7 @@ class OrderingPolicy {
 	 *
 	 * @var string
 	 */
-	const LOGGED_TRANSIENT = 'orderwindow_policy_error_logged';
+	const LOGGED_TRANSIENT = 'hourgate_policy_error_logged';
 
 	/**
 	 * The memoized state.
@@ -88,7 +88,7 @@ class OrderingPolicy {
 	/**
 	 * The decision for a shopper action now.
 	 *
-	 * Filtered by `orderwindow_is_ordering_allowed`. A blocked decision
+	 * Filtered by `hourgate_is_ordering_allowed`. A blocked decision
 	 * carries the closed message as plain text: escape it at output.
 	 *
 	 * @param string $context `checkout` (default) or `add_to_cart`; anything else counts as `checkout`.
@@ -126,7 +126,7 @@ class OrderingPolicy {
 		 * @param string   $context  `checkout` or `add_to_cart`.
 		 */
 		try {
-			$filtered = apply_filters( 'orderwindow_is_ordering_allowed', $decision, $context );
+			$filtered = apply_filters( 'hourgate_is_ordering_allowed', $decision, $context );
 
 			if ( $filtered instanceof Decision ) {
 				$decision = $filtered;
@@ -134,7 +134,7 @@ class OrderingPolicy {
 				self::log(
 					sprintf(
 						/* translators: %s: PHP type or class name, e.g. boolean. */
-						__( 'A orderwindow_is_ordering_allowed filter returned %s instead of a Decision, so Order Window ignored it.', 'orderwindow' ),
+						__( 'A hourgate_is_ordering_allowed filter returned %s instead of a Decision, so HourGate ignored it.', 'hourgate' ),
 						is_object( $filtered ) ? get_class( $filtered ) : gettype( $filtered )
 					)
 				);
@@ -204,7 +204,7 @@ class OrderingPolicy {
 	public static function tokens( $next_open, $closure_label, $closes_at = null ) {
 
 		$tokens = array(
-			'next_open'      => null === $next_open ? __( 'later', 'orderwindow' ) : self::format_time( (int) $next_open ),
+			'next_open'      => null === $next_open ? __( 'later', 'hourgate' ) : self::format_time( (int) $next_open ),
 			'closures_label' => (string) $closure_label,
 		);
 
@@ -301,7 +301,7 @@ class OrderingPolicy {
 			'state'             => $state,
 			'checkout'          => $checkout->get_outcome(),
 			'addToCart'         => $cart->is_blocked() ? Decision::BLOCKED : Decision::ALLOWED,
-			'addToCartLabel'    => $cart->is_blocked() ? _x( 'Closed', 'add-to-cart button while the store is closed', 'orderwindow' ) : null,
+			'addToCartLabel'    => $cart->is_blocked() ? _x( 'Closed', 'add-to-cart button while the store is closed', 'hourgate' ) : null,
 			'bar'               => Behaviour::notice_bar(),
 			'message'           => $message,
 			'closesAtLabel'     => null === $closes_at ? null : self::format_when( $closes_at ),
@@ -360,7 +360,7 @@ class OrderingPolicy {
 	}
 
 	/**
-	 * Log an exception from Order Window's ordering code, once a day per
+	 * Log an exception from HourGate's ordering code, once a day per
 	 * distinct problem, so a hook can fail open without hiding the error.
 	 *
 	 * @param \Throwable $e Exception.
@@ -370,7 +370,7 @@ class OrderingPolicy {
 		self::log(
 			sprintf(
 				/* translators: %s: technical details of the error. */
-				__( 'Order Window hit an error in its ordering code and let the order through unchanged. Details: %s', 'orderwindow' ),
+				__( 'HourGate hit an error in its ordering code and let the order through unchanged. Details: %s', 'hourgate' ),
 				get_class( $e ) . ': ' . $e->getMessage() . ' (' . basename( $e->getFile() ) . ':' . $e->getLine() . ')'
 			)
 		);
@@ -387,7 +387,7 @@ class OrderingPolicy {
 		self::log(
 			sprintf(
 				/* translators: %s: technical details of the error. */
-				__( 'Order Window could not build the store status for shoppers, so the storefront kept what it showed. Ordering itself is unaffected. Details: %s', 'orderwindow' ),
+				__( 'HourGate could not build the store status for shoppers, so the storefront kept what it showed. Ordering itself is unaffected. Details: %s', 'hourgate' ),
 				get_class( $e ) . ': ' . $e->getMessage() . ' (' . basename( $e->getFile() ) . ':' . $e->getLine() . ')'
 			)
 		);
@@ -404,7 +404,7 @@ class OrderingPolicy {
 		self::log(
 			sprintf(
 				/* translators: %s: technical details of the error. */
-				__( 'Order Window could not show the scheduled time on an order, so the order was shown without it. Details: %s', 'orderwindow' ),
+				__( 'HourGate could not show the scheduled time on an order, so the order was shown without it. Details: %s', 'hourgate' ),
 				get_class( $e ) . ': ' . $e->getMessage() . ' (' . basename( $e->getFile() ) . ':' . $e->getLine() . ')'
 			)
 		);
@@ -420,7 +420,7 @@ class OrderingPolicy {
 		self::log(
 			sprintf(
 				/* translators: %s: technical details of the error. */
-				__( 'Order Window could not decide whether the store is open, so it allowed ordering. Details: %s', 'orderwindow' ),
+				__( 'HourGate could not decide whether the store is open, so it allowed ordering. Details: %s', 'hourgate' ),
 				get_class( $e ) . ': ' . $e->getMessage() . ' (' . basename( $e->getFile() ) . ':' . $e->getLine() . ')'
 			)
 		);

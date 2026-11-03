@@ -37,8 +37,8 @@ const Dropdown = ({
 		};
 	}, []);
 
-	className = `orderwindow-dropdown-conatiner ${className}`;
-	const menuClassName = `orderwindow-dropdown-menu ${menuPosition}`;
+	className = `hourgate-dropdown-conatiner ${className}`;
+	const menuClassName = `hourgate-dropdown-menu ${menuPosition}`;
 
 	return (
 		<div ref={menuRef} className={className}>

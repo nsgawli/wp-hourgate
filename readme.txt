@@ -1,4 +1,4 @@
-=== Order Window ===
+=== HourGate – Store Hours for WooCommerce ===
 Contributors: nsgawli
 Tags: store hours, opening hours, vacation mode, pause orders, closed store
 Requires at least: 6.7
@@ -12,7 +12,7 @@ Store hours for WooCommerce: take orders only while you're open. Holiday closure
 
 == Description ==
 
-Order Window lets your WooCommerce store take orders only while you are open. Set your opening hours, close for holidays, and pause orders in one click when the kitchen is busy. Shoppers see when you're open and when you open next, and the store refuses orders it shouldn't take. It works on the Checkout block, the classic checkout and the Store API.
+HourGate lets your WooCommerce store take orders only while you are open. Set your opening hours, close for holidays, and pause orders in one click when the kitchen is busy. Shoppers see when you're open and when you open next, and the store refuses orders it shouldn't take. It works on the Checkout block, the classic checkout and the Store API.
 
 It's made for bakeries, cafés, restaurants, florists, grocers and any shop that can only fulfil orders at certain times.
 
@@ -45,7 +45,7 @@ Orders your staff create are never blocked: orders made in the admin, through th
 * **A closed message** with tokens: `{next_open}` (when you open next) and `{closures_label}` (the holiday's label).
 * **A notice bar** at the top of WooCommerce pages or every page, which shoppers can dismiss.
 * **Cart and checkout notices** explaining why they can't order now, or when their order is scheduled for.
-* **"Store status" and "Opening hours" blocks**, and the shortcodes `[orderwindow_status]` and `[orderwindow_hours]`.
+* **"Store status" and "Opening hours" blocks**, and the shortcodes `[hourgate_status]` and `[hourgate_hours]`.
 
 What shoppers see stays correct behind page caches, because the status is fetched after the page loads.
 
@@ -53,24 +53,24 @@ What shoppers see stays correct behind page caches, because the status is fetche
 
 Enforcement is off when you first install the plugin. Set your hours, check the preview, then turn on "Enforce opening hours" on the Ordering tab when you're ready.
 
-Shop managers can use Order Window, not only administrators.
+Shop managers can use HourGate, not only administrators.
 
 = Other Plugins By Us =
 
 * [Pastmark - Activity Log, User Activity & Audit Trail] (https://wordpress.org/plugins/pastmark/): Activity log & audit trail for WordPress. Track user activity, logins, content changes, WooCommerce orders and site settings in real time.
-* [BugTrace - Debug Log Tool](https://wordpress.org/plugins/debug-log-tool/): A minimalist debugging companion for WordPress. View and download your debug log, toggle `WP_DEBUG`, `WP_DEBUG_LOG`, `WP_DEBUG_DISPLAY`, and `SCRIPT_DEBUG` without editing `wp-config.php`, and inspect server info, `wp-config.php`, `.htaccess`, and PHP info â€” all from your dashboard.
+* [BugTrace - Debug Log Tool](https://wordpress.org/plugins/debug-log-tool/): A minimalist debugging companion for WordPress. View and download your debug log, toggle `WP_DEBUG`, `WP_DEBUG_LOG`, `WP_DEBUG_DISPLAY`, and `SCRIPT_DEBUG` without editing `wp-config.php`, and inspect server info, `wp-config.php`, `.htaccess`, and PHP info — all from your dashboard.
 
 == Contribute ==
-Order Window is an open-source project. You can view the full sources (unminified JS) and contribute to the project on GitHub: [Click here](https://github.com/nsgawli/wp-orderwindow)
+HourGate is an open-source project. You can view the full sources (unminified JS) and contribute to the project on GitHub: [Click here](https://github.com/nsgawli/wp-orderwindow)
 
 == External Services ==
-This plugin does not connect to any external services. It sends no data off your site; the storefront status badge only calls your own site's REST API (`/wp-json/orderwindow/v1/status`).
+This plugin does not connect to any external services. It sends no data off your site; the storefront status badge only calls your own site's REST API (`/wp-json/hourgate/v1/status`).
 
 == Installation ==
 
 1. Make sure WooCommerce is installed and active.
-2. In Plugins → Add New, search for "Order Window", then install and activate it. Or upload the zip in Plugins → Add New → Upload Plugin.
-3. Open Order Window in the admin menu. On the Store hours tab, set your weekly hours, closures and special hours.
+2. In Plugins → Add New, search for "HourGate", then install and activate it. Or upload the zip in Plugins → Add New → Upload Plugin.
+3. Open HourGate in the admin menu. On the Store hours tab, set your weekly hours, closures and special hours.
 4. Check the Preview under Store hours.
 5. On the Ordering tab, choose what happens while you're closed, edit the closed message if you like, and turn on "Enforce opening hours".
 
@@ -82,11 +82,11 @@ Enforcement is off after install, so you can set your hours first. Turn on "Enfo
 
 = Will it block orders my staff create? =
 
-No. Order Window only checks orders shoppers place on your site. Orders created in the admin, through the WooCommerce REST API (for example a POS or phone-order app), by other plugins, and subscription renewals are never blocked.
+No. HourGate only checks orders shoppers place on your site. Orders created in the admin, through the WooCommerce REST API (for example a POS or phone-order app), by other plugins, and subscription renewals are never blocked.
 
 = Can a customer pay for an order while the store is closed? =
 
-Yes. Paying an order that already exists (the "Pay for order" page) is allowed at any time. Developers can change this with the `orderwindow_allow_order_pay_while_closed` filter.
+Yes. Paying an order that already exists (the "Pay for order" page) is allowed at any time. Developers can change this with the `hourgate_allow_order_pay_while_closed` filter.
 
 = Does it work with the Checkout block and the classic checkout? =
 
@@ -102,19 +102,19 @@ No. The buttons stay visible, but the store refuses the order when it reaches ch
 
 = Which time zone does it use? =
 
-The one in Settings → General. Choose a city (for example "Europe/London") rather than a fixed UTC offset: with an offset, your hours stay on the same UTC time all year and won't follow daylight saving changes. Order Window shows a warning when your site uses an offset.
+The one in Settings → General. Choose a city (for example "Europe/London") rather than a fixed UTC offset: with an offset, your hours stay on the same UTC time all year and won't follow daylight saving changes. HourGate shows a warning when your site uses an offset.
 
 = Can shop managers use it? =
 
-Yes. Anyone who can manage WooCommerce can change the hours, the ordering settings and pause ordering. Only administrators can turn on "Remove Data on Uninstall". Developers can change the capability with the `orderwindow_manage_capability` filter.
+Yes. Anyone who can manage WooCommerce can change the hours, the ordering settings and pause ordering. Only administrators can turn on "Remove Data on Uninstall". Developers can change the capability with the `hourgate_manage_capability` filter.
 
 = What happens to my settings when I uninstall? =
 
-They are kept, unless an administrator turned on "Remove Data on Uninstall" on Order Window's General Settings tab. On a multisite network, each site keeps or removes its own data according to its own setting.
+They are kept, unless an administrator turned on "Remove Data on Uninstall" on HourGate's General Settings tab. On a multisite network, each site keeps or removes its own data according to its own setting.
 
-= Do I need Order Window Pro? =
+= Do I need HourGate Pro? =
 
-No. Order Window works fully on its own. Pro is an optional add-on for delivery and pickup slots.
+No. HourGate works fully on its own. Pro is an optional add-on for delivery and pickup slots.
 
 == Screenshots ==
 

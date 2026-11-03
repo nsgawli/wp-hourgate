@@ -1,5 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Core\Ordering;
+namespace HourGate\Core\Ordering;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -59,7 +59,7 @@ final class Decision {
 	const REASON_FALLBACK = 'fallback';
 
 	/**
-	 * Reason: Order Window's own code failed; ordering is allowed (fail open).
+	 * Reason: HourGate's own code failed; ordering is allowed (fail open).
 	 *
 	 * @var string
 	 */

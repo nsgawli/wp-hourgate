@@ -10,7 +10,7 @@ const SideMenu = ({
 	current = null,
 	onClick = null,
 	className = '',
-	collapseKey = 'orderWindowSideMenuCollapse',
+	collapseKey = 'hourGateSideMenuCollapse',
 	style = {},
 }) => {
 	const { screenSize } = useScreenSize();
@@ -28,7 +28,7 @@ const SideMenu = ({
 		}
 	});
 
-	let classNames = ['orderwindow-side-menu'];
+	let classNames = ['hourgate-side-menu'];
 	if (className !== '') {
 		classNames = [...classNames, ...className.split(' ')];
 	}
@@ -75,10 +75,10 @@ const SideMenu = ({
 			)}
 			{!isMobile &&
 				(isMenuCollapsed ? (
-					<Tooltip content={__('Expand', 'orderwindow')}>
+					<Tooltip content={__('Expand', 'hourgate')}>
 						<MenuItem
 							icon={<BsChevronDoubleRight />}
-							label={__('Expand', 'orderwindow')}
+							label={__('Expand', 'hourgate')}
 							onClick={toggleMenuCollapse}
 							gap={10}
 							parentType="side"
@@ -88,7 +88,7 @@ const SideMenu = ({
 				) : (
 					<MenuItem
 						icon={<BsChevronDoubleLeft />}
-						label={__('Collapse', 'orderwindow')}
+						label={__('Collapse', 'hourgate')}
 						onClick={toggleMenuCollapse}
 						gap={10}
 						parentType="side"

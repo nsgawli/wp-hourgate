@@ -46,7 +46,7 @@ const Time = (props) => {
 	return (
 		<Flex
 			className={
-				className ? `orderwindow-form-field ${className}` : 'orderwindow-form-field'
+				className ? `hourgate-form-field ${className}` : 'hourgate-form-field'
 			}
 			style={style}
 			vertical
@@ -81,7 +81,7 @@ const Time = (props) => {
 						onChange={(date) => {
 							field.onChange(formatTime(date));
 						}}
-						timeCaption={__('Time', 'orderwindow')}
+						timeCaption={__('Time', 'hourgate')}
 						dateFormat="h:mm aa"
 						minTime={
 							props.minTime
@@ -98,7 +98,7 @@ const Time = (props) => {
 				)}
 			/>
 			{fieldState.error && fieldState.error.message && (
-				<small id={ids.error} className="orderwindow-form-field-error-msg">
+				<small id={ids.error} className="hourgate-form-field-error-msg">
 					{fieldState.error.message}
 				</small>
 			)}

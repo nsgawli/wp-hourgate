@@ -1,5 +1,5 @@
 /**
- * Order Window storefront status (OW-037).
+ * HourGate storefront status (OW-037).
  *
  * Reads the public `GET /status` route and hands the answer to everything on
  * the page that shows the store's state (the notice bar, the status and
@@ -11,9 +11,9 @@
  *   browsing pages within a minute costs no request at all.
  * - Re-checked on focus or when the tab becomes visible once 60 s have
  *   passed, and every 60 s while visible; nothing runs while hidden.
- * - Each answer is announced as a `orderwindow:status` event on
+ * - Each answer is announced as a `hourgate:status` event on
  *   `document` (`event.detail` is the response's `data`) and kept in
- *   `window.orderWindowStorefront.status` for listeners added later.
+ *   `window.hourGateStorefront.status` for listeners added later.
  * - The notice bar container PHP printed is filled while closed or paused
  *   (OW-038, `bar.js`).
  * - The status block and shortcode text follows the status (OW-040,
@@ -35,12 +35,12 @@ import { watchStatusBlocks } from './status-block';
 import { watchHoursBlocks } from './hours-block';
 import { watchCheckout } from './checkout';
 
-const EVENT = 'orderwindow:status';
+const EVENT = 'hourgate:status';
 const MAX_AGE = 60 * 1000;
 const STATES = ['open', 'closed', 'paused'];
-const STORAGE_PREFIX = 'orderwindow-status:';
+const STORAGE_PREFIX = 'hourgate-status:';
 
-const settings = window.orderWindowStorefront;
+const settings = window.hourGateStorefront;
 
 /**
  * Whether a value looks like the route's `data`.
@@ -154,7 +154,7 @@ function start(config) {
 
 	// The Cart and Checkout blocks' closed notice holds Place order on the status: a remembered answer
 	// could be up to 60 s older than the page PHP just rendered, so these pages always ask (OW-048).
-	const cached = document.querySelector('.orderwindow-notice--closed')
+	const cached = document.querySelector('.hourgate-notice--closed')
 		? null
 		: readCache();
 	if (cached) {

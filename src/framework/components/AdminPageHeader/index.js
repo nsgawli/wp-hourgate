@@ -6,9 +6,9 @@ import { BsBook, BsChatDots, BsTicketPerforated } from 'react-icons/bs';
 import './index.css';
 
 // Empty until the docs site is live (OW-058): the Documentation button doesn't render.
-// Planned address: https://docs.prefixwp.com/docs/orderwindow/
+// Planned address: https://docs.prefixwp.com/docs/hourgate/
 const DOC_URL = '';
-const FORUM_URL = 'https://wordpress.org/support/plugin/orderwindow/';
+const FORUM_URL = 'https://wordpress.org/support/plugin/hourgate/';
 const TICKET_URL = 'https://prefixwp.com/support';
 
 const AdminPageHeader = ({
@@ -25,14 +25,14 @@ const AdminPageHeader = ({
 	const supportItems = [
 		helpLink && {
 			key: 'forum',
-			label: __('Support Forum', 'orderwindow'),
+			label: __('Support Forum', 'hourgate'),
 			icon: <BsChatDots />,
 			url: helpLink,
 			parentType: 'top',
 		},
 		ticketLink && {
 			key: 'ticket',
-			label: __('Create a Ticket', 'orderwindow'),
+			label: __('Create a Ticket', 'hourgate'),
 			icon: <BsTicketPerforated />,
 			url: ticketLink,
 			parentType: 'top',
@@ -51,7 +51,7 @@ const AdminPageHeader = ({
 
 	return (
 		<Flex
-			className="orderwindow-admin-page-header"
+			className="hourgate-admin-page-header"
 			justify="space-between"
 			align="center"
 		>
@@ -71,12 +71,12 @@ const AdminPageHeader = ({
 									window.open(docLink, '_blank');
 								}}
 							>
-								{__('Documentation', 'orderwindow')}
+								{__('Documentation', 'hourgate')}
 							</Button>
 						)}
 						{supportItems.length > 0 && (
 							<Dropdown
-								label={__('Support', 'orderwindow')}
+								label={__('Support', 'hourgate')}
 								size="small"
 								items={supportItems}
 								isOpenMenu={isSupportOpen}

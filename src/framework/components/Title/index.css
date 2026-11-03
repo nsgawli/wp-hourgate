@@ -1,20 +1,20 @@
 /* Title */
-.orderwindow-title {
+.hourgate-title {
 	padding: 0 !important;
 	margin: 0 !important;
 }
 
-h3.orderwindow-title,
-.orderwindow-title.is-size-3 {
+h3.hourgate-title,
+.hourgate-title.is-size-3 {
 	font-size: 1rem;
 }
 
-h4.orderwindow-title,
-.orderwindow-title.is-size-4 {
+h4.hourgate-title,
+.hourgate-title.is-size-4 {
 	font-size: 0.9375rem;
 }
 
-h5.orderwindow-title,
-.orderwindow-title.is-size-5 {
+h5.hourgate-title,
+.hourgate-title.is-size-5 {
 	font-size: 0.875rem;
 }

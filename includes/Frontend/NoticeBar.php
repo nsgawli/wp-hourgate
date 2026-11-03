@@ -1,8 +1,8 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\Frontend;
+namespace HourGate\Frontend;
 
-use OrderWindow\Core\Behaviour;
-use OrderWindow\Installation\Settings\Behaviour as BehaviourSettings;
+use HourGate\Core\Behaviour;
+use HourGate\Installation\Settings\Behaviour as BehaviourSettings;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,7 +34,7 @@ class NoticeBar {
 	 *
 	 * @var string
 	 */
-	const CSS = '.orderwindow-notice-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px;box-sizing:border-box;width:100%;padding:10px 16px;background:#fff4d6;color:#1e1e1e;border-block-end:1px solid #e0c36a;font-size:15px;line-height:1.4;text-align:center}.orderwindow-notice-bar[hidden]{display:none}.orderwindow-notice-bar.is-fixed{position:fixed;inset-inline:0;bottom:0;z-index:99999;border-block-end:0;border-block-start:1px solid #e0c36a}.orderwindow-notice-bar button{padding:2px 12px;border:1px solid currentcolor;border-radius:3px;background:transparent;color:inherit;font:inherit;cursor:pointer}';
+	const CSS = '.hourgate-notice-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px;box-sizing:border-box;width:100%;padding:10px 16px;background:#fff4d6;color:#1e1e1e;border-block-end:1px solid #e0c36a;font-size:15px;line-height:1.4;text-align:center}.hourgate-notice-bar[hidden]{display:none}.hourgate-notice-bar.is-fixed{position:fixed;inset-inline:0;bottom:0;z-index:99999;border-block-end:0;border-block-start:1px solid #e0c36a}.hourgate-notice-bar button{padding:2px 12px;border:1px solid currentcolor;border-radius:3px;background:transparent;color:inherit;font:inherit;cursor:pointer}';
 
 	/**
 	 * Whether the container was printed on this page.
@@ -128,9 +128,9 @@ class NoticeBar {
 		Assets::add_style( self::CSS );
 
 		printf(
-			'<div class="orderwindow-notice-bar%1$s" role="status" data-dismiss="%2$s" hidden></div>',
+			'<div class="hourgate-notice-bar%1$s" role="status" data-dismiss="%2$s" hidden></div>',
 			$fixed ? ' is-fixed' : '',
-			esc_attr_x( 'Dismiss', 'button that hides the closed-store notice bar', 'orderwindow' )
+			esc_attr_x( 'Dismiss', 'button that hides the closed-store notice bar', 'hourgate' )
 		);
 	}
 }

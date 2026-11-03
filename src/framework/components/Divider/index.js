@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 const Divider = React.memo(() => {
-	return <hr className="orderwindow-divider" />;
+	return <hr className="hourgate-divider" />;
 });
 
 export default Divider;

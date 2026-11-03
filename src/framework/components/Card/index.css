@@ -1,4 +1,4 @@
-.orderwindow-card {
+.hourgate-card {
 	background: #fff;
 	border: 1px solid #dcdcde;
 	border-radius: 10px;
@@ -6,10 +6,10 @@
 	height: 100%;
 }
 
-.orderwindow-card-padding {
+.hourgate-card-padding {
 	padding: 20px;
 }
 
-.orderwindow-card-clickable {
+.hourgate-card-clickable {
 	cursor: pointer;
 }

@@ -3,7 +3,7 @@ import './index.css';
 
 const Content = React.memo(({ children, style = {} }) => {
 	return (
-		<div className="orderwindow-content" style={style}>
+		<div className="hourgate-content" style={style}>
 			{children}
 		</div>
 	);

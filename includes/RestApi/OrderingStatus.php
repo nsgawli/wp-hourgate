@@ -1,13 +1,13 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- PSR-4: the file is named after its class.
-namespace OrderWindow\RestApi;
+namespace HourGate\RestApi;
 
-use OrderWindow\Core\Behaviour;
-use OrderWindow\Core\OrderingPolicy;
-use OrderWindow\Core\Ordering\PauseState;
-use OrderWindow\Core\Ordering\Situation;
-use OrderWindow\Core\Pause as CorePause;
-use OrderWindow\Core\StoreSchedule;
-use OrderWindow\Installation\Settings\Behaviour as BehaviourSettings;
+use HourGate\Core\Behaviour;
+use HourGate\Core\OrderingPolicy;
+use HourGate\Core\Ordering\PauseState;
+use HourGate\Core\Ordering\Situation;
+use HourGate\Core\Pause as CorePause;
+use HourGate\Core\StoreSchedule;
+use HourGate\Installation\Settings\Behaviour as BehaviourSettings;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

@@ -1,27 +1,27 @@
 /* Store hours screen */
-.orderwindow-store-clock {
+.hourgate-store-clock {
 	margin: 0;
 	font-size: 0.8125rem;
-	color: var(--orderwindow-text-secondary-color);
+	color: var(--hourgate-text-secondary-color);
 }
 
-.orderwindow-store-hours-panel {
+.hourgate-store-hours-panel {
 	padding-top: 1rem;
 }
 
-.orderwindow-store-hours-panel:focus-visible {
-	outline: 0.125rem solid var(--orderwindow-primary-color);
+.hourgate-store-hours-panel:focus-visible {
+	outline: 0.125rem solid var(--hourgate-primary-color);
 	outline-offset: 0.25rem;
 }
 
 /* Notices shared by the Store hours tabs */
-.orderwindow-store-hours-notice {
+.hourgate-store-hours-notice {
 	padding: 0.75rem 1rem;
-	border-left: 0.25rem solid var(--orderwindow-info-color);
-	background: var(--orderwindow-info-soft-color);
+	border-left: 0.25rem solid var(--hourgate-info-color);
+	background: var(--hourgate-info-soft-color);
 }
 
-.orderwindow-store-hours-notice.is-warning {
-	border-left-color: var(--orderwindow-warning-color);
+.hourgate-store-hours-notice.is-warning {
+	border-left-color: var(--hourgate-warning-color);
 	background: #fffbeb;
 }

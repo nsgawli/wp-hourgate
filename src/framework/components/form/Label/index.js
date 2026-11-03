@@ -35,7 +35,7 @@ const Label = ({
 	}
 
 	return (
-		<Flex className="orderwindow-form-field-label" gap={3}>
+		<Flex className="hourgate-form-field-label" gap={3}>
 			{htmlFor ? (
 				<label htmlFor={htmlFor} id={id || undefined}>
 					{text}
@@ -46,7 +46,7 @@ const Label = ({
 			{info && (
 				<Tooltip content={info}>
 					<span
-						className="orderwindow-form-field-info"
+						className="hourgate-form-field-info"
 						tabIndex={0}
 						role="img"
 						aria-label={info}
@@ -56,7 +56,7 @@ const Label = ({
 				</Tooltip>
 			)}
 			{required && (
-				<span className="orderwindow-form-field-required" aria-hidden="true">
+				<span className="hourgate-form-field-required" aria-hidden="true">
 					*
 				</span>
 			)}
